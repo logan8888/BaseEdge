@@ -1,0 +1,103 @@
+element.style {
+}
+body {
+    background-color: var(--base-color-brand--black);
+    color: var(--base-color-brand--white);
+    letter-spacing: .5px;
+    font-family: Utendo, Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+body {
+    color: #333;
+    background-color: #fff;
+    min-height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+}
+body {
+    margin: 0;
+}
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -o-font-smoothing: antialiased;
+    -webkit-appearance: none;
+}
+* {
+    box-sizing: border-box;
+}
+user agent stylesheet
+body {
+    display: block;
+    margin: 8px;
+}
+:root {
+    --base-color-brand--black: #07001f;
+    --base-color-brand--white: white;
+    --text-color--text-primary: var(--base-color-neutral--black);
+    --link-color--link-primary: var(--base-color-neutral--black);
+    --base-color-brand--purple: #6e45ff;
+    --base-color-brand--green: #3dfd98;
+    --_norry---violet: #e4c5fc;
+    --text-color--text-alternate: var(--base-color-neutral--white);
+    --base-color-neutral--white: white;
+    --base-color-neutral--black: #07001f;
+    --border-color--border-primary: var(--base-color-neutral--black);
+    --base-color-neutral--neutral-lighter: #9895a1;
+    --base-color-brand--green-300: #8dfdc3;
+    --background-color--background-secondary: var(--base-color-neutral--neutral-lightest);
+    --link-color--link-alternate: var(--base-color-neutral--white);
+    --background-color--background-primary: var(--base-color-neutral--white);
+    --background-color--background-tertiary: var(--base-color-neutral--neutral-light);
+    --background-color--background-alternate: var(--base-color-neutral--black);
+    --text-color--text-secondary: var(--base-color-neutral--black);
+    --background-color--background-success: var(--base-color-system--success-green-light);
+    --text-color--text-success: var(--base-color-system--success-green);
+    --background-color--background-error: var(--base-color-system--error-red-light);
+    --text-color--text-error: var(--base-color-system--error-red);
+    --base-color-neutral--neutral-lightest: var(--base-color-brand--white);
+    --base-color-brand--purple-200: #c6b5ff;
+    --base-color-brand--purple-100: #e3dbff;
+    --base-color-neutral--neutral-darker: #302d3a;
+    --base-color-brand--dark-blue-200: #080024;
+    --base-color-brand--dark-blue-100: #090029;
+    --base-color-brand--purple-300: #a990ff;
+    --_fonts---heading: Utendo, Arial, sans-serif;
+    --_fonts---body: Utendo, Arial, sans-serif;
+    --base-color-brand--green-100: #d9feeb;
+    --_norry---black: #1c1d1b;
+    --base-color-brand--green-200: #b3fed7;
+    --base-color-neutral--neutral-light: #aaa;
+    --base-color-neutral--neutral: #666;
+    --base-color-neutral--neutral-dark: #444;
+    --base-color-neutral--neutral-darkest: #111;
+    --base-color-system--success-green: #027a48;
+    --base-color-system--success-green-light: #ecfdf3;
+    --base-color-system--error-red: #b42318;
+    --base-color-system--error-red-light: #fef3f2;
+    --border-color--border-secondary: var(--base-color-neutral--neutral-light);
+    --border-color--border-alternate: var(--base-color-neutral--white);
+    --link-color--link-secondary: var(--base-color-neutral--neutral-light);
+}
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    font-family: sans-serif;
+}
+<style>
+@font-face {
+    font-family: Utendo;
+    src: url(https://cdn.prod.website-files.com/688b856…/688b86c…_UtendoBold.ttf) format("truetype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+CSS.registerProperty
+--fs-list-renderindex {
+    inherits: false;
+    syntax: "<number>";
+    initial-value: 0;
+}
