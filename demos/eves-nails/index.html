@@ -238,25 +238,43 @@
     .gold-band {
       position: relative;
       width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent 0%, #8B6B1A 20%, #C9A458 50%, #8B6B1A 80%, transparent 100%);
+      height: 3px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        #6B4F10 10%,
+        #C9A458 30%,
+        #E8C97A 50%,
+        #C9A458 70%,
+        #6B4F10 90%,
+        transparent 100%);
       overflow: hidden;
-      cursor: default;
+      box-shadow: 0 0 6px rgba(201,164,88,0.2);
+      transition: box-shadow 0.3s ease;
+    }
+    .gold-band:hover {
+      box-shadow: 0 0 14px rgba(232,201,122,0.45);
     }
     .gold-band-shine {
       position: absolute;
       top: 0;
+      left: -30%;
       width: 30%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,248,200,0.9), #fff8c8, rgba(255,248,200,0.9), transparent);
-      transform: skewX(-15deg);
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255,255,230,0.3) 30%,
+        rgba(255,255,255,0.95) 50%,
+        rgba(255,255,230,0.3) 70%,
+        transparent 100%);
       pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.2s ease;
       will-change: left;
+      animation: metalSweep 4s ease-in-out infinite;
     }
-    .gold-band:hover .gold-band-shine {
-      opacity: 1;
+    @keyframes metalSweep {
+      0%   { left: -30%; opacity: 0; }
+      5%   { opacity: 1; }
+      85%  { opacity: 1; }
+      100% { left: 115%; opacity: 0; }
     }
 
     /* ── Scrollbar ─────────────────────────────── */
@@ -694,13 +712,25 @@
     nav.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
 
-  // ── Gold band shine follows cursor
+  // ── Gold band — speed up on hover, follow cursor on mousemove
   document.querySelectorAll('[data-band]').forEach(band => {
     const shine = band.querySelector('.gold-band-shine');
+    band.addEventListener('mouseenter', () => {
+      shine.style.animation = 'none';
+    });
     band.addEventListener('mousemove', (e) => {
       const rect = band.getBoundingClientRect();
       const pct = (e.clientX - rect.left) / rect.width;
       shine.style.left = (pct * 100 - 15) + '%';
+      shine.style.opacity = '1';
+    });
+    band.addEventListener('mouseleave', () => {
+      shine.style.opacity = '0';
+      // restart animation after brief delay
+      setTimeout(() => {
+        shine.style.animation = '';
+        shine.style.opacity = '';
+      }, 300);
     });
   });
 
