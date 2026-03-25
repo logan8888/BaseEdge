@@ -180,13 +180,14 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      transition: background 0.3s ease, backdrop-filter 0.3s ease;
-    }
-    nav.scrolled {
       background: rgba(8,8,8,0.92);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(201,164,88,0.12);
+      border-bottom: 1px solid rgba(201,164,88,0.08);
+      transition: border-color 0.3s ease;
+    }
+    nav.scrolled {
+      border-bottom-color: rgba(201,164,88,0.2);
     }
 
     /* ── Price item ────────────────────────────── */
@@ -287,11 +288,11 @@
 <body>
 
 <!-- ── NAV ──────────────────────────────────────── -->
-<nav id="nav" class="px-6 py-5">
+<nav id="nav" class="px-4 py-2">
   <div class="max-w-6xl mx-auto flex items-center justify-center md:justify-between">
     <!-- Logo -->
     <a href="#">
-      <img src="images/logo.png" alt="Eve's Nails & Makeup Boutique" style="height:44px; width:auto; max-width:180px; display:block;" />
+      <img src="images/logo.png" alt="Eve's Nails & Makeup Boutique" style="height:80px; width:auto; max-width:200px; display:block; object-fit:contain;" />
     </a>
     <!-- Desktop nav links -->
     <div class="hidden md:flex items-center gap-8">
@@ -304,19 +305,19 @@
 </nav>
 
 <!-- ── HERO ─────────────────────────────────────── -->
-<section class="hero-bg grain relative min-h-screen flex items-center" style="padding-top:64px;">
-  <div class="max-w-6xl mx-auto px-6 w-full py-6">
+<section class="hero-bg grain relative min-h-screen flex items-center" style="padding-top:100px;">
+  <div class="max-w-6xl mx-auto px-4 md:px-6 w-full py-6">
     <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
 
       <!-- Text -->
       <div class="flex-1 text-center lg:text-left">
   
-        <h1 class="reveal" style="font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(2rem,8vw,6rem); font-weight:300; line-height:1.05; letter-spacing:-0.02em; color:#F2EDE4; margin-bottom:8px; transition-delay:0.1s;">
+        <h1 class="reveal" style="font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(1.6rem,7vw,6rem); font-weight:300; line-height:1.05; letter-spacing:-0.02em; color:#F2EDE4; margin-bottom:8px; transition-delay:0.1s;">
           Where Beauty<br/>
           <em style="font-style:italic; color:#C9A458;">Becomes Art</em>
         </h1>
 
-        <p class="reveal" style="font-family:'DM Sans',sans-serif; font-size:clamp(15px,2.5vw,18px); color:#7A7672; line-height:1.7; max-width:480px; margin:24px auto 0; lg:margin-left:0; transition-delay:0.2s;">
+        <p class="reveal" style="font-family:'DM Sans',sans-serif; font-size:clamp(13px,2.5vw,18px); color:#7A7672; line-height:1.7; max-width:480px; margin:16px auto 0; transition-delay:0.2s;">
           Premium nail styling and professional makeup artistry in Stoke-on-Trent. Every appointment is a luxury experience crafted just for you.
         </p>
 
@@ -370,7 +371,7 @@
 
 <div class="gold-band" data-band><div class="gold-band-shine"></div></div>
 <!-- ── SERVICES ──────────────────────────────────── -->
-<section id="services" class="py-10 px-4 md:py-14 md:px-6" style="background:#0D0D0D;">
+<section id="services" class="py-6 px-4 md:py-14 md:px-6" style="background:#0D0D0D;">
   <div class="max-w-6xl mx-auto">
 
     <div class="text-center mb-6 reveal">
@@ -381,13 +382,13 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
 
       <!-- Nails card -->
-      <div class="service-card rounded-sm px-4 py-4 md:px-8 md:py-5 reveal flex flex-col" style="transition-delay:0.1s;">
-        <div style="margin-bottom:16px;">
-            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:400; color:#F2EDE4; line-height:1.2;">Nail Art &amp; Styling</h3>
+      <div class="service-card rounded-sm px-4 py-4 md:px-8 md:py-5 reveal flex flex-col text-center md:text-left" style="transition-delay:0.1s;">
+        <div style="margin-bottom:12px;">
+            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:400; color:#F2EDE4; line-height:1.2;">Nail Art &amp; Styling</h3>
             <p style="font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#C9A458; margin-top:4px;">Premium Nail Services</p>
         </div>
 
-        <p style="color:#7A7672; font-size:13px; line-height:1.6; margin-bottom:16px;">Gel extensions, acrylic sets, chrome finishes, holographic effects, 3D nail art, and intricate hand-painted designs. Every set is a bespoke creation.</p>
+        <p style="color:#7A7672; font-size:13px; line-height:1.6; margin-bottom:12px;">Gel extensions, acrylic sets, chrome finishes, holographic effects, 3D nail art, and intricate hand-painted designs.</p>
 
         <div style="border-top:1px solid rgba(201,164,88,0.1); padding-top:20px; flex:1;">
           <div class="price-row">
@@ -416,13 +417,13 @@
       </div>
 
       <!-- Makeup card -->
-      <div class="service-card rounded-sm px-4 py-4 md:px-8 md:py-5 reveal flex flex-col" style="transition-delay:0.2s;">
-        <div style="margin-bottom:16px;">
-            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:400; color:#F2EDE4; line-height:1.2;">Professional Makeup</h3>
+      <div class="service-card rounded-sm px-4 py-4 md:px-8 md:py-5 reveal flex flex-col text-center md:text-left" style="transition-delay:0.2s;">
+        <div style="margin-bottom:12px;">
+            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:400; color:#F2EDE4; line-height:1.2;">Professional Makeup</h3>
             <p style="font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#C9A458; margin-top:4px;">Makeup Artistry</p>
         </div>
 
-        <p style="color:#7A7672; font-size:13px; line-height:1.6; margin-bottom:16px;">From everyday glamour to full bridal transformations. Trained in professional techniques to ensure you look and feel flawless for every occasion.</p>
+        <p style="color:#7A7672; font-size:13px; line-height:1.6; margin-bottom:12px;">From everyday glamour to full bridal transformations. Trained in professional techniques to ensure you look and feel flawless for every occasion.</p>
 
         <div style="border-top:1px solid rgba(201,164,88,0.1); padding-top:20px; flex:1;">
           <div class="price-row">
@@ -525,9 +526,9 @@
 
 <div class="gold-band" data-band><div class="gold-band-shine"></div></div>
 <!-- ── ABOUT ─────────────────────────────────────── -->
-<section id="about" style="background:#0D0D0D; padding:40px 16px;" class="md:py-14 md:px-6">
+<section id="about" style="background:#0D0D0D; padding:32px 16px;" class="md:py-14 md:px-6">
   <div class="max-w-6xl mx-auto">
-    <div class="flex flex-col lg:flex-row items-center gap-16">
+    <div class="flex flex-col lg:flex-row items-center gap-6 lg:gap-16">
 
       <!-- Image -->
       <div class="reveal flex-shrink-0" style="width:min(320px,85vw);">
@@ -542,33 +543,33 @@
       </div>
 
       <!-- Text -->
-      <div class="reveal flex-1 text-center lg:text-left" style="transition-delay:0.15s; min-width:0; overflow:hidden;">
-          <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.6rem,4vw,2.5rem); font-weight:300; color:#F2EDE4; letter-spacing:-0.01em; line-height:1.1; margin-bottom:24px;">
+      <div class="reveal flex-1 text-center lg:text-left w-full" style="transition-delay:0.15s; min-width:0; word-break:break-word;">
+        <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.4rem,4vw,2.5rem); font-weight:300; color:#F2EDE4; letter-spacing:-0.01em; line-height:1.1; margin-bottom:16px;">
           Meet <em style="color:#C9A458; font-style:italic;">Eve</em>
         </h2>
-        <div class="gold-rule lg:ml-0" style="margin-bottom:24px;"></div>
-        <p style="color:#7A7672; font-size:15px; line-height:1.8; margin-bottom:16px;">
+        <div class="gold-rule lg:ml-0" style="margin-bottom:16px;"></div>
+        <p style="color:#7A7672; font-size:13px; line-height:1.7; margin-bottom:12px;">
           Nail styling and professional makeup have been my passion for many years. I've completed many professional training courses in nail styling and makeup, constantly developing my skills to stay ahead of the latest beauty trends.
         </p>
-        <p style="color:#7A7672; font-size:15px; line-height:1.8; margin-bottom:32px;">
+        <p style="color:#7A7672; font-size:13px; line-height:1.7; margin-bottom:24px;">
           I work with passion, paying attention to every detail, so that each client feels truly special. My studio in Stoke-on-Trent is a place where you can relax and let me take care of you.
         </p>
 
         <!-- Stats -->
-        <div class="flex gap-4 sm:gap-10 justify-center lg:justify-start">
+        <div class="flex gap-5 sm:gap-10 justify-center lg:justify-start">
           <div>
             <p style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.4rem,5vw,2.5rem); font-weight:300; color:#C9A458; line-height:1;">5+</p>
-            <p style="font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#7A7672; margin-top:4px;">Years Experience</p>
+            <p style="font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#7A7672; margin-top:4px;">Years Exp.</p>
           </div>
           <div style="width:1px; background:rgba(201,164,88,0.15);"></div>
           <div>
             <p style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.4rem,5vw,2.5rem); font-weight:300; color:#C9A458; line-height:1;">500+</p>
-            <p style="font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#7A7672; margin-top:4px;">Happy Clients</p>
+            <p style="font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#7A7672; margin-top:4px;">Happy Clients</p>
           </div>
-          <div style="width:1px; background:rgba(201,164,88,0.15);"></div>
-          <div>
+          <div class="hidden sm:block" style="width:1px; background:rgba(201,164,88,0.15);"></div>
+          <div class="hidden sm:block">
             <p style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.4rem,5vw,2.5rem); font-weight:300; color:#C9A458; line-height:1;">★ 5</p>
-            <p style="font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#7A7672; margin-top:4px;">Rated</p>
+            <p style="font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#7A7672; margin-top:4px;">Rated</p>
           </div>
         </div>
       </div>
@@ -643,8 +644,8 @@
 </section>
 
 <!-- ── FOOTER ─────────────────────────────────────── -->
-<footer style="background:#050505; border-top:1px solid rgba(201,164,88,0.1); padding:40px 24px;">
-  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+<footer style="background:#050505; border-top:1px solid rgba(201,164,88,0.1); padding:24px 16px;">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
 
     <!-- Footer logo -->
     <div class="text-center md:text-left">
