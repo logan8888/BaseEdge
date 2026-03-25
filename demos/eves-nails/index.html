@@ -279,6 +279,24 @@
       100% { transform: translateX(480%); opacity: 0; }
     }
 
+    /* ── Hero image crossfade ───────────────────── */
+    @keyframes heroFade {
+      0%   { opacity: 0; }
+      5%   { opacity: 1; }
+      18%  { opacity: 1; }
+      23%  { opacity: 0; }
+      100% { opacity: 0; }
+    }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      animation: heroFade 20s linear infinite;
+    }
+
     /* ── Scrollbar ─────────────────────────────── */
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: #080808; }
@@ -288,7 +306,7 @@
 <body>
 
 <!-- ── NAV ──────────────────────────────────────── -->
-<nav id="nav" class="px-4 py-2">
+<nav id="nav" class="px-4 py-1">
   <div class="max-w-6xl mx-auto flex items-center justify-center md:justify-between">
     <!-- Logo -->
     <a href="#">
@@ -305,9 +323,9 @@
 </nav>
 
 <!-- ── HERO ─────────────────────────────────────── -->
-<section class="hero-bg grain relative min-h-screen flex items-center" style="padding-top:100px;">
-  <div class="max-w-6xl mx-auto px-4 md:px-6 w-full py-6">
-    <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+<section class="hero-bg grain relative min-h-screen flex items-center" style="padding-top:88px;">
+  <div class="max-w-6xl mx-auto px-4 md:px-6 w-full py-4">
+    <div class="flex flex-col lg:flex-row items-center gap-4 lg:gap-20">
 
       <!-- Text -->
       <div class="flex-1 text-center lg:text-left">
@@ -321,7 +339,7 @@
           Premium nail styling and professional makeup artistry in Stoke-on-Trent. Every appointment is a luxury experience crafted just for you.
         </p>
 
-        <div class="reveal flex flex-col sm:flex-row gap-3 mt-10 justify-center lg:justify-start" style="transition-delay:0.3s;">
+        <div class="reveal flex flex-col sm:flex-row gap-3 mt-5 justify-center lg:justify-start" style="transition-delay:0.3s;">
           <a href="#book" class="btn-gold px-8 py-4 rounded-sm text-center" style="min-height:52px; display:flex; align-items:center; justify-content:center;">
             Book Your Appointment
           </a>
@@ -331,7 +349,7 @@
         </div>
 
         <!-- Trust pills -->
-        <div class="reveal flex flex-wrap gap-6 mt-10 justify-center lg:justify-start" style="transition-delay:0.4s;">
+        <div class="reveal flex flex-wrap gap-4 mt-4 mb-2 justify-center lg:justify-start" style="transition-delay:0.4s;">
           <span style="font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:#7A7672; display:flex; align-items:center; gap:6px;">
             <span style="color:#C9A458;">✦</span> Nail Art Specialist
           </span>
@@ -344,22 +362,22 @@
         </div>
       </div>
 
-      <!-- Hero image -->
+      <!-- Hero image gallery -->
       <div class="reveal flex-shrink-0" style="transition-delay:0.15s;">
         <div style="position:relative; width:min(380px, 85vw);">
           <!-- Glow behind image -->
           <div style="position:absolute; inset:-20px; background:radial-gradient(ellipse at center, rgba(201,164,88,0.15) 0%, transparent 70%); border-radius:50%; pointer-events:none;"></div>
           <!-- Image frame -->
-          <div style="position:relative; border-radius:2px; overflow:hidden; border:1px solid rgba(201,164,88,0.2); box-shadow: 0 32px 80px rgba(0,0,0,0.7), 0 8px 32px rgba(201,164,88,0.08);">
-            <img
-              src="images/eve.png"
-              alt="Eve — Nail Artist &amp; Makeup Professional"
-              style="width:100%; display:block; aspect-ratio:380/480; object-fit:cover;"
-            />
+          <div style="position:relative; border-radius:2px; overflow:hidden; border:1px solid rgba(201,164,88,0.2); box-shadow: 0 32px 80px rgba(0,0,0,0.7), 0 8px 32px rgba(201,164,88,0.08); aspect-ratio:380/480;">
+            <img class="hero-slide" src="images/img-01.webp" alt="Eve's Nail &amp; Makeup Work" style="animation-delay:0s;" />
+            <img class="hero-slide" src="images/img-02.webp" alt="Eve's Nail &amp; Makeup Work" style="animation-delay:4s;" />
+            <img class="hero-slide" src="images/img-03.webp" alt="Eve's Nail &amp; Makeup Work" style="animation-delay:8s;" />
+            <img class="hero-slide" src="images/img-04.webp" alt="Eve's Nail &amp; Makeup Work" style="animation-delay:12s;" />
+            <img class="hero-slide" src="images/img-05.webp" alt="Eve's Nail &amp; Makeup Work" style="animation-delay:16s;" />
             <!-- Gradient overlay -->
-            <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,8,8,0.6) 0%, transparent 50%); pointer-events:none;"></div>
+            <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,8,8,0.6) 0%, transparent 50%); pointer-events:none; z-index:1;"></div>
             <!-- Gold tint layer -->
-            <div style="position:absolute; inset:0; background:rgba(201,164,88,0.04); mix-blend-mode:multiply; pointer-events:none;"></div>
+            <div style="position:absolute; inset:0; background:rgba(201,164,88,0.04); mix-blend-mode:multiply; pointer-events:none; z-index:1;"></div>
           </div>
         </div>
       </div>
@@ -644,8 +662,8 @@
 </section>
 
 <!-- ── FOOTER ─────────────────────────────────────── -->
-<footer style="background:#050505; border-top:1px solid rgba(201,164,88,0.1); padding:24px 16px;">
-  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+<footer style="background:#050505; border-top:1px solid rgba(201,164,88,0.1); padding:16px 16px 12px;">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4">
 
     <!-- Footer logo -->
     <div class="text-center md:text-left">
@@ -671,8 +689,8 @@
     </a>
   </div>
 
-  <div class="max-w-6xl mx-auto mt-8 pt-6" style="border-top:1px solid rgba(255,255,255,0.04); text-align:center;">
-    <p style="font-size:11px; color:#3A3A3A; letter-spacing:0.1em;">© 2025 Nails &amp; Makeup Boutique by Eve · Stoke-on-Trent · All rights reserved</p>
+  <div class="max-w-6xl mx-auto mt-3 pt-3" style="border-top:1px solid rgba(255,255,255,0.04); text-align:center;">
+    <p style="font-size:9px; color:#3A3A3A; letter-spacing:0.08em;">© 2025 Nails &amp; Makeup Boutique by Eve · Stoke-on-Trent</p>
   </div>
 </footer>
 
