@@ -291,7 +291,7 @@
   <div class="max-w-6xl mx-auto flex items-center justify-between">
     <!-- Logo -->
     <a href="#">
-      <img src="images/logo.png" alt="Eve's Nails & Makeup Boutique" style="height:44px; width:auto; display:block;" />
+      <img src="images/logo.png" alt="Eve's Nails & Makeup Boutique" style="height:44px; width:auto; max-width:180px; display:block;" />
     </a>
     <!-- Desktop nav links -->
     <div class="hidden md:flex items-center gap-8">
@@ -300,14 +300,12 @@
       <a href="#about" class="text-xs tracking-widest uppercase text-muted hover:text-gold transition-colors duration-200" style="letter-spacing:0.16em;">About</a>
       <a href="#book" class="btn-gold px-5 py-3 rounded-sm" style="min-height:44px; display:flex; align-items:center;">Book Now</a>
     </div>
-    <!-- Mobile book button (hidden on desktop) -->
-    <a href="#book" class="nav-mobile-btn btn-gold px-4 py-3 rounded-sm" style="min-height:44px; align-items:center; letter-spacing:0.12em; text-transform:uppercase; font-size:11px;">Book</a>
   </div>
 </nav>
 
 <!-- ── HERO ─────────────────────────────────────── -->
-<section class="hero-bg grain relative min-h-screen flex items-center" style="padding-top:80px;">
-  <div class="max-w-6xl mx-auto px-6 w-full py-12">
+<section class="hero-bg grain relative min-h-screen flex items-center" style="padding-top:64px;">
+  <div class="max-w-6xl mx-auto px-6 w-full py-6">
     <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
 
       <!-- Text -->
@@ -373,11 +371,6 @@
     </div>
   </div>
 
-  <!-- Scroll indicator -->
-  <div style="position:absolute; bottom:32px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:6px; opacity:0.5;">
-    <span style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#7A7672; font-family:'DM Sans',sans-serif;">Scroll</span>
-    <div style="width:1px; height:32px; background:linear-gradient(to bottom, #C9A458, transparent);"></div>
-  </div>
 </section>
 
 <div class="gold-band" data-band><div class="gold-band-shine"></div></div>
@@ -386,7 +379,7 @@
   <div class="max-w-6xl mx-auto">
 
     <div class="text-center mb-10 reveal">
-      <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,5vw,3.5rem); font-weight:300; letter-spacing:-0.01em; color:#F2EDE4; line-height:1.1;">My Services</h2>
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.6rem,4vw,2.8rem); font-weight:300; letter-spacing:-0.01em; color:#F2EDE4; line-height:1.1;">My Services</h2>
       <div class="gold-rule mt-6"></div>
     </div>
 
@@ -394,14 +387,9 @@
 
       <!-- Nails card -->
       <div class="service-card rounded-sm px-8 py-5 reveal flex flex-col" style="transition-delay:0.1s;">
-        <div style="display:flex; align-items:center; gap:12px; margin-bottom:24px;">
-          <div style="width:40px; height:40px; border:1px solid rgba(201,164,88,0.3); border-radius:50%; display:flex; align-items:center; justify-content:center;">
-            <span style="font-size:16px; color:#C9A458;">✦</span>
-          </div>
-          <div>
-            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#F2EDE4; line-height:1;">Nail Art &amp; Styling</h3>
-            <p style="font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#C9A458; margin-top:2px;">Premium Nail Services</p>
-          </div>
+        <div style="margin-bottom:16px;">
+            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:400; color:#F2EDE4; line-height:1.2;">Nail Art &amp; Styling</h3>
+            <p style="font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#C9A458; margin-top:4px;">Premium Nail Services</p>
         </div>
 
         <p style="color:#7A7672; font-size:14px; line-height:1.7; margin-bottom:24px;">Gel extensions, acrylic sets, chrome finishes, holographic effects, 3D nail art, and intricate hand-painted designs. Every set is a bespoke creation.</p>
@@ -429,19 +417,14 @@
           </div>
         </div>
 
-        <a href="#book" class="btn-gold mt-6 px-6 py-3 rounded-sm w-full text-center block" style="min-height:44px; display:flex; align-items:center; justify-content:center;">Book Nails</a>
+        <a href="#book" class="btn-gold mt-6 px-6 py-3 rounded-sm w-full text-center block" style="min-height:36px; display:flex; align-items:center; justify-content:center; padding-top:8px; padding-bottom:8px;">Book Nails</a>
       </div>
 
       <!-- Makeup card -->
-      <div class="service-card rounded-sm p-8 reveal" style="transition-delay:0.2s;">
-        <div style="display:flex; align-items:center; gap:12px; margin-bottom:24px;">
-          <div style="width:40px; height:40px; border:1px solid rgba(201,164,88,0.3); border-radius:50%; display:flex; align-items:center; justify-content:center;">
-            <span style="font-size:16px; color:#C9A458;">✦</span>
-          </div>
-          <div>
-            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#F2EDE4; line-height:1;">Professional Makeup</h3>
-            <p style="font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#C9A458; margin-top:2px;">Makeup Artistry</p>
-          </div>
+      <div class="service-card rounded-sm px-8 py-5 reveal flex flex-col" style="transition-delay:0.2s;">
+        <div style="margin-bottom:16px;">
+            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:400; color:#F2EDE4; line-height:1.2;">Professional Makeup</h3>
+            <p style="font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#C9A458; margin-top:4px;">Makeup Artistry</p>
         </div>
 
         <p style="color:#7A7672; font-size:14px; line-height:1.7; margin-bottom:24px;">From everyday glamour to full bridal transformations. Trained in professional techniques to ensure you look and feel flawless for every occasion.</p>
@@ -474,7 +457,7 @@
           </div>
         </div>
 
-        <a href="#book" class="btn-gold mt-6 px-6 py-3 rounded-sm w-full text-center block" style="min-height:44px; display:flex; align-items:center; justify-content:center;">Book Makeup</a>
+        <a href="#book" class="btn-gold mt-6 px-6 py-3 rounded-sm w-full text-center block" style="min-height:36px; display:flex; align-items:center; justify-content:center; padding-top:8px; padding-bottom:8px;">Book Makeup</a>
       </div>
     </div>
 
@@ -496,7 +479,7 @@
   <div class="max-w-6xl mx-auto">
 
     <div class="text-center mb-10 reveal">
-      <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,5vw,3.5rem); font-weight:300; letter-spacing:-0.01em; color:#F2EDE4; line-height:1.1;">My Work</h2>
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.6rem,4vw,2.8rem); font-weight:300; letter-spacing:-0.01em; color:#F2EDE4; line-height:1.1;">My Work</h2>
       <div class="gold-rule mt-6"></div>
       <p style="font-size:14px; color:#7A7672; margin-top:16px; line-height:1.7;">Every nail set and makeup look is a bespoke creation.</p>
     </div>
@@ -564,8 +547,8 @@
       </div>
 
       <!-- Text -->
-      <div class="reveal flex-1 text-center lg:text-left" style="transition-delay:0.15s;">
-          <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,3rem); font-weight:300; color:#F2EDE4; letter-spacing:-0.01em; line-height:1.1; margin-bottom:24px;">
+      <div class="reveal flex-1 text-center lg:text-left" style="transition-delay:0.15s; min-width:0; overflow:hidden;">
+          <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.6rem,4vw,2.5rem); font-weight:300; color:#F2EDE4; letter-spacing:-0.01em; line-height:1.1; margin-bottom:24px;">
           Meet <em style="color:#C9A458; font-style:italic;">Eve</em>
         </h2>
         <div class="gold-rule lg:ml-0" style="margin-bottom:24px;"></div>
@@ -605,7 +588,7 @@
   <div class="max-w-2xl mx-auto text-center">
 
     <div class="reveal">
-      <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,5vw,3.5rem); font-weight:300; letter-spacing:-0.01em; color:#F2EDE4; line-height:1.1;">Book Your Appointment</h2>
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.6rem,4vw,2.8rem); font-weight:300; letter-spacing:-0.01em; color:#F2EDE4; line-height:1.1;">Book Your Appointment</h2>
       <div class="gold-rule mt-6 mb-6"></div>
       <p style="font-size:14px; color:#7A7672; line-height:1.7; margin-bottom:32px;">
         Advance booking only — no same-day appointments available.<br/>Book online below or reach out via Instagram.
@@ -673,8 +656,8 @@
       <img src="images/logo.png" alt="Eve's Nails & Makeup Boutique" style="height:100px; max-width:200px; width:auto; display:block; object-fit:contain;" />
     </div>
 
-    <!-- Nav -->
-    <div class="flex gap-6">
+    <!-- Nav (desktop only) -->
+    <div class="hidden md:flex gap-6">
       <a href="#services" style="font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#7A7672; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#C9A458'" onmouseout="this.style.color='#7A7672'">Services</a>
       <a href="#gallery" style="font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#7A7672; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#C9A458'" onmouseout="this.style.color='#7A7672'">Gallery</a>
       <a href="#about" style="font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#7A7672; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#C9A458'" onmouseout="this.style.color='#7A7672'">About</a>
