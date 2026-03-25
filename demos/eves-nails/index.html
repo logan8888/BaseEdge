@@ -712,25 +712,38 @@
     nav.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
 
-  // ── Gold band — speed up on hover, follow cursor on mousemove
+  // ── Gold band — trigger full sweep on cursor touch
   document.querySelectorAll('[data-band]').forEach(band => {
     const shine = band.querySelector('.gold-band-shine');
+    let sweeping = false;
+
     band.addEventListener('mouseenter', () => {
+      if (sweeping) return;
+      sweeping = true;
+
+      // Stop the idle loop, reset to start
       shine.style.animation = 'none';
-    });
-    band.addEventListener('mousemove', (e) => {
-      const rect = band.getBoundingClientRect();
-      const pct = (e.clientX - rect.left) / rect.width;
-      shine.style.left = (pct * 100 - 15) + '%';
-      shine.style.opacity = '1';
-    });
-    band.addEventListener('mouseleave', () => {
+      shine.style.left = '-30%';
       shine.style.opacity = '0';
-      // restart animation after brief delay
+
+      // Force reflow so the reset takes effect
+      void shine.offsetWidth;
+
+      // Play a single fast sweep across the full band
+      shine.style.transition = 'left 0.6s cubic-bezier(0.4,0,0.2,1), opacity 0.08s ease';
+      shine.style.opacity = '1';
+      shine.style.left = '115%';
+
       setTimeout(() => {
-        shine.style.animation = '';
-        shine.style.opacity = '';
-      }, 300);
+        shine.style.opacity = '0';
+        setTimeout(() => {
+          // Restore idle loop
+          shine.style.transition = '';
+          shine.style.left = '-30%';
+          shine.style.animation = 'metalSweep 4s ease-in-out infinite';
+          sweeping = false;
+        }, 150);
+      }, 620);
     });
   });
 
