@@ -4,7 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const PORT = 3000;
+const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 
 const MIME = {
   '.html': 'text/html', '.css': 'text/css', '.js': 'application/javascript',
@@ -21,7 +21,14 @@ http.createServer((req, res) => {
   const ext = path.extname(filePath).toLowerCase();
   if (!fs.existsSync(filePath)) { res.writeHead(404); return res.end('Not found'); }
   const stat = fs.statSync(filePath);
-  if (stat.isDirectory()) { res.writeHead(403); return res.end('Forbidden'); }
+  if (stat.isDirectory()) {
+    const indexPath = path.join(filePath, 'index.html');
+    if (fs.existsSync(indexPath)) {
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      return fs.createReadStream(indexPath).pipe(res);
+    }
+    res.writeHead(403); return res.end('Forbidden');
+  }
   res.writeHead(200, { 'Content-Type': MIME[ext] || 'application/octet-stream' });
   fs.createReadStream(filePath).pipe(res);
 }).listen(PORT, () => console.log(`Serving http://localhost:${PORT}`));

@@ -25,9 +25,7 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
-
   body {
     font-family: 'Space Grotesk', Arial, sans-serif;
     background: var(--bg);
@@ -50,7 +48,6 @@
       radial-gradient(ellipse 700px 500px at 50% 90%, rgba(110,69,255,0.10) 0%, transparent 60%);
   }
 
-  /* ── Layout helpers ── */
   .container { max-width: var(--max); margin: 0 auto; padding: 0 16px; position: relative; z-index: 1; }
 
   .badge {
@@ -67,7 +64,6 @@
     letter-spacing: 0.03em;
     text-transform: uppercase;
   }
-
   .badge-green {
     border-color: rgba(61,253,152,0.35);
     background: rgba(61,253,152,0.10);
@@ -78,8 +74,7 @@
   h1 { font-size: clamp(42px, 6vw, 76px); }
   h2 { font-size: clamp(32px, 4vw, 52px); }
   h3 { font-size: 22px; }
-
-  p { color: var(--muted); line-height: 1.75; }
+  p  { color: var(--muted); line-height: 1.75; }
 
   .btn {
     display: inline-flex;
@@ -93,10 +88,14 @@
     cursor: pointer;
     border: none;
     text-decoration: none;
-    transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.18s ease, opacity 0.18s ease;
+    transition:
+      transform   0.18s cubic-bezier(0.34,1.56,0.64,1),
+      box-shadow  0.18s ease,
+      opacity     0.18s ease;
   }
   .btn:hover  { transform: translateY(-2px); }
   .btn:active { transform: translateY(0); opacity: 0.88; }
+  .btn:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
   .btn-purple {
     background: var(--purple);
     color: #fff;
@@ -152,107 +151,43 @@
 
   /* ── HERO ── */
   .hero {
-    padding: 48px 0 60px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    padding: 80px 0;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    min-height: 88vh;
+    text-align: center;
+    gap: 32px;
+    min-height: 82vh;
+    justify-content: center;
   }
-  .hero-left { display: flex; flex-direction: column; gap: 28px; }
-
-  .hero-title {
-    line-height: 1.08;
-  }
+  .hero-title { line-height: 1.08; max-width: 860px; }
   .hero-title .highlight {
     background: linear-gradient(135deg, var(--purple2) 0%, var(--green) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-
   .hero-sub {
     font-size: 18px;
     color: var(--muted);
-    max-width: 480px;
+    max-width: 540px;
     line-height: 1.7;
   }
-  .hero-ctas { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-
+  .hero-ctas { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: center; }
   .hero-stats {
     display: flex;
-    gap: 36px;
-    padding-top: 12px;
+    gap: 48px;
+    padding-top: 16px;
     border-top: 1px solid var(--border);
+    justify-content: center;
+    flex-wrap: wrap;
   }
-  .stat-item { display: flex; flex-direction: column; gap: 2px; }
-  .stat-num { font-size: 28px; font-weight: 700; letter-spacing: -0.04em; color: #fff; }
+  .stat-item { display: flex; flex-direction: column; gap: 2px; align-items: center; }
+  .stat-num  { font-size: 28px; font-weight: 700; letter-spacing: -0.04em; color: #fff; }
   .stat-num .green { color: var(--green); }
   .stat-label { font-size: 13px; color: var(--muted); }
 
-  /* ── Hero marquee ── */
-  .hero-right {
-    position: relative;
-    overflow: hidden;
-    height: 580px;
-    /* fade top + bottom edges */
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%);
-    mask-image: linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%);
-  }
-
-  .marquee-rows {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    padding: 8px 0;
-  }
-
-  .marquee-row {
-    display: flex;
-    gap: 14px;
-    width: max-content;
-    /* pause on hover */
-  }
-  .hero-right:hover .marquee-row { animation-play-state: paused; }
-
-  .marquee-row-1 { animation: marquee-left  28s linear infinite; }
-  .marquee-row-2 { animation: marquee-right 36s linear infinite; }
-  .marquee-row-3 { animation: marquee-left  22s linear infinite; }
-
-  @keyframes marquee-left  { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  @keyframes marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-
-  .mq-card {
-    flex-shrink: 0;
-    width: 160px;
-    height: 220px;
-    border-radius: 14px;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid rgba(255,255,255,0.07);
-  }
-  .mq-card img,
-  .mq-card video {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    transition: transform 0.4s ease;
-  }
-  .mq-card:hover img,
-  .mq-card:hover video { transform: scale(1.06); }
-
-  /* subtle purple tint overlay on cards */
-  .mq-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(145deg, rgba(110,69,255,0.08) 0%, transparent 60%);
-    pointer-events: none;
-  }
-
-  /* ── SOCIAL PROOF STRIP ── */
+  /* ── PROOF STRIP ── */
   .proof-strip {
     padding: 28px 0;
     border-top: 1px solid var(--border);
@@ -264,7 +199,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 56px;
+    gap: 48px;
     flex-wrap: wrap;
   }
   .proof-item {
@@ -276,7 +211,7 @@
   }
   .proof-item svg { color: var(--green); flex-shrink: 0; }
 
-  /* ── SECTION SHARED ── */
+  /* ── SECTIONS ── */
   section { position: relative; z-index: 1; }
   .section-header {
     text-align: center;
@@ -288,145 +223,198 @@
   }
   .section-header p { max-width: 560px; font-size: 17px; }
 
-  /* ── PROCESS ── */
-  .process { padding: 56px 0; }
-  .process-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-  .process-card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-    transition: border-color 0.25s, transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s;
-  }
-  .process-card:hover {
-    border-color: rgba(110,69,255,0.35);
-    transform: translateY(-6px);
-    box-shadow: 0 24px 64px rgba(110,69,255,0.18);
-  }
-  .process-card-img {
-    width: 100%;
-    aspect-ratio: 4/3;
-    object-fit: cover;
-    display: block;
-  }
-  .process-card-body { padding: 28px; }
-  .step-num {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--purple2);
-    margin-bottom: 10px;
+  /* ══════════════════════════════════════
+     PANEL SYSTEM
+  ══════════════════════════════════════ */
+
+  .panel-section {
+    background: #060411;
+    min-height: 100vh;
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
   }
-  .step-num::before {
+  .panel-section::before {
     content: '';
-    display: inline-block;
-    width: 24px;
-    height: 2px;
-    background: var(--purple);
-    border-radius: 2px;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(110,69,255,0.05) 0%, transparent 70%);
   }
-  .process-card h3 { font-size: 24px; margin-bottom: 10px; }
-  .process-card p { font-size: 15px; }
 
-  /* ── WHY THIS WORKS ── */
-  .why { padding: 56px 0; background: linear-gradient(180deg, transparent 0%, rgba(110,69,255,0.04) 50%, transparent 100%); }
-  .why-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px 60px;
-    align-items: start;
-  }
-  .why-left { display: flex; flex-direction: column; gap: 24px; }
-  .why-left h2 { text-align: left; }
-  .why-left p { font-size: 17px; }
-  .why-features { display: flex; flex-direction: column; gap: 16px; }
-  .why-feature {
+  /* The light card */
+  .panel-card {
+    background: #F8F7FB;
+    border-radius: 24px;
+    max-width: 1000px;
+    width: 90%;
     display: flex;
-    gap: 16px;
+    align-items: center;
+    gap: 56px;
+    padding: 60px 64px;
+    position: relative;
+    z-index: 2;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.08),
+      0 32px 80px rgba(0,0,0,0.55),
+      0 4px 16px rgba(0,0,0,0.35);
+  }
+
+  .panel-text { flex: 1; min-width: 0; }
+
+  .panel-img-wrap {
+    flex-shrink: 0;
+    width: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .panel-img-wrap img {
+    width: 100%;
+    height: auto;
+    max-height: 480px;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.22));
+  }
+
+  .panel-step {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 16px;
+    padding: 5px 14px;
+    border: 1px solid rgba(110,69,255,0.25);
+    border-radius: 100px;
+    background: rgba(110,69,255,0.08);
+  }
+
+  .panel-heading {
+    font-size: clamp(1.8rem, 3.2vw, 2.7rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: #12092e;
+    margin-bottom: 16px;
+  }
+
+  .panel-body {
+    font-size: 15px;
+    line-height: 1.78;
+    color: #5e5480;
+    max-width: 380px;
+  }
+
+  .panel-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 28px;
+    padding: 13px 26px;
+    border-radius: 100px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    background: var(--purple);
+    color: #fff;
+    box-shadow: 0 6px 24px rgba(110,69,255,0.38);
+    transition:
+      transform  0.18s cubic-bezier(0.34,1.56,0.64,1),
+      box-shadow 0.18s ease;
+  }
+  .panel-btn:hover  { transform: translateY(-2px); box-shadow: 0 10px 36px rgba(110,69,255,0.50); }
+  .panel-btn:active { transform: translateY(0); }
+
+  /* ── Mobile: stacked layout ── */
+  @media (max-width: 768px) {
+    .panel-section {
+      padding: 56px 0;
+      min-height: unset;
+      align-items: flex-start;
+    }
+    .panel-card {
+      flex-direction: column !important;
+      padding: 32px 22px;
+      gap: 24px;
+      width: 88%;
+      border-radius: 18px;
+      opacity: 0;
+      transform: translateY(44px);
+      transition:
+        opacity   0.68s cubic-bezier(0.22,1,0.36,1),
+        transform 0.68s cubic-bezier(0.22,1,0.36,1);
+    }
+    .panel-card.mob-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .panel-img-wrap {
+      width: 100%;
+      max-width: 200px;
+      margin: 0 auto;
+      order: -1;
+    }
+    .panel-text { text-align: center; }
+    .panel-body { max-width: 100%; }
+    .panel-btn {
+      display: block;
+      width: fit-content;
+      margin: 20px auto 0;
+      text-align: center;
+    }
+  }
+
+  /* ── SPACER SECTIONS ── */
+  .spacer-section {
+    padding: 80px 0;
+    position: relative;
+    z-index: 1;
+  }
+  .spacer-inner {
+    max-width: 660px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .spacer-inner h3 {
+    font-size: clamp(22px, 3vw, 32px);
+    margin-bottom: 12px;
+  }
+  .spacer-inner p { font-size: 16px; }
+
+  /* ── Feature cards (reused in spacers) ── */
+  .feature-list { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; list-style: none; }
+  .feature-item {
+    display: flex;
+    gap: 14px;
     align-items: flex-start;
-    padding: 20px;
+    padding: 18px 20px;
     background: var(--panel);
     border: 1px solid var(--border);
     border-radius: 12px;
     transition: border-color 0.2s;
   }
-  .why-feature:hover { border-color: rgba(61,253,152,0.25); }
-  .wf-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
+  .feature-item:hover { border-color: rgba(61,253,152,0.22); }
+  .fi-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
     background: rgba(61,253,152,0.12);
     border: 1px solid rgba(61,253,152,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
     flex-shrink: 0;
-    margin-top: 2px;
   }
-  .wf-text h4 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
-  .wf-text p { font-size: 14px; }
-
-  /* ── LIVE EXAMPLES ── */
-  .examples { padding: 56px 0; }
-  .examples-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-  .example-card {
-    border-radius: var(--radius);
-    overflow: hidden;
-    position: relative;
-    aspect-ratio: 3/4;
-    cursor: pointer;
-  }
-  .example-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
-  }
-  .example-card:hover img { transform: scale(1.04); }
-  .example-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(7,0,31,0.82) 0%, rgba(7,0,31,0.1) 60%, transparent 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 24px;
-  }
-  .example-tag {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 100px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    background: rgba(110,69,255,0.25);
-    border: 1px solid rgba(110,69,255,0.4);
-    color: var(--purple2);
-    margin-bottom: 10px;
-    width: fit-content;
-  }
-  .example-card h4 { font-size: 18px; font-weight: 600; }
-
-  /* large card in examples */
-  .example-card.large { grid-row: span 2; aspect-ratio: unset; }
+  .fi-text h4 { font-size: 15px; font-weight: 600; margin-bottom: 3px; color: #fff; }
+  .fi-text p  { font-size: 13px; }
 
   /* ── PRICING ── */
-  .pricing { padding: 56px 0; }
+  .pricing { padding: 80px 0; }
   .pricing-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -441,7 +429,10 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
-    transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), border-color 0.25s, box-shadow 0.25s;
+    transition:
+      transform     0.25s cubic-bezier(0.34,1.56,0.64,1),
+      border-color  0.25s,
+      box-shadow    0.25s;
   }
   .price-card:hover {
     transform: translateY(-6px);
@@ -457,10 +448,8 @@
   .price-card.featured::before {
     content: '';
     position: absolute;
-    top: -60px;
-    right: -60px;
-    width: 180px;
-    height: 180px;
+    top: -60px; right: -60px;
+    width: 180px; height: 180px;
     border-radius: 50%;
     background: radial-gradient(circle, rgba(110,69,255,0.35) 0%, transparent 70%);
     pointer-events: none;
@@ -470,109 +459,43 @@
     box-shadow: 0 0 0 1px var(--purple), 0 32px 100px rgba(110,69,255,0.35);
   }
   .popular-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 5px 12px;
-    border-radius: 100px;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 12px; border-radius: 100px;
     background: var(--purple);
-    font-size: 12px;
-    font-weight: 600;
-    color: #fff;
+    font-size: 12px; font-weight: 600; color: #fff;
     width: fit-content;
   }
-  .price-tier { font-size: 15px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
-  .price-amount {
-    display: flex;
-    align-items: baseline;
-    gap: 6px;
-  }
+  .price-tier   { font-size: 15px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .price-amount { display: flex; align-items: baseline; gap: 6px; }
   .price-amount .amount { font-size: 52px; font-weight: 700; letter-spacing: -0.05em; color: #fff; line-height: 1; }
   .price-amount .period { font-size: 15px; color: var(--muted); }
-  .price-desc { font-size: 15px; color: var(--muted); margin-top: -12px; }
+  .price-desc   { font-size: 15px; color: var(--muted); margin-top: -12px; }
   .price-divider { height: 1px; background: var(--border); }
   .price-features { display: flex; flex-direction: column; gap: 12px; list-style: none; }
   .price-features li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 14px;
-    color: rgba(255,255,255,0.8);
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 14px; color: rgba(255,255,255,0.8);
   }
   .price-features li::before {
-    content: '✓';
-    color: var(--green);
-    font-weight: 700;
-    font-size: 14px;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  /* ── BOOKING LAYER ── */
-  .booking { padding: 56px 0; }
-  .booking-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-  }
-  .booking-img {
-    border-radius: 20px;
-    overflow: hidden;
-    position: relative;
-  }
-  .booking-img img { width: 100%; display: block; border-radius: 20px; }
-  .booking-img::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 20px;
-    border: 1px solid rgba(110,69,255,0.25);
-    pointer-events: none;
-  }
-  .booking-content { display: flex; flex-direction: column; gap: 24px; }
-  .booking-content h2 { text-align: left; }
-  .booking-list { display: flex; flex-direction: column; gap: 14px; list-style: none; }
-  .booking-list li {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    font-size: 15px;
-    color: rgba(255,255,255,0.8);
-  }
-  .bl-bullet {
-    width: 22px;
-    height: 22px;
-    border-radius: 6px;
-    background: rgba(61,253,152,0.15);
-    border: 1px solid rgba(61,253,152,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-top: 1px;
-    font-size: 11px;
-    color: var(--green);
-    font-weight: 700;
+    content: '✓'; color: var(--green); font-weight: 700;
+    font-size: 14px; flex-shrink: 0; margin-top: 1px;
   }
 
   /* ── CTA ── */
-  .cta-section { padding: 56px 0; text-align: center; }
+  .cta-section { padding: 80px 0; text-align: center; }
   .cta-box {
     background: linear-gradient(145deg, rgba(110,69,255,0.12) 0%, rgba(61,253,152,0.05) 100%);
     border: 1px solid rgba(110,69,255,0.25);
     border-radius: 28px;
-    padding: 52px 40px;
+    padding: 64px 40px;
     position: relative;
     overflow: hidden;
   }
   .cta-box::before {
     content: '';
     position: absolute;
-    bottom: -80px;
-    right: -80px;
-    width: 300px;
-    height: 300px;
+    bottom: -80px; right: -80px;
+    width: 300px; height: 300px;
     border-radius: 50%;
     background: radial-gradient(circle, rgba(61,253,152,0.15) 0%, transparent 70%);
     pointer-events: none;
@@ -580,75 +503,50 @@
   .cta-box::after {
     content: '';
     position: absolute;
-    top: -80px;
-    left: -80px;
-    width: 300px;
-    height: 300px;
+    top: -80px; left: -80px;
+    width: 300px; height: 300px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(110,69,255,0.2) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(110,69,255,0.20) 0%, transparent 70%);
     pointer-events: none;
   }
-  .cta-content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 24px; }
-  .cta-box h2 { max-width: 680px; }
-  .cta-box p { max-width: 480px; font-size: 17px; }
-  .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .cta-content  { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+  .cta-box h2   { max-width: 680px; }
+  .cta-box p    { max-width: 480px; font-size: 17px; }
+  .cta-buttons  { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
   /* ── FOOTER ── */
   footer {
     padding: 32px 0 24px;
     border-top: 1px solid var(--border);
-    position: relative;
-    z-index: 1;
+    position: relative; z-index: 1;
   }
   .footer-inner {
-    display: flex;
-    align-items: center;
+    display: flex; align-items: center;
     justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
+    gap: 24px; flex-wrap: wrap;
   }
   .footer-logo { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: -0.03em; text-decoration: none; }
   .footer-logo span { color: var(--green); }
-  .footer-links {
-    display: flex;
-    gap: 28px;
-    list-style: none;
-    flex-wrap: wrap;
-  }
+  .footer-links { display: flex; gap: 28px; list-style: none; flex-wrap: wrap; }
   .footer-links a { color: var(--muted); font-size: 14px; text-decoration: none; transition: color 0.15s; }
   .footer-links a:hover { color: #fff; }
   .footer-copy { color: var(--muted); font-size: 13px; }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 1024px) {
-    .hero { grid-template-columns: 1fr; min-height: unset; padding: 40px 0 48px; }
-    .hero-right { display: none; }
-    .why-grid { grid-template-columns: 1fr; }
-    .booking-inner { grid-template-columns: 1fr; }
-    .booking-img { order: -1; }
     .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
   }
   @media (max-width: 768px) {
     .container { padding: 0 12px; }
     h1 { font-size: 38px; }
     h2 { font-size: 30px; }
-    .process-grid { grid-template-columns: 1fr; }
-    .examples-grid { grid-template-columns: 1fr 1fr; }
-    .example-card.large { grid-row: unset; }
     .nav-links { display: none; }
     .hero-stats { gap: 24px; flex-wrap: wrap; }
     .cta-box { padding: 48px 24px; }
-    .proof-inner { gap: 24px; }
-  }
-  @media (max-width: 480px) {
-    .examples-grid { grid-template-columns: 1fr; }
+    .proof-inner { gap: 20px; }
+    .spacer-section { padding: 60px 0; }
   }
 
-  /* ── focus-visible ── */
-  .btn:focus-visible {
-    outline: 2px solid var(--green);
-    outline-offset: 3px;
-  }
   a:focus-visible { outline: 2px solid var(--purple2); outline-offset: 2px; }
 </style>
 </head>
@@ -660,108 +558,50 @@
     <a href="#" class="nav-logo">Logan <span>Freeth</span></a>
     <ul class="nav-links">
       <li><a href="#process">How it works</a></li>
-      <li><a href="#examples">Examples</a></li>
       <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#booking">Booking</a></li>
+      <li><a href="#cta">Contact</a></li>
     </ul>
     <a href="#cta" class="btn btn-purple">Start a conversation</a>
   </div>
 </nav>
 
+
 <!-- ════════════════ HERO ════════════════ -->
 <section style="position:relative; z-index:1;">
   <div class="container hero">
-    <div class="hero-left">
-      <div class="badge badge-green">
-        <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>
-        Social media that converts
-      </div>
-      <h1 class="hero-title">
-        Turning social media<br/>
-        attention into<br/>
-        <span class="highlight">enquiries.</span>
-      </h1>
-      <p class="hero-sub">
-        Logan Freeth — a social media management app and done-for-you strategy for local businesses that attracts, converts, and manages clients without the overwhelm.
-      </p>
-      <div class="hero-ctas">
-        <a href="#cta" class="btn btn-purple">Start the conversation →</a>
-        <a href="#examples" class="btn btn-ghost">See live examples</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat-item">
-          <span class="stat-num"><span class="green">200+</span></span>
-          <span class="stat-label">local businesses</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-num">3</span>
-          <span class="stat-label">simple steps</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-num"><span class="green">∞</span></span>
-          <span class="stat-label">enquiries possible</span>
-        </div>
-      </div>
+    <div class="badge badge-green">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>
+      Social media that converts
     </div>
-
-    <div class="hero-right">
-      <div class="marquee-rows">
-
-        <!-- Row 1 — scrolls left -->
-        <div class="marquee-row marquee-row-1">
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/Beauty%2005(1).mp4" autoplay muted loop playsinline></video></div>
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/VID_20260106_014609_971_bsl.mp4" autoplay muted loop playsinline></video></div>
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/VID_20260106_015404_732_bsl.mp4" autoplay muted loop playsinline></video></div>
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/VID_20260106_020112_010_bsl.mp4" autoplay muted loop playsinline></video></div>
-          <div class="mq-card"><img src="brand%20assets/loganfreeth.com/images/attract(1).jpg" alt="" /></div>
-          <div class="mq-card"><img src="brand%20assets/loganfreeth.com/images/back(1).jpg" alt="" /></div>
-          <!-- duplicate for seamless loop -->
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/Beauty%2005(1).mp4" autoplay muted loop playsinline></video></div>
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/VID_20260106_014609_971_bsl.mp4" autoplay muted loop playsinline></video></div>
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/VID_20260106_015404_732_bsl.mp4" autoplay muted loop playsinline></video></div>
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/VID_20260106_020112_010_bsl.mp4" autoplay muted loop playsinline></video></div>
-          <div class="mq-card"><img src="brand%20assets/loganfreeth.com/images/attract(1).jpg" alt="" /></div>
-          <div class="mq-card"><img src="brand%20assets/loganfreeth.com/images/back(1).jpg" alt="" /></div>
-        </div>
-
-        <!-- Row 2 — scrolls right -->
-        <div class="marquee-row marquee-row-2">
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/VID_20260120_020336_869_bsl.mp4" autoplay muted loop playsinline></video></div>
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/VID_20260121_070906_922_bsl.mp4" autoplay muted loop playsinline></video></div>
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/VID_20260206_160904_241_bsl.mp4" autoplay muted loop playsinline></video></div>
-          <div class="mq-card"><img src="brand%20assets/loganfreeth.com/images/manage(2).jpg" alt="" /></div>
-          <div class="mq-card"><img src="brand%20assets/loganfreeth.com/images/hair(1).jpg" alt="" /></div>
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/Beauty%2005(1).mp4" autoplay muted loop playsinline></video></div>
-          <!-- duplicate -->
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/VID_20260120_020336_869_bsl.mp4" autoplay muted loop playsinline></video></div>
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/VID_20260121_070906_922_bsl.mp4" autoplay muted loop playsinline></video></div>
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/VID_20260206_160904_241_bsl.mp4" autoplay muted loop playsinline></video></div>
-          <div class="mq-card"><img src="brand%20assets/loganfreeth.com/images/manage(2).jpg" alt="" /></div>
-          <div class="mq-card"><img src="brand%20assets/loganfreeth.com/images/hair(1).jpg" alt="" /></div>
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/Beauty%2005(1).mp4" autoplay muted loop playsinline></video></div>
-        </div>
-
-        <!-- Row 3 — scrolls left, faster -->
-        <div class="marquee-row marquee-row-3">
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/VID_20260106_015404_732_bsl.mp4" autoplay muted loop playsinline></video></div>
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/VID_20260206_160904_241_bsl.mp4" autoplay muted loop playsinline></video></div>
-          <div class="mq-card"><img src="brand%20assets/loganfreeth.com/images/convert(1).jpg" alt="" /></div>
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/VID_20260121_070906_922_bsl.mp4" autoplay muted loop playsinline></video></div>
-          <div class="mq-card"><img src="brand%20assets/loganfreeth.com/images/attract(1).jpg" alt="" /></div>
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/VID_20260106_014609_971_bsl.mp4" autoplay muted loop playsinline></video></div>
-          <!-- duplicate -->
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/VID_20260106_015404_732_bsl.mp4" autoplay muted loop playsinline></video></div>
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/VID_20260206_160904_241_bsl.mp4" autoplay muted loop playsinline></video></div>
-          <div class="mq-card"><img src="brand%20assets/loganfreeth.com/images/convert(1).jpg" alt="" /></div>
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/VID_20260121_070906_922_bsl.mp4" autoplay muted loop playsinline></video></div>
-          <div class="mq-card"><img src="brand%20assets/loganfreeth.com/images/attract(1).jpg" alt="" /></div>
-          <div class="mq-card"><video src="brand%20assets/loganfreeth.com/movies/VID_20260106_014609_971_bsl.mp4" autoplay muted loop playsinline></video></div>
-        </div>
-
+    <h1 class="hero-title">
+      Turning social media<br/>
+      attention into<br/>
+      <span class="highlight">enquiries.</span>
+    </h1>
+    <p class="hero-sub">
+      Logan Freeth — a social media management service and done-for-you strategy for local businesses that attracts, converts, and manages clients without the overwhelm.
+    </p>
+    <div class="hero-ctas">
+      <a href="#panel-attract" class="btn btn-purple">See how it works →</a>
+      <a href="#pricing" class="btn btn-ghost">View pricing</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num"><span class="green">200+</span></span>
+        <span class="stat-label">local businesses</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">3</span>
+        <span class="stat-label">simple steps</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num"><span class="green">∞</span></span>
+        <span class="stat-label">enquiries possible</span>
       </div>
     </div>
   </div>
 </section>
+
 
 <!-- ════════════════ PROOF STRIP ════════════════ -->
 <div class="proof-strip" style="position:relative; z-index:1;">
@@ -789,118 +629,150 @@
   </div>
 </div>
 
-<!-- ════════════════ PROCESS ════════════════ -->
-<section id="process" class="process">
+
+<!-- ════════════════ INTRO ════════════════ -->
+<section id="process" style="padding: 80px 0;">
   <div class="container">
     <div class="section-header">
       <div class="badge">How it works</div>
       <h2>A simple three-step process</h2>
       <p>A lightweight tool that keeps you in front of your audience and keeps your strategy under control — without the agency price tag.</p>
     </div>
-    <div class="process-grid">
-      <div class="process-card">
-        <img class="process-card-img" src="brand%20assets/loganfreeth.com/images/attract(1).jpg" alt="Attract clients" />
-        <div class="process-card-body">
-          <div class="step-num">Step 01 — Attract</div>
-          <h3>Stop being invisible</h3>
-          <p>Eye-catching content that grabs attention, builds your brand, and puts you in front of the right local audience every single week.</p>
-        </div>
-      </div>
-      <div class="process-card">
-        <img class="process-card-img" src="brand%20assets/loganfreeth.com/images/hair(1).jpg" alt="Convert followers to bookings" />
-        <div class="process-card-body">
-          <div class="step-num">Step 02 — Convert</div>
-          <h3>Turn followers into bookings</h3>
-          <p>Smart profile links, WhatsApp integrations, and booking buttons that convert curious scrollers into paying clients — automatically.</p>
-        </div>
-      </div>
-      <div class="process-card">
-        <img class="process-card-img" src="brand%20assets/loganfreeth.com/images/manage(2).jpg" alt="Manage appointments" />
-        <div class="process-card-body">
-          <div class="step-num">Step 03 — Manage</div>
-          <h3>Handle appointments effortlessly</h3>
-          <p>An optional booking management layer keeps all your appointments in one place — no more double bookings, missed messages, or chaos.</p>
-        </div>
-      </div>
+  </div>
+</section>
+
+
+<!-- ════════════════ PANEL 1 — ATTRACT ════════════════ -->
+<section id="panel-attract" class="panel-section">
+  <div class="panel-card" id="card-attract">
+    <div class="panel-text">
+      <span class="panel-step">Step 01 — Attract</span>
+      <h2 class="panel-heading">Stop being invisible.</h2>
+      <p class="panel-body">
+        Eye-catching content that grabs attention, builds your brand, and puts you in front of the right local audience every single week — without you lifting a finger.
+      </p>
+      <a href="#cta" class="panel-btn">Start the conversation →</a>
+    </div>
+    <div class="panel-img-wrap">
+      <img src="images/attract-phone.png" alt="Attract — content that converts" />
     </div>
   </div>
 </section>
 
-<!-- ════════════════ WHY THIS WORKS ════════════════ -->
-<section class="why" id="why">
-  <div class="container why-grid">
-    <div class="why-left">
-      <div class="badge badge-green">Why this works</div>
-      <h2>Built around how local businesses actually grow</h2>
-      <p>Most social media advice is designed for big brands with big budgets. This is different — it's a simple tool that keeps you in front of your audience and keeps your strategy under control.</p>
-      <a href="#cta" class="btn btn-purple" style="width:fit-content;">Get started →</a>
-    </div>
-    <div class="why-features">
-      <div class="why-feature">
-        <div class="wf-icon">📍</div>
-        <div class="wf-text">
+
+<!-- ════════════════ SPACER 1 ════════════════ -->
+<section class="spacer-section">
+  <div class="container spacer-inner">
+    <div class="badge" style="margin-bottom:20px;">Why it works</div>
+    <h3>Built around how local businesses actually grow</h3>
+    <p>Most social media advice is designed for big brands with big budgets. This is different — a simple system that keeps you in front of your audience without the agency price tag.</p>
+    <ul class="feature-list">
+      <li class="feature-item">
+        <div class="fi-icon">📍</div>
+        <div class="fi-text">
           <h4>Hyper-local targeting</h4>
           <p>Content and strategy built for your town, your audience, your industry — not generic fluff.</p>
         </div>
-      </div>
-      <div class="why-feature">
-        <div class="wf-icon">⚡</div>
-        <div class="wf-text">
+      </li>
+      <li class="feature-item">
+        <div class="fi-icon">⚡</div>
+        <div class="fi-text">
           <h4>Done-for-you content</h4>
           <p>You don't need to film, write, or post anything. We handle the whole content pipeline for you.</p>
         </div>
-      </div>
-      <div class="why-feature">
-        <div class="wf-icon">🔗</div>
-        <div class="wf-text">
-          <h4>Seamless booking integration</h4>
-          <p>Every piece of content links back to a booking or enquiry action so no follower ever gets lost.</p>
-        </div>
-      </div>
-      <div class="why-feature">
-        <div class="wf-icon">📊</div>
-        <div class="wf-text">
-          <h4>Clear, honest reporting</h4>
-          <p>See exactly what's working and what's driving real enquiries — no vanity metrics, no spin.</p>
-        </div>
-      </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ════════════════ PANEL 2 — CONVERT ════════════════ -->
+<section id="panel-convert" class="panel-section">
+  <div class="panel-card" id="card-convert" style="flex-direction:row-reverse;">
+    <div class="panel-text">
+      <span class="panel-step">Step 02 — Convert</span>
+      <h2 class="panel-heading">Turn followers into bookings.</h2>
+      <p class="panel-body">
+        Smart profile links, WhatsApp integrations, and booking buttons that convert curious scrollers into paying clients — automatically.
+      </p>
+      <a href="#cta" class="panel-btn">See examples →</a>
+    </div>
+    <div class="panel-img-wrap">
+      <img src="images/convert-phone.png" alt="Convert — booking flow" />
     </div>
   </div>
 </section>
 
-<!-- ════════════════ LIVE EXAMPLES ════════════════ -->
-<section id="examples" class="examples">
-  <div class="container">
-    <div class="section-header">
-      <div class="badge">Live examples</div>
-      <h2>See it in the wild</h2>
-      <p>Real examples from local businesses across beauty, barbering, and lifestyle — already using this system to drive enquiries.</p>
+
+<!-- ════════════════ SPACER 2 ════════════════ -->
+<section class="spacer-section" style="background: linear-gradient(180deg, transparent 0%, rgba(110,69,255,0.03) 50%, transparent 100%);">
+  <div class="container spacer-inner">
+    <div class="badge" style="margin-bottom:20px;">No follower left behind</div>
+    <h3>Every piece of content drives action</h3>
+    <p>A beautiful feed that doesn't convert is an expensive hobby. Every post links back to a booking or enquiry action so no follower ever gets lost.</p>
+    <ul class="feature-list">
+      <li class="feature-item">
+        <div class="fi-icon">🔗</div>
+        <div class="fi-text">
+          <h4>Seamless booking integration</h4>
+          <p>Every piece of content links back to a booking or enquiry action — no dead ends.</p>
+        </div>
+      </li>
+      <li class="feature-item">
+        <div class="fi-icon">📊</div>
+        <div class="fi-text">
+          <h4>Clear, honest reporting</h4>
+          <p>See exactly what's working and what's driving real enquiries — no vanity metrics, no spin.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ════════════════ PANEL 3 — MANAGE ════════════════ -->
+<section id="panel-manage" class="panel-section">
+  <div class="panel-card" id="card-manage">
+    <div class="panel-text">
+      <span class="panel-step">Step 03 — Manage</span>
+      <h2 class="panel-heading">Handle appointments effortlessly.</h2>
+      <p class="panel-body">
+        An optional booking management layer keeps all your appointments in one place — no more double bookings, missed messages, or chaos.
+      </p>
+      <a href="https://workslotapp.co.uk" target="_blank" rel="noopener noreferrer" class="panel-btn">Explore WorkSlot →</a>
     </div>
-    <div class="examples-grid">
-      <div class="example-card large">
-        <img src="brand%20assets/loganfreeth.com/images/attract(1).jpg" alt="Beauty business social media" />
-        <div class="example-overlay">
-          <div class="example-tag">Beauty</div>
-          <h4>Nail salon — 3× enquiry increase in 6 weeks</h4>
-        </div>
-      </div>
-      <div class="example-card">
-        <img src="brand%20assets/loganfreeth.com/images/convert(1).jpg" alt="Barber booking profile" />
-        <div class="example-overlay">
-          <div class="example-tag">Barbering</div>
-          <h4>Barber shop — fully booked in 2 weeks</h4>
-        </div>
-      </div>
-      <div class="example-card">
-        <img src="brand%20assets/loganfreeth.com/images/manage(2).jpg" alt="Booking management app" />
-        <div class="example-overlay">
-          <div class="example-tag">Lifestyle</div>
-          <h4>Personal trainer — 40 new leads in month one</h4>
-        </div>
-      </div>
+    <div class="panel-img-wrap">
+      <img src="images/manage-phone.png" alt="Manage — WorkSlot booking app" />
     </div>
   </div>
 </section>
+
+
+<!-- ════════════════ SPACER 3 ════════════════ -->
+<section class="spacer-section">
+  <div class="container spacer-inner">
+    <div class="badge badge-green" style="margin-bottom:20px;">Optional add-on</div>
+    <h3>Manage your bookings without the chaos</h3>
+    <p>Add the optional booking layer to keep all appointments in one place — integrated directly into your social media so the whole journey from post to booking is seamless.</p>
+    <ul class="feature-list">
+      <li class="feature-item">
+        <div class="fi-icon">📅</div>
+        <div class="fi-text">
+          <h4>Clients book from social media</h4>
+          <p>Clients book directly without leaving the app — no friction, no drop-off.</p>
+        </div>
+      </li>
+      <li class="feature-item">
+        <div class="fi-icon">🔔</div>
+        <div class="fi-text">
+          <h4>Automated reminders</h4>
+          <p>Reduce no-shows automatically — syncs with your calendar so you never double-book.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
 
 <!-- ════════════════ PRICING ════════════════ -->
 <section id="pricing" class="pricing">
@@ -911,7 +783,7 @@
       <p>No hidden fees, no long-term contracts. Pick the plan that fits where your business is right now.</p>
     </div>
     <div class="pricing-grid">
-      <!-- Starter -->
+
       <div class="price-card">
         <div class="price-tier">Starter</div>
         <div class="price-amount">
@@ -930,7 +802,6 @@
         <a href="#cta" class="btn btn-ghost" style="text-align:center; justify-content:center;">Get started</a>
       </div>
 
-      <!-- Growth (featured) -->
       <div class="price-card featured">
         <div class="popular-chip">⚡ Most popular</div>
         <div class="price-tier">Growth</div>
@@ -952,7 +823,6 @@
         <a href="#cta" class="btn btn-purple" style="text-align:center; justify-content:center;">Start the conversation →</a>
       </div>
 
-      <!-- Pro -->
       <div class="price-card">
         <div class="price-tier">Pro</div>
         <div class="price-amount">
@@ -972,46 +842,11 @@
         </ul>
         <a href="#cta" class="btn btn-ghost" style="text-align:center; justify-content:center;">Get started</a>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- ════════════════ BOOKING LAYER ════════════════ -->
-<section id="booking" class="booking">
-  <div class="container booking-inner">
-    <div class="booking-img">
-      <img src="brand%20assets/loganfreeth.com/images/manage(2).jpg" alt="Booking management on mobile" />
-    </div>
-    <div class="booking-content">
-      <div class="badge">Optional add-on</div>
-      <h2>Manage your bookings without the chaos</h2>
-      <p>Add our optional booking layer to keep all appointments in one place — integrated directly into your social media so the whole journey from post to booking is seamless.</p>
-      <ul class="booking-list">
-        <li>
-          <div class="bl-bullet">✓</div>
-          Clients book directly from social media without leaving the app
-        </li>
-        <li>
-          <div class="bl-bullet">✓</div>
-          Automated reminders reduce no-shows
-        </li>
-        <li>
-          <div class="bl-bullet">✓</div>
-          Manage all appointments from one clean dashboard
-        </li>
-        <li>
-          <div class="bl-bullet">✓</div>
-          Syncs with your calendar — never double-book again
-        </li>
-        <li>
-          <div class="bl-bullet">✓</div>
-          WhatsApp confirmations included as standard
-        </li>
-      </ul>
-      <a href="#cta" class="btn btn-purple" style="width:fit-content;">Add booking management →</a>
-    </div>
-  </div>
-</section>
 
 <!-- ════════════════ CTA ════════════════ -->
 <section id="cta" class="cta-section">
@@ -1030,19 +865,97 @@
   </div>
 </section>
 
+
 <!-- ════════════════ FOOTER ════════════════ -->
 <footer>
   <div class="container footer-inner">
     <a href="#" class="footer-logo">Logan <span>Freeth</span></a>
     <ul class="footer-links">
       <li><a href="#process">How it works</a></li>
-      <li><a href="#examples">Examples</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#cta">Contact</a></li>
     </ul>
     <span class="footer-copy">© 2026 Logan Freeth. All rights reserved.</span>
   </div>
 </footer>
+
+
+<!-- ════════════════ GSAP ════════════════ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  var desktop = window.matchMedia('(min-width: 769px)').matches;
+
+  if (desktop && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    var defs = [
+      { section: '#panel-attract', card: '#card-attract', dir:  1 },
+      { section: '#panel-convert', card: '#card-convert', dir: -1 },
+      { section: '#panel-manage',  card: '#card-manage',  dir:  1 },
+    ];
+
+    defs.forEach(function (d) {
+      var section = document.querySelector(d.section);
+      var card    = document.querySelector(d.card);
+      if (!section || !card) return;
+
+      /* Pin the section for 100vh of scroll */
+      ScrollTrigger.create({
+        trigger:      section,
+        start:        'top top',
+        end:          '+=100%',
+        pin:          true,
+        pinSpacing:   true,
+        anticipatePin: 1,
+      });
+
+      /* Slide the card in from off-screen */
+      gsap.fromTo(card,
+        { xPercent: d.dir * 115, opacity: 0 },
+        {
+          xPercent: 0,
+          opacity:  1,
+          ease:     'power2.out',
+          scrollTrigger: {
+            trigger: section,
+            start:   'top top',
+            end:     '+=60%',
+            scrub:   1,
+          },
+        }
+      );
+    });
+
+    ScrollTrigger.refresh();
+
+  } else if (!desktop) {
+
+    /* Mobile: fade + translate up on intersection */
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('mob-in');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    document.querySelectorAll('.panel-card').forEach(function (c) {
+      obs.observe(c);
+    });
+
+  } else {
+    /* GSAP unavailable — make cards visible */
+    document.querySelectorAll('.panel-card').forEach(function (c) {
+      c.style.opacity   = '1';
+      c.style.transform = 'none';
+    });
+  }
+}());
+</script>
 
 </body>
 </html>
