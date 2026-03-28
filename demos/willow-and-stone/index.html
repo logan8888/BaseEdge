@@ -775,6 +775,62 @@ body {
         radial-gradient(ellipse 55% 60% at 100% 40%, rgba(196,168,130,0.14) 0%, transparent 55%),
         #2C2420;
     }
+
+    /* ────────────────────────────────────────────────
+       ART NOUVEAU CORNER TEXTURE
+       Applied to Services and Contact sections only.
+       Pattern emerges from top-right corner, fades
+       toward centre — almost invisible, purely tactile.
+    ──────────────────────────────────────────────── */
+
+    #services,
+    #contact {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Ensure all direct content stays above the texture */
+    #services > div,
+    #contact > div {
+      position: relative;
+      z-index: 1;
+    }
+
+    #services::before,
+    #contact::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 500px;
+      height: 500px;
+      background-image: url('images/Art%20Nouveau%20wrought%E2%80%91.png');
+      background-repeat: repeat;
+      background-size: 140px;
+      transform: rotate(38deg);
+      opacity: 0.045;
+      pointer-events: none;
+      z-index: 0;
+      /* Fade from corner inward — disappears before reaching content */
+      -webkit-mask-image: radial-gradient(
+        ellipse 440px 440px at 100% 0%,
+        rgba(0,0,0,1)   0%,
+        rgba(0,0,0,0.6) 40%,
+        rgba(0,0,0,0)   72%
+      );
+      mask-image: radial-gradient(
+        ellipse 440px 440px at 100% 0%,
+        rgba(0,0,0,1)   0%,
+        rgba(0,0,0,0.6) 40%,
+        rgba(0,0,0,0)   72%
+      );
+    }
+
+    /* Contact sits on white — drop opacity slightly further */
+    #contact::before {
+      opacity: 0.035;
+    }
+
   </style>
 </head>
 
