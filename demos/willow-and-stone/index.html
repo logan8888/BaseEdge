@@ -777,10 +777,10 @@ body {
     }
 
     /* ────────────────────────────────────────────────
-       ART NOUVEAU CORNER TEXTURE
+       ART NOUVEAU BAND TEXTURE
        Applied to Services and Contact sections only.
-       Pattern emerges from top-right corner, fades
-       toward centre — almost invisible, purely tactile.
+       Pattern emerges as a soft vertical band from the
+       right edge, dissolving before it reaches the text.
     ──────────────────────────────────────────────── */
 
     #services,
@@ -800,38 +800,39 @@ body {
     #contact::before {
       content: '';
       position: absolute;
-      top: -80px;
-      right: -80px;
-      width: 620px;
-      height: 620px;
+      top: 0;
+      right: 0;
+      width: 52%;
+      height: 100%;
       background-image: url('images/art-nouveau-pattern.png');
       background-repeat: repeat;
-      background-size: 140px;
+      background-size: 220px;
       background-color: transparent;
-      transform: rotate(38deg);
+      transform: rotate(14deg) translateX(6%);
+      transform-origin: top right;
       mix-blend-mode: multiply;
-      opacity: 0.35;
+      opacity: 0.08;
       pointer-events: none;
       z-index: 0;
-      -webkit-mask-image: radial-gradient(
-        ellipse 540px 540px at 100% 0%,
-        rgba(0,0,0,1)   0%,
-        rgba(0,0,0,0.85) 28%,
-        rgba(0,0,0,0.35) 56%,
-        rgba(0,0,0,0)    76%
+      -webkit-mask-image: linear-gradient(
+        to left,
+        rgba(0,0,0,1)    0%,
+        rgba(0,0,0,0.75) 22%,
+        rgba(0,0,0,0.35) 52%,
+        rgba(0,0,0,0)    78%
       );
-      mask-image: radial-gradient(
-        ellipse 540px 540px at 100% 0%,
-        rgba(0,0,0,1)   0%,
-        rgba(0,0,0,0.85) 28%,
-        rgba(0,0,0,0.35) 56%,
-        rgba(0,0,0,0)    76%
+      mask-image: linear-gradient(
+        to left,
+        rgba(0,0,0,1)    0%,
+        rgba(0,0,0,0.75) 22%,
+        rgba(0,0,0,0.35) 52%,
+        rgba(0,0,0,0)    78%
       );
     }
 
-    /* Contact on white — same blend mode, slightly reduced */
+    /* Contact section — same band, fractionally quieter */
     #contact::before {
-      opacity: 0.28;
+      opacity: 0.065;
     }
 
   </style>
@@ -873,7 +874,7 @@ body {
      NAV
 ══════════════════════════════════════════════════════ -->
 <header id="top-nav" class="fixed top-0 left-0 right-0 z-50"
-  style="background: rgba(248,245,241,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid transparent; transition: border-color 0.3s ease, box-shadow 0.3s ease;">
+  style="background: #F8F5F1; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid rgba(230,222,213,0.55); transition: border-color 0.3s ease, box-shadow 0.3s ease;">
 
   <div class="max-w-6xl mx-auto px-5 py-3.5 flex items-center justify-between gap-4">
 
@@ -1413,10 +1414,10 @@ body {
   const nav = document.getElementById('top-nav');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 40) {
-      nav.style.borderBottomColor = 'rgba(230,222,213,0.70)';
-      nav.style.boxShadow = '0 2px 20px rgba(31,28,26,0.07)';
+      nav.style.borderBottomColor = 'rgba(196,168,130,0.35)';
+      nav.style.boxShadow = '0 2px 18px rgba(31,28,26,0.06)';
     } else {
-      nav.style.borderBottomColor = 'transparent';
+      nav.style.borderBottomColor = 'rgba(230,222,213,0.55)';
       nav.style.boxShadow = 'none';
     }
   }, { passive: true });
