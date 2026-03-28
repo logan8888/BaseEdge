@@ -88,7 +88,40 @@ body {
       color: #9E7E5A;
       line-height: 1;
       text-align: center;
+    }
+
+    /* Decorative line row around HAIR STUDIO */
+    .logo-sub-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       margin-top: 5px;
+    }
+    .logo-line {
+      display: block;
+      flex-shrink: 0;
+      width: 20px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #C4A882);
+    }
+    .logo-line-r {
+      background: linear-gradient(to left, transparent, #C4A882);
+    }
+
+    /* ── Mobile header refinements ────────────────── */
+    @media (max-width: 767px) {
+      /* Centre logo, keep hamburger right */
+      .nav-inner { position: relative; }
+      .logo-anchor {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-left: 0 !important;
+      }
+      /* Slightly smaller mark + tighter sub on mobile */
+      .logo-mark { font-size: 18px; }
+      .logo-sub  { font-size: 7px; letter-spacing: 0.20em; }
     }
 
     /* ────────────────────────────────────────────────
@@ -839,6 +872,20 @@ body {
     #services::before,
     #gallery::before { z-index: 0; }
 
+    /* ── Mobile address line ──────────────────────── */
+    @media (max-width: 767px) {
+      /* Remove side decorative lines from the address eyebrow */
+      .hero-address::before,
+      .hero-address::after { display: none; }
+      /* Allow wrap, stay centred, breathe */
+      .hero-address {
+        white-space: normal;
+        flex-wrap: wrap;
+        line-height: 2;
+        margin-top: 2rem;
+      }
+    }
+
   </style>
 </head>
 
@@ -880,11 +927,21 @@ body {
 <header id="top-nav" class="fixed top-0 left-0 right-0 z-50"
   style="background: #F8F5F1; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid rgba(230,222,213,0.55); transition: border-color 0.3s ease, box-shadow 0.3s ease;">
 
-  <div class="max-w-6xl mx-auto px-5 py-3.5 flex items-center justify-between gap-4">
+  <div class="nav-inner max-w-6xl mx-auto px-5 py-3.5 flex items-center justify-between gap-4">
+
+    <!-- Spacer: balances hamburger on mobile so logo stays centred -->
+    <div class="w-10 flex-shrink-0 md:hidden" aria-hidden="true"></div>
 
     <!-- Logo -->
-<a href="#" class="flex items-center flex-shrink-0 ml-4 md:ml-8 lg:ml-12 xl:ml-16 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-taupe rounded">
-      <img src="images/willow-and-stone.jpg" alt="Willow &amp; Stone Hair Studio" class="ws-logo-img" />
+    <a href="#" class="logo-anchor flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-taupe rounded md:ml-8 lg:ml-12 xl:ml-16">
+      <div class="text-center">
+        <div class="logo-mark">Willow &amp; Stone</div>
+        <div class="logo-sub-wrap">
+          <span class="logo-line" aria-hidden="true"></span>
+          <span class="logo-sub">Hair Studio</span>
+          <span class="logo-line logo-line-r" aria-hidden="true"></span>
+        </div>
+      </div>
     </a>
 
     <!-- Desktop nav -->
@@ -977,7 +1034,7 @@ body {
      <div class="text-center lg:text-left lg:pl-12 xl:pl-16">
 
         <!-- Eyebrow -->
-        <div class="reveal eyebrow mb-6 lg:justify-start" style="font-size: 10px; letter-spacing: 0.16em;">18 Broadway Parade &middot; Leigh-on-Sea &middot; Essex &middot; SS9 1AB &middot; Tel 01702 458321</div>
+        <div class="reveal eyebrow hero-address mb-6 lg:justify-start" style="font-size: 10px; letter-spacing: 0.16em;">18 Broadway Parade &middot; Leigh-on-Sea &middot; Essex &middot; SS9 1AB &middot; Tel 01702 458321</div>
 
         <!-- Headline -->
         <h1 class="reveal reveal-d1 text-charcoal mb-6 text-center lg:text-left"
