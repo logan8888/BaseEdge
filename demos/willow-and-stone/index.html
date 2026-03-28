@@ -876,9 +876,22 @@ body {
        Warm beige inset bands top + bottom on cream sections.
        Uses box-shadow so pseudo-elements remain available.
     ────────────────────────────────────────────────────── */
-    #home,
+    /* Services and Gallery — inset shadow works directly (no layered children) */
     #services,
     #gallery {
+      box-shadow:
+        inset 0  8px 0 rgba(196,168,130,0.18),
+        inset 0 -8px 0 rgba(196,168,130,0.18);
+    }
+
+    /* Hero — box-shadow is buried under gradient/grain children, so use ::after
+       at z-index 4 (above all animation layers 0–3, below content at z-10) */
+    #home::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 4;
       box-shadow:
         inset 0  8px 0 rgba(196,168,130,0.18),
         inset 0 -8px 0 rgba(196,168,130,0.18);
