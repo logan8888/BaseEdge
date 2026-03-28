@@ -884,12 +884,19 @@ body {
         inset 0 -8px 0 rgba(196,168,130,0.18);
     }
 
-    /* Hero — use real borders: overflow:hidden clips children to the padding box
-       so absolutely-positioned layers cannot paint over the border edges */
-    #home {
-      border-top:    8px solid rgba(196,168,130,0.18);
-      border-bottom: 8px solid rgba(196,168,130,0.18);
+    /* Hero trim bands — explicit divs at z-index 5 (above all animation layers
+       0–3, below hero content at z-10). Box-shadow and borders on #home itself
+       are buried under gradient/grain children and cannot be used here. */
+    .hero-trim {
+      position: absolute;
+      left: 0; right: 0;
+      height: 8px;
+      background: rgba(196,168,130,0.18);
+      pointer-events: none;
+      z-index: 5;
     }
+    .hero-trim-top    { top: 0; }
+    .hero-trim-bottom { bottom: 0; }
 
     /* ── Mobile address line ──────────────────────── */
     @media (max-width: 767px) {
@@ -1032,6 +1039,9 @@ body {
      HERO
 ══════════════════════════════════════════════════════ -->
 <section id="home" class="hero-section min-h-screen flex items-center">
+  <!-- Trim bands: sit above animation layers (z5), below content (z10) -->
+  <div class="hero-trim hero-trim-top"    aria-hidden="true"></div>
+  <div class="hero-trim hero-trim-bottom" aria-hidden="true"></div>
   <!-- Layer 0: Animated gradient blobs (CSS animation) -->
   <div class="hero-gradient" aria-hidden="true"></div>
 
