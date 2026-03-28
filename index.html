@@ -3,25 +3,20 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Logan Freeth — Social Media That Drives Enquiries</title>
+<title>Logan Freeth — Web Design for Local Businesses</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --bg:      #07001f;
-    --bg2:     #0c0530;
-    --panel:   rgba(255,255,255,0.04);
-    --border:  rgba(255,255,255,0.08);
-    --border2: rgba(110,69,255,0.3);
-    --purple:  #6e45ff;
-    --purple2: #8b6aff;
-    --green:   #3dfd98;
-    --green2:  #8dfdc3;
-    --text:    #ffffff;
-    --muted:   rgba(255,255,255,0.58);
-    --max:     1240px;
-    --radius:  16px;
+    --bg:     #07001f;
+    --panel:  rgba(255,255,255,0.04);
+    --border: rgba(255,255,255,0.08);
+    --purple: #6e45ff;
+    --green:  #3dfd98;
+    --text:   #ffffff;
+    --muted:  rgba(255,255,255,0.58);
+    --max:    1100px;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,7 +30,6 @@
     overflow-x: hidden;
   }
 
-  /* ── Global background glow ── */
   body::before {
     content: '';
     position: fixed;
@@ -43,913 +37,689 @@
     pointer-events: none;
     z-index: 0;
     background:
-      radial-gradient(ellipse 900px 600px at 10% 5%,  rgba(110,69,255,0.18) 0%, transparent 60%),
-      radial-gradient(ellipse 600px 400px at 90% 15%, rgba(61,253,152,0.07) 0%, transparent 55%),
-      radial-gradient(ellipse 700px 500px at 50% 90%, rgba(110,69,255,0.10) 0%, transparent 60%);
+      radial-gradient(ellipse 900px 600px at 10% 5%,  rgba(110,69,255,0.14) 0%, transparent 60%),
+      radial-gradient(ellipse 500px 400px at 90% 15%, rgba(61,253,152,0.05) 0%, transparent 55%);
   }
 
-  .container { max-width: var(--max); margin: 0 auto; padding: 0 16px; position: relative; z-index: 1; }
-
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 14px;
-    border-radius: 100px;
-    border: 1px solid var(--border2);
-    background: rgba(110,69,255,0.12);
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--purple2);
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-  }
-  .badge-green {
-    border-color: rgba(61,253,152,0.35);
-    background: rgba(61,253,152,0.10);
-    color: var(--green);
+  .container {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
   }
 
-  h1, h2, h3 { font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; }
-  h1 { font-size: clamp(42px, 6vw, 76px); }
-  h2 { font-size: clamp(32px, 4vw, 52px); }
-  h3 { font-size: 22px; }
+  h1 { font-size: clamp(38px, 5.5vw, 64px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.08; }
+  h2 { font-size: clamp(26px, 3.5vw, 42px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.12; }
   p  { color: var(--muted); line-height: 1.75; }
 
+  .label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 16px;
+  }
+
+  /* ── BUTTONS ── */
   .btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 14px 28px;
-    border-radius: 100px;
+    padding: 13px 24px;
+    border-radius: 6px;
     font-family: inherit;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
+    text-decoration: none;
     cursor: pointer;
     border: none;
-    text-decoration: none;
     transition:
-      transform   0.18s cubic-bezier(0.34,1.56,0.64,1),
-      box-shadow  0.18s ease,
-      opacity     0.18s ease;
+      transform  0.2s cubic-bezier(0.34,1.56,0.64,1),
+      box-shadow 0.18s ease,
+      opacity    0.15s ease;
   }
   .btn:hover  { transform: translateY(-2px); }
-  .btn:active { transform: translateY(0); opacity: 0.88; }
+  .btn:active { transform: translateY(0); opacity: 0.85; }
   .btn:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
-  .btn-purple {
+
+  .btn-primary {
     background: var(--purple);
     color: #fff;
-    box-shadow: 0 8px 32px rgba(110,69,255,0.45);
+    box-shadow: 0 6px 24px rgba(110,69,255,0.38);
   }
-  .btn-purple:hover { box-shadow: 0 12px 48px rgba(110,69,255,0.6); }
+  .btn-primary:hover { box-shadow: 0 10px 36px rgba(110,69,255,0.55); }
+
   .btn-ghost {
     background: transparent;
     color: rgba(255,255,255,0.75);
-    border: 1px solid var(--border);
+    border: 1px solid rgba(255,255,255,0.16);
   }
-  .btn-ghost:hover { border-color: rgba(255,255,255,0.25); color: #fff; }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.3); color: #fff; }
+
+  .btn-sm { padding: 9px 16px; font-size: 13px; }
 
   /* ── NAV ── */
   nav {
     position: sticky;
     top: 0;
     z-index: 100;
-    padding: 20px 0;
-    background: rgba(7,0,31,0.72);
+    padding: 16px 0;
+    background: rgba(7,0,31,0.8);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
   }
   .nav-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 32px;
+    gap: 16px;
   }
   .nav-logo {
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 700;
     color: #fff;
     text-decoration: none;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
   }
   .nav-logo span { color: var(--green); }
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 36px;
+    gap: 28px;
     list-style: none;
   }
   .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
     color: var(--muted);
     text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
     transition: color 0.15s;
   }
   .nav-links a:hover { color: #fff; }
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .nav-cta   { display: none; }
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── SECTION BASE ── */
+  section {
+    padding: 88px 0;
+    position: relative;
+    z-index: 1;
+  }
+  .section-head { margin-bottom: 52px; }
+  .section-head h2 { margin-top: 6px; }
+  .section-head p  { margin-top: 14px; font-size: 17px; max-width: 520px; }
 
   /* ── HERO ── */
   .hero {
-    padding: 80px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 32px;
-    min-height: 82vh;
-    justify-content: center;
+    padding: 96px 0 80px;
   }
-  .hero-title { line-height: 1.08; max-width: 860px; }
-  .hero-title .highlight {
-    background: linear-gradient(135deg, var(--purple2) 0%, var(--green) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .hero-sub {
-    font-size: 18px;
-    color: var(--muted);
-    max-width: 540px;
-    line-height: 1.7;
-  }
-  .hero-ctas { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: center; }
-  .hero-stats {
-    display: flex;
-    gap: 48px;
-    padding-top: 16px;
-    border-top: 1px solid var(--border);
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .stat-item { display: flex; flex-direction: column; gap: 2px; align-items: center; }
-  .stat-num  { font-size: 28px; font-weight: 700; letter-spacing: -0.04em; color: #fff; }
-  .stat-num .green { color: var(--green); }
-  .stat-label { font-size: 13px; color: var(--muted); }
-
-  /* ── PROOF STRIP ── */
-  .proof-strip {
-    padding: 28px 0;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    position: relative;
-    z-index: 1;
-  }
-  .proof-inner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 48px;
-    flex-wrap: wrap;
-  }
-  .proof-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--muted);
-    font-size: 14px;
-  }
-  .proof-item svg { color: var(--green); flex-shrink: 0; }
-
-  /* ── SECTIONS ── */
-  section { position: relative; z-index: 1; }
-  .section-header {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 60px;
-  }
-  .section-header p { max-width: 560px; font-size: 17px; }
-
-  /* ══════════════════════════════════════
-     PANEL SYSTEM
-  ══════════════════════════════════════ */
-
-  .panel-section {
-    background: #060411;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
-    z-index: 2;
-  }
-  .panel-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(110,69,255,0.05) 0%, transparent 70%);
-  }
-
-  /* The light card — colour matched to phone image background */
-  .panel-card {
-    background: #EDECEA;
-    border-radius: 24px;
-    max-width: 1000px;
-    width: 90%;
-    display: flex;
-    align-items: center;
-    gap: 56px;
-    padding: 60px 64px;
-    position: relative;
-    z-index: 2;
-  }
-
-  .panel-text { flex: 1; min-width: 0; }
-
-  .panel-img-wrap {
-    flex-shrink: 0;
-    width: 260px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .panel-img-wrap img {
-    width: 100%;
-    height: auto;
-    max-height: 480px;
-    object-fit: contain;
-    display: block;
-  }
-
-  .panel-step {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--purple);
-    margin-bottom: 16px;
-    padding: 5px 14px;
-    border: 1px solid rgba(110,69,255,0.25);
-    border-radius: 100px;
-    background: rgba(110,69,255,0.08);
-  }
-
-  .panel-heading {
-    font-size: clamp(1.8rem, 3.2vw, 2.7rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    color: #12092e;
-    margin-bottom: 16px;
-  }
-
-  .panel-body {
-    font-size: 15px;
-    line-height: 1.78;
-    color: #5e5480;
-    max-width: 380px;
-  }
-
-  .panel-btn {
+  .hero-eyebrow {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    margin-top: 28px;
-    padding: 13px 26px;
-    border-radius: 100px;
-    font-family: inherit;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
-    text-decoration: none;
-    background: var(--purple);
-    color: #fff;
-    box-shadow: 0 6px 24px rgba(110,69,255,0.38);
-    transition:
-      transform  0.18s cubic-bezier(0.34,1.56,0.64,1),
-      box-shadow 0.18s ease;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 28px;
+    padding: 6px 14px;
+    border: 1px solid rgba(61,253,152,0.22);
+    border-radius: 100px;
+    background: rgba(61,253,152,0.06);
   }
-  .panel-btn:hover  { transform: translateY(-2px); box-shadow: 0 10px 36px rgba(110,69,255,0.50); }
-  .panel-btn:active { transform: translateY(0); }
+  .hero h1 { max-width: 760px; margin-bottom: 22px; }
+  .hero-sub {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 500px;
+    line-height: 1.72;
+    margin-bottom: 40px;
+  }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
 
-  /* ── Mobile: stacked layout ── */
-  @media (max-width: 768px) {
-    .panel-section {
-      padding: 56px 0;
-      min-height: unset;
-      align-items: flex-start;
-    }
-    .panel-card {
-      flex-direction: column !important;
-      padding: 32px 22px;
-      gap: 24px;
-      width: 88%;
-      border-radius: 18px;
-      opacity: 0;
-      transform: translateY(44px);
-      transition:
-        opacity   0.68s cubic-bezier(0.22,1,0.36,1),
-        transform 0.68s cubic-bezier(0.22,1,0.36,1);
-    }
-    .panel-card.mob-in {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .panel-img-wrap {
-      width: 100%;
-      max-width: 200px;
-      margin: 0 auto;
-      order: -1;
-    }
-    .panel-text { text-align: center; }
-    .panel-body { max-width: 100%; }
-    .panel-btn {
-      display: block;
-      width: fit-content;
-      margin: 20px auto 0;
-      text-align: center;
-    }
+  /* ── EXAMPLES ── */
+  .examples-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
   }
-
-  /* ── SPACER SECTIONS ── */
-  .spacer-section {
-    padding: 80px 0;
-    position: relative;
-    z-index: 1;
-  }
-  .spacer-inner {
-    max-width: 660px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-  .spacer-inner h3 {
-    font-size: clamp(22px, 3vw, 32px);
-    margin-bottom: 12px;
-  }
-  .spacer-inner p { font-size: 16px; }
-
-  /* ── Feature cards (reused in spacers) ── */
-  .feature-list { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; list-style: none; }
-  .feature-item {
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
-    padding: 18px 20px;
+  .example-card {
     background: var(--panel);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.22s ease, transform 0.22s ease;
+  }
+  .example-card:hover {
+    border-color: rgba(110,69,255,0.35);
+    transform: translateY(-4px);
+  }
+  .example-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: rgba(255,255,255,0.03);
+  }
+  .example-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .example-card:hover .example-img img { transform: scale(1.05); }
+  .example-info { padding: 20px 20px 22px; }
+  .example-type {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 5px;
+  }
+  .example-name {
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  .example-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  /* ── PROCESS ── */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .step {
+    padding: 40px 34px;
+    border-right: 1px solid var(--border);
+  }
+  .step:last-child { border-right: none; }
+  .step-num {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--green);
+    margin-bottom: 14px;
+  }
+  .step-label {
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .step p { font-size: 15px; line-height: 1.72; }
+
+  /* ── WHY ── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .why-col p { font-size: 16px; line-height: 1.82; margin-bottom: 18px; }
+  .why-col p:last-child { margin-bottom: 0; }
+  .why-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .why-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15px;
+    color: rgba(255,255,255,0.84);
+    padding: 15px 18px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    line-height: 1.5;
     transition: border-color 0.2s;
   }
-  .feature-item:hover { border-color: rgba(61,253,152,0.22); }
-  .fi-icon {
-    width: 36px; height: 36px;
-    border-radius: 8px;
-    background: rgba(61,253,152,0.12);
-    border: 1px solid rgba(61,253,152,0.2);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-    flex-shrink: 0;
-  }
-  .fi-text h4 { font-size: 15px; font-weight: 600; margin-bottom: 3px; color: #fff; }
-  .fi-text p  { font-size: 13px; }
+  .why-list li:hover { border-color: rgba(61,253,152,0.2); }
+  .why-check { color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
 
   /* ── PRICING ── */
-  .pricing { padding: 80px 0; }
   .pricing-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 18px;
     align-items: start;
   }
   .price-card {
     background: var(--panel);
     border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 36px 32px;
+    border-radius: 16px;
+    padding: 34px 28px;
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    transition:
-      transform     0.25s cubic-bezier(0.34,1.56,0.64,1),
-      border-color  0.25s,
-      box-shadow    0.25s;
+    gap: 18px;
+    transition: border-color 0.2s;
   }
-  .price-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 24px 64px rgba(0,0,0,0.35);
-  }
+  .price-card:hover { border-color: rgba(255,255,255,0.14); }
   .price-card.featured {
     border-color: var(--purple);
-    background: linear-gradient(145deg, rgba(110,69,255,0.15) 0%, rgba(110,69,255,0.05) 100%);
-    box-shadow: 0 0 0 1px var(--purple), 0 24px 80px rgba(110,69,255,0.25);
+    background: rgba(110,69,255,0.09);
     position: relative;
-    overflow: hidden;
   }
-  .price-card.featured::before {
-    content: '';
-    position: absolute;
-    top: -60px; right: -60px;
-    width: 180px; height: 180px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(110,69,255,0.35) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .price-card.featured:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 0 0 1px var(--purple), 0 32px 100px rgba(110,69,255,0.35);
-  }
+  .price-card.featured:hover { border-color: rgba(110,69,255,0.7); }
   .popular-chip {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 5px 12px; border-radius: 100px;
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
     background: var(--purple);
-    font-size: 12px; font-weight: 600; color: #fff;
-    width: fit-content;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 4px 14px;
+    border-radius: 100px;
+    white-space: nowrap;
   }
-  .price-tier   { font-size: 15px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
-  .price-amount { display: flex; align-items: baseline; gap: 6px; }
-  .price-amount .amount { font-size: 52px; font-weight: 700; letter-spacing: -0.05em; color: #fff; line-height: 1; }
-  .price-amount .period { font-size: 15px; color: var(--muted); }
-  .price-desc   { font-size: 15px; color: var(--muted); margin-top: -12px; }
+  .price-tier {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+  }
+  .price-amount { display: flex; align-items: baseline; gap: 4px; }
+  .price-amount .amount { font-size: 46px; font-weight: 700; letter-spacing: -0.05em; line-height: 1; }
+  .price-amount .period { font-size: 14px; color: var(--muted); }
+  .price-desc { font-size: 14px; color: var(--muted); line-height: 1.6; margin-top: -6px; }
   .price-divider { height: 1px; background: var(--border); }
-  .price-features { display: flex; flex-direction: column; gap: 12px; list-style: none; }
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: 10px; }
   .price-features li {
-    display: flex; align-items: flex-start; gap: 10px;
-    font-size: 14px; color: rgba(255,255,255,0.8);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.45;
   }
-  .price-features li::before {
-    content: '✓'; color: var(--green); font-weight: 700;
-    font-size: 14px; flex-shrink: 0; margin-top: 1px;
-  }
+  .price-features li .check { color: var(--green); font-weight: 700; flex-shrink: 0; }
+  .price-cta { text-align: center; justify-content: center; }
 
-  /* ── CTA ── */
-  .cta-section { padding: 80px 0; text-align: center; }
-  .cta-box {
-    background: linear-gradient(145deg, rgba(110,69,255,0.12) 0%, rgba(61,253,152,0.05) 100%);
-    border: 1px solid rgba(110,69,255,0.25);
-    border-radius: 28px;
-    padding: 64px 40px;
-    position: relative;
-    overflow: hidden;
+  /* ── CONTACT ── */
+  .contact-section { text-align: center; }
+  .contact-section .section-head h2 { margin: 0 auto; }
+  .contact-section .section-head p  { margin-left: auto; margin-right: auto; }
+  .contact-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
   }
-  .cta-box::before {
-    content: '';
-    position: absolute;
-    bottom: -80px; right: -80px;
-    width: 300px; height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(61,253,152,0.15) 0%, transparent 70%);
-    pointer-events: none;
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 26px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: #fff;
+    transition: border-color 0.2s, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
   }
-  .cta-box::after {
-    content: '';
-    position: absolute;
-    top: -80px; left: -80px;
-    width: 300px; height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(110,69,255,0.20) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .cta-content  { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 24px; }
-  .cta-box h2   { max-width: 680px; }
-  .cta-box p    { max-width: 480px; font-size: 17px; }
-  .cta-buttons  { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .contact-btn:hover { transform: translateY(-2px); }
+  .contact-btn:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+  .contact-btn.wa  { border-color: rgba(37,211,102,0.28); background: rgba(37,211,102,0.05); }
+  .contact-btn.wa:hover  { border-color: rgba(37,211,102,0.55); }
+  .contact-btn.em:hover  { border-color: rgba(110,69,255,0.45); }
+  .contact-btn.ig:hover  { border-color: rgba(255,100,100,0.35); }
+  .cbi { width: 20px; height: 20px; flex-shrink: 0; }
 
   /* ── FOOTER ── */
   footer {
-    padding: 32px 0 24px;
+    padding: 28px 0;
     border-top: 1px solid var(--border);
-    position: relative; z-index: 1;
+    position: relative;
+    z-index: 1;
   }
   .footer-inner {
-    display: flex; align-items: center;
+    display: flex;
+    align-items: center;
     justify-content: space-between;
-    gap: 24px; flex-wrap: wrap;
+    flex-wrap: wrap;
+    gap: 10px;
   }
-  .footer-logo { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: -0.03em; text-decoration: none; }
+  .footer-logo { font-size: 15px; font-weight: 700; color: #fff; text-decoration: none; letter-spacing: -0.02em; }
   .footer-logo span { color: var(--green); }
-  .footer-links { display: flex; gap: 28px; list-style: none; flex-wrap: wrap; }
-  .footer-links a { color: var(--muted); font-size: 14px; text-decoration: none; transition: color 0.15s; }
-  .footer-links a:hover { color: #fff; }
-  .footer-copy { color: var(--muted); font-size: 13px; }
+  .footer-copy { font-size: 13px; color: var(--muted); }
+
+  /* ── FADE IN ── */
+  .fi {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity   0.65s cubic-bezier(0.22,1,0.36,1),
+      transform 0.65s cubic-bezier(0.22,1,0.36,1);
+  }
+  .fi.in { opacity: 1; transform: translateY(0); }
+  .fi-d1 { transition-delay: 0.08s; }
+  .fi-d2 { transition-delay: 0.16s; }
+  .fi-d3 { transition-delay: 0.24s; }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 1024px) {
-    .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+  @media (max-width: 860px) {
+    .examples-grid  { grid-template-columns: 1fr; max-width: 400px; }
+    .steps          { grid-template-columns: 1fr; }
+    .step           { border-right: none; border-bottom: 1px solid var(--border); }
+    .step:last-child { border-bottom: none; }
+    .why-grid       { grid-template-columns: 1fr; gap: 36px; }
+    .pricing-grid   { grid-template-columns: 1fr; max-width: 400px; }
+    .examples-grid,
+    .pricing-grid   { margin: 0 auto; }
   }
-  @media (max-width: 768px) {
-    .container { padding: 0 12px; }
-    h1 { font-size: 38px; }
-    h2 { font-size: 30px; }
-    .nav-links { display: none; }
-    .hero-stats { gap: 24px; flex-wrap: wrap; }
-    .cta-box { padding: 48px 24px; }
-    .proof-inner { gap: 20px; }
-    .spacer-section { padding: 60px 0; }
+  @media (max-width: 520px) {
+    section { padding: 64px 0; }
+    .hero   { padding: 72px 0 56px; }
   }
-
-  a:focus-visible { outline: 2px solid var(--purple2); outline-offset: 2px; }
 </style>
 </head>
 <body>
 
-<!-- ════════════════ NAV ════════════════ -->
+<!-- ── NAV ── -->
 <nav>
   <div class="container nav-inner">
     <a href="#" class="nav-logo">Logan <span>Freeth</span></a>
     <ul class="nav-links">
-      <li><a href="#process">How it works</a></li>
+      <li><a href="#examples">Work</a></li>
+      <li><a href="#process">Process</a></li>
       <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#cta">Contact</a></li>
     </ul>
-    <a href="#cta" class="btn btn-purple">Start a conversation</a>
+    <a href="#contact" class="btn btn-primary nav-cta">Start a project</a>
   </div>
 </nav>
 
 
-<!-- ════════════════ HERO ════════════════ -->
-<section style="position:relative; z-index:1;">
-  <div class="container hero">
-    <div class="badge badge-green">
-      <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>
-      Social media that converts
-    </div>
-    <h1 class="hero-title">
-      Turning social media<br/>
-      attention into<br/>
-      <span class="highlight">enquiries.</span>
-    </h1>
-    <p class="hero-sub">
-      Logan Freeth — a social media management service and done-for-you strategy for local businesses that attracts, converts, and manages clients without the overwhelm.
-    </p>
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="container">
+    <p class="hero-eyebrow">Web design for local businesses</p>
+    <h1>Simple websites that turn visitors into enquiries.</h1>
+    <p class="hero-sub">I design clean, fast websites for salons, barbers, clinics, and local service businesses — built to get you more bookings.</p>
     <div class="hero-ctas">
-      <a href="#panel-attract" class="btn btn-purple">See how it works →</a>
-      <a href="#pricing" class="btn btn-ghost">View pricing</a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat-item">
-        <span class="stat-num"><span class="green">200+</span></span>
-        <span class="stat-label">local businesses</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num">3</span>
-        <span class="stat-label">simple steps</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num"><span class="green">∞</span></span>
-        <span class="stat-label">enquiries possible</span>
-      </div>
+      <a href="#examples" class="btn btn-primary">See examples &rarr;</a>
+      <a href="#contact" class="btn btn-ghost">Start a conversation</a>
     </div>
   </div>
 </section>
 
-
-<!-- ════════════════ PROOF STRIP ════════════════ -->
-<div class="proof-strip" style="position:relative; z-index:1;">
-  <div class="container proof-inner">
-    <div class="proof-item">
-      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-      No contracts
-    </div>
-    <div class="proof-item">
-      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-      Results in 30 days
-    </div>
-    <div class="proof-item">
-      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-      Built for local businesses
-    </div>
-    <div class="proof-item">
-      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-      Strategy included
-    </div>
-    <div class="proof-item">
-      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-      Cancel anytime
-    </div>
-  </div>
-</div>
+<div class="divider"></div>
 
 
-<!-- ════════════════ INTRO ════════════════ -->
-<section id="process" style="padding: 80px 0;">
+<!-- ── EXAMPLES ── -->
+<section id="examples">
   <div class="container">
-    <div class="section-header">
-      <div class="badge">How it works</div>
-      <h2>A simple three-step process</h2>
-      <p>A lightweight tool that keeps you in front of your audience and keeps your strategy under control — without the agency price tag.</p>
+    <div class="section-head fi">
+      <div class="label">Recent work</div>
+      <h2>Sites I've built</h2>
+      <p>A few examples of what a focused, well-designed website looks like for a local business.</p>
     </div>
-  </div>
-</section>
+    <div class="examples-grid">
 
-
-<!-- ════════════════ PANEL 1 — ATTRACT ════════════════ -->
-<section id="panel-attract" class="panel-section">
-  <div class="panel-card" id="card-attract">
-    <div class="panel-text">
-      <span class="panel-step">Step 01 — Attract</span>
-      <h2 class="panel-heading">Stop being invisible.</h2>
-      <p class="panel-body">
-        Eye-catching content that grabs attention, builds your brand, and puts you in front of the right local audience every single week — without you lifting a finger.
-      </p>
-      <a href="#cta" class="panel-btn">Start the conversation →</a>
-    </div>
-    <div class="panel-img-wrap">
-      <img src="images/attract-phone.png" alt="Attract — content that converts" />
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════ SPACER 1 ════════════════ -->
-<section class="spacer-section">
-  <div class="container spacer-inner">
-    <div class="badge" style="margin-bottom:20px;">Why it works</div>
-    <h3>Built around how local businesses actually grow</h3>
-    <p>Most social media advice is designed for big brands with big budgets. This is different — a simple system that keeps you in front of your audience without the agency price tag.</p>
-    <ul class="feature-list">
-      <li class="feature-item">
-        <div class="fi-icon">📍</div>
-        <div class="fi-text">
-          <h4>Hyper-local targeting</h4>
-          <p>Content and strategy built for your town, your audience, your industry — not generic fluff.</p>
+      <div class="example-card fi fi-d1">
+        <div class="example-img">
+          <img src="demos/eves-nails/images/img-1.webp" alt="Eve's Nails" loading="lazy" />
         </div>
-      </li>
-      <li class="feature-item">
-        <div class="fi-icon">⚡</div>
-        <div class="fi-text">
-          <h4>Done-for-you content</h4>
-          <p>You don't need to film, write, or post anything. We handle the whole content pipeline for you.</p>
+        <div class="example-info">
+          <div class="example-type">Nail Salon</div>
+          <div class="example-name">Eve's Nails</div>
+          <div class="example-actions">
+            <a href="demos/eves-nails/" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">View live &rarr;</a>
+            <a href="#contact" class="btn btn-ghost btn-sm">Discuss mine</a>
+          </div>
         </div>
-      </li>
-    </ul>
-  </div>
-</section>
+      </div>
 
-
-<!-- ════════════════ PANEL 2 — CONVERT ════════════════ -->
-<section id="panel-convert" class="panel-section">
-  <div class="panel-card" id="card-convert" style="flex-direction:row-reverse;">
-    <div class="panel-text">
-      <span class="panel-step">Step 02 — Convert</span>
-      <h2 class="panel-heading">Turn followers into bookings.</h2>
-      <p class="panel-body">
-        Smart profile links, WhatsApp integrations, and booking buttons that convert curious scrollers into paying clients — automatically.
-      </p>
-      <a href="#cta" class="panel-btn">See examples →</a>
-    </div>
-    <div class="panel-img-wrap">
-      <img src="images/convert-phone.png" alt="Convert — booking flow" />
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════ SPACER 2 ════════════════ -->
-<section class="spacer-section" style="background: linear-gradient(180deg, transparent 0%, rgba(110,69,255,0.03) 50%, transparent 100%);">
-  <div class="container spacer-inner">
-    <div class="badge" style="margin-bottom:20px;">No follower left behind</div>
-    <h3>Every piece of content drives action</h3>
-    <p>A beautiful feed that doesn't convert is an expensive hobby. Every post links back to a booking or enquiry action so no follower ever gets lost.</p>
-    <ul class="feature-list">
-      <li class="feature-item">
-        <div class="fi-icon">🔗</div>
-        <div class="fi-text">
-          <h4>Seamless booking integration</h4>
-          <p>Every piece of content links back to a booking or enquiry action — no dead ends.</p>
+      <div class="example-card fi fi-d2">
+        <div class="example-img">
+          <img src="demos/urban-hair/images/hero-hair.jpg" alt="Urban Hair" loading="lazy" />
         </div>
-      </li>
-      <li class="feature-item">
-        <div class="fi-icon">📊</div>
-        <div class="fi-text">
-          <h4>Clear, honest reporting</h4>
-          <p>See exactly what's working and what's driving real enquiries — no vanity metrics, no spin.</p>
+        <div class="example-info">
+          <div class="example-type">Barber &amp; Hair Salon</div>
+          <div class="example-name">Urban Hair</div>
+          <div class="example-actions">
+            <a href="demos/urban-hair/" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">View live &rarr;</a>
+            <a href="#contact" class="btn btn-ghost btn-sm">Discuss mine</a>
+          </div>
         </div>
-      </li>
-    </ul>
-  </div>
-</section>
+      </div>
 
+      <div class="example-card fi fi-d3">
+        <div class="example-img">
+          <img src="demos/willow-and-stone/images/hero-salon-interior.webp" alt="Willow &amp; Stone" loading="lazy" />
+        </div>
+        <div class="example-info">
+          <div class="example-type">Hair Salon</div>
+          <div class="example-name">Willow &amp; Stone</div>
+          <div class="example-actions">
+            <a href="demos/willow-and-stone/" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">View live &rarr;</a>
+            <a href="#contact" class="btn btn-ghost btn-sm">Discuss mine</a>
+          </div>
+        </div>
+      </div>
 
-<!-- ════════════════ PANEL 3 — MANAGE ════════════════ -->
-<section id="panel-manage" class="panel-section">
-  <div class="panel-card" id="card-manage">
-    <div class="panel-text">
-      <span class="panel-step">Step 03 — Manage</span>
-      <h2 class="panel-heading">Handle appointments effortlessly.</h2>
-      <p class="panel-body">
-        An optional booking management layer keeps all your appointments in one place — no more double bookings, missed messages, or chaos.
-      </p>
-      <a href="https://workslotapp.co.uk" target="_blank" rel="noopener noreferrer" class="panel-btn">Explore WorkSlot →</a>
-    </div>
-    <div class="panel-img-wrap">
-      <img src="images/manage-phone.png" alt="Manage — WorkSlot booking app" />
     </div>
   </div>
 </section>
 
-
-<!-- ════════════════ SPACER 3 ════════════════ -->
-<section class="spacer-section">
-  <div class="container spacer-inner">
-    <div class="badge badge-green" style="margin-bottom:20px;">Optional add-on</div>
-    <h3>Manage your bookings without the chaos</h3>
-    <p>Add the optional booking layer to keep all appointments in one place — integrated directly into your social media so the whole journey from post to booking is seamless.</p>
-    <ul class="feature-list">
-      <li class="feature-item">
-        <div class="fi-icon">📅</div>
-        <div class="fi-text">
-          <h4>Clients book from social media</h4>
-          <p>Clients book directly without leaving the app — no friction, no drop-off.</p>
-        </div>
-      </li>
-      <li class="feature-item">
-        <div class="fi-icon">🔔</div>
-        <div class="fi-text">
-          <h4>Automated reminders</h4>
-          <p>Reduce no-shows automatically — syncs with your calendar so you never double-book.</p>
-        </div>
-      </li>
-    </ul>
-  </div>
-</section>
+<div class="divider"></div>
 
 
-<!-- ════════════════ PRICING ════════════════ -->
-<section id="pricing" class="pricing">
+<!-- ── PROCESS ── -->
+<section id="process">
   <div class="container">
-    <div class="section-header">
-      <div class="badge">Pricing</div>
-      <h2>Clear, sensible pricing</h2>
-      <p>No hidden fees, no long-term contracts. Pick the plan that fits where your business is right now.</p>
+    <div class="section-head fi">
+      <div class="label">The process</div>
+      <h2>How it works</h2>
+      <p>Every site I build follows the same three-step logic — because it works.</p>
+    </div>
+    <div class="steps">
+      <div class="step fi">
+        <div class="step-num">01</div>
+        <div class="step-label">Attract</div>
+        <p>Your site is built to be found — by the right people, in your area, already looking for what you offer.</p>
+      </div>
+      <div class="step fi fi-d1">
+        <div class="step-num">02</div>
+        <div class="step-label">Convert</div>
+        <p>A clean layout and a direct booking path turns visitors into enquiries — no confusion, no drop-off.</p>
+      </div>
+      <div class="step fi fi-d2">
+        <div class="step-num">03</div>
+        <div class="step-label">Manage</div>
+        <p>Simple to update, easy to run. You stay in control without needing any technical knowledge.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- ── WHY ── -->
+<section id="why">
+  <div class="container">
+    <div class="section-head fi">
+      <div class="label">Why it works</div>
+      <h2>Most websites don't convert.<br>Here's why mine do.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-col fi">
+        <p>Most templates are built for everyone — which means they work well for no one. They're cluttered, slow to load, and confusing to navigate on mobile.</p>
+        <p>I build each site with one goal: to get your visitors to take action. That means fewer options, clearer copy, and a design that feels like it belongs to your business.</p>
+        <p>No bloat. No unnecessary features. Just a focused site that does its job.</p>
+      </div>
+      <div class="fi fi-d1">
+        <ul class="why-list">
+          <li><span class="why-check">✓</span> Built specifically for service businesses</li>
+          <li><span class="why-check">✓</span> Designed to load fast on mobile</li>
+          <li><span class="why-check">✓</span> Clear calls to action on every page</li>
+          <li><span class="why-check">✓</span> No unnecessary features to confuse visitors</li>
+          <li><span class="why-check">✓</span> One goal: get you more enquiries</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- ── PRICING ── -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-head fi">
+      <div class="label">Pricing</div>
+      <h2>Straightforward pricing</h2>
+      <p>No hidden fees. No long-term contracts. Pick what fits your business right now.</p>
     </div>
     <div class="pricing-grid">
 
-      <div class="price-card">
+      <div class="price-card fi">
         <div class="price-tier">Starter</div>
         <div class="price-amount">
           <span class="amount">£299</span>
           <span class="period">/mo</span>
         </div>
-        <p class="price-desc">For businesses just getting serious about social.</p>
+        <p class="price-desc">A clean, fast single-page site to get you online and taking enquiries.</p>
         <div class="price-divider"></div>
         <ul class="price-features">
-          <li>8 posts per month</li>
-          <li>1 platform (Instagram or Facebook)</li>
-          <li>Basic content strategy</li>
-          <li>Profile optimisation</li>
-          <li>Monthly report</li>
+          <li><span class="check">✓</span> 1-page landing site</li>
+          <li><span class="check">✓</span> Mobile-first design</li>
+          <li><span class="check">✓</span> Contact &amp; booking form</li>
+          <li><span class="check">✓</span> Delivered in 5 days</li>
+          <li><span class="check">✓</span> 1 revision round</li>
         </ul>
-        <a href="#cta" class="btn btn-ghost" style="text-align:center; justify-content:center;">Get started</a>
+        <a href="#contact" class="btn btn-ghost price-cta">Get started</a>
       </div>
 
-      <div class="price-card featured">
-        <div class="popular-chip">⚡ Most popular</div>
+      <div class="price-card featured fi fi-d1">
+        <div class="popular-chip">Most popular</div>
         <div class="price-tier">Growth</div>
         <div class="price-amount">
           <span class="amount">£599</span>
           <span class="period">/mo</span>
         </div>
-        <p class="price-desc">The full system — content, strategy, and booking flow.</p>
+        <p class="price-desc">A full website with booking flow, gallery, and everything a local business needs.</p>
         <div class="price-divider"></div>
         <ul class="price-features">
-          <li>20 posts per month</li>
-          <li>2 platforms + Reels/TikTok</li>
-          <li>Full content strategy</li>
-          <li>Booking link integration</li>
-          <li>WhatsApp enquiry setup</li>
-          <li>Bi-weekly reporting</li>
-          <li>Priority support</li>
+          <li><span class="check">✓</span> Up to 6 pages</li>
+          <li><span class="check">✓</span> Booking system integration</li>
+          <li><span class="check">✓</span> Gallery &amp; services section</li>
+          <li><span class="check">✓</span> Basic SEO setup</li>
+          <li><span class="check">✓</span> 3 revision rounds</li>
         </ul>
-        <a href="#cta" class="btn btn-purple" style="text-align:center; justify-content:center;">Start the conversation →</a>
+        <a href="#contact" class="btn btn-primary price-cta">Start the conversation &rarr;</a>
       </div>
 
-      <div class="price-card">
+      <div class="price-card fi fi-d2">
         <div class="price-tier">Pro</div>
         <div class="price-amount">
           <span class="amount">£999</span>
           <span class="period">/mo</span>
         </div>
-        <p class="price-desc">For growing businesses that want it all done for them.</p>
+        <p class="price-desc">A fully custom site plus ongoing updates, support, and content management.</p>
         <div class="price-divider"></div>
         <ul class="price-features">
-          <li>Unlimited posts</li>
-          <li>All platforms + Ads management</li>
-          <li>Full booking management layer</li>
-          <li>Paid social campaigns</li>
-          <li>Dedicated account manager</li>
-          <li>Weekly strategy calls</li>
-          <li>Real-time dashboard access</li>
+          <li><span class="check">✓</span> Fully custom design</li>
+          <li><span class="check">✓</span> Unlimited pages</li>
+          <li><span class="check">✓</span> Ongoing monthly updates</li>
+          <li><span class="check">✓</span> Priority support</li>
+          <li><span class="check">✓</span> Analytics &amp; reporting</li>
         </ul>
-        <a href="#cta" class="btn btn-ghost" style="text-align:center; justify-content:center;">Get started</a>
+        <a href="#contact" class="btn btn-ghost price-cta">Get started</a>
       </div>
 
     </div>
   </div>
 </section>
 
+<div class="divider"></div>
 
-<!-- ════════════════ CTA ════════════════ -->
-<section id="cta" class="cta-section">
+
+<!-- ── CONTACT ── -->
+<section id="contact" class="contact-section">
   <div class="container">
-    <div class="cta-box">
-      <div class="cta-content">
-        <div class="badge badge-green">Ready when you are</div>
-        <h2>Start the conversation.<br/>Get your first month done.</h2>
-        <p>No pressure, no hard sell. Just a quick chat to see if this is right for your business — and if it is, we move fast.</p>
-        <div class="cta-buttons">
-          <a href="https://wa.me/447000000000" class="btn btn-purple">Message on WhatsApp →</a>
-          <a href="mailto:hello@loganfreeth.com" class="btn btn-ghost">Send an email</a>
-        </div>
-      </div>
+    <div class="section-head fi">
+      <div class="label">Get in touch</div>
+      <h2>Start a conversation</h2>
+      <p>Tell me about your business. I'll get back to you within 24 hours with a plan and a price.</p>
+    </div>
+    <div class="contact-actions">
+      <a href="https://wa.me/447000000000" class="contact-btn wa fi">
+        <svg class="cbi" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.099 1.513 5.822L0 24l6.335-1.493A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.933 0-3.741-.516-5.296-1.414l-.38-.224-3.763.887.946-3.668-.247-.397A9.937 9.937 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+        </svg>
+        WhatsApp
+      </a>
+      <a href="mailto:hello@loganfreeth.com" class="contact-btn em fi fi-d1">
+        <svg class="cbi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        hello@loganfreeth.com
+      </a>
+      <a href="https://instagram.com/logan.visuals_uk" target="_blank" rel="noopener" class="contact-btn ig fi fi-d2">
+        <svg class="cbi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+        </svg>
+        @logan.visuals_uk
+      </a>
     </div>
   </div>
 </section>
 
 
-<!-- ════════════════ FOOTER ════════════════ -->
+<!-- ── FOOTER ── -->
 <footer>
   <div class="container footer-inner">
     <a href="#" class="footer-logo">Logan <span>Freeth</span></a>
-    <ul class="footer-links">
-      <li><a href="#process">How it works</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#cta">Contact</a></li>
-    </ul>
-    <span class="footer-copy">© 2026 Logan Freeth. All rights reserved.</span>
+    <span class="footer-copy">&copy; 2026 Logan Freeth &mdash; Web design for local businesses.</span>
   </div>
 </footer>
 
 
-<!-- ════════════════ GSAP ════════════════ -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-(function () {
-  var desktop = window.matchMedia('(min-width: 769px)').matches;
-
-  if (desktop && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    var defs = [
-      { section: '#panel-attract', card: '#card-attract', dir:  1 },
-      { section: '#panel-convert', card: '#card-convert', dir: -1 },
-      { section: '#panel-manage',  card: '#card-manage',  dir:  1 },
-    ];
-
-    defs.forEach(function (d) {
-      var section = document.querySelector(d.section);
-      var card    = document.querySelector(d.card);
-      if (!section || !card) return;
-
-      /* Pin the section for 100vh of scroll */
-      ScrollTrigger.create({
-        trigger:      section,
-        start:        'top top',
-        end:          '+=100%',
-        pin:          true,
-        pinSpacing:   true,
-        anticipatePin: 1,
-      });
-
-      /* Slide the card in from off-screen */
-      gsap.fromTo(card,
-        { xPercent: d.dir * 115, opacity: 0 },
-        {
-          xPercent: 0,
-          opacity:  1,
-          ease:     'power2.out',
-          scrollTrigger: {
-            trigger: section,
-            start:   'top top',
-            end:     '+=60%',
-            scrub:   1,
-          },
-        }
-      );
+  // Fade-in on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
     });
-
-    ScrollTrigger.refresh();
-
-  } else if (!desktop) {
-
-    /* Mobile: fade + translate up on intersection */
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('mob-in');
-          obs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.18 });
-
-    document.querySelectorAll('.panel-card').forEach(function (c) {
-      obs.observe(c);
-    });
-
-  } else {
-    /* GSAP unavailable — make cards visible */
-    document.querySelectorAll('.panel-card').forEach(function (c) {
-      c.style.opacity   = '1';
-      c.style.transform = 'none';
-    });
-  }
-}());
+  }, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
+  document.querySelectorAll('.fi').forEach(el => io.observe(el));
 </script>
 
 </body>
