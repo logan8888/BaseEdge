@@ -872,6 +872,18 @@ body {
     #services::before,
     #gallery::before { z-index: 0; }
 
+    /* ── Section trim bands ───────────────────────────────
+       Warm beige inset bands top + bottom on cream sections.
+       Uses box-shadow so pseudo-elements remain available.
+    ────────────────────────────────────────────────────── */
+    #home,
+    #services,
+    #gallery {
+      box-shadow:
+        inset 0  8px 0 rgba(196,168,130,0.18),
+        inset 0 -8px 0 rgba(196,168,130,0.18);
+    }
+
     /* ── Mobile address line ──────────────────────── */
     @media (max-width: 767px) {
       /* Remove side decorative lines from the address eyebrow */
@@ -1152,7 +1164,7 @@ body {
 <!-- ══════════════════════════════════════════════════
      SERVICES
 ══════════════════════════════════════════════════════ -->
-<section id="services" class="py-8 md:py-10" style="background: #F0E9DF; border-top: 1px solid #DDD3C5; border-bottom: 1px solid #DDD3C5;">
+<section id="services" class="py-8 md:py-10" style="background: #F0E9DF;">
   <div class="max-w-6xl mx-auto px-6">
 
     <div class="text-center mb-8 reveal">
@@ -1219,7 +1231,7 @@ body {
 <!-- ══════════════════════════════════════════════════
      GALLERY
 ══════════════════════════════════════════════════════ -->
-<section id="gallery" class="py-8 md:py-10 border-y border-border" style="background: linear-gradient(135deg, #EFE9E1 0%, #F5F0E8 45%, #EDE6DC 100%);">
+<section id="gallery" class="py-8 md:py-10" style="background: linear-gradient(135deg, #EFE9E1 0%, #F5F0E8 45%, #EDE6DC 100%);">
   <div class="max-w-6xl mx-auto px-6">
 
     <div class="text-center mb-8 reveal">
