@@ -802,35 +802,36 @@ body {
       position: absolute;
       top: -80px;
       right: -80px;
-      width: 580px;
-      height: 580px;
+      width: 620px;
+      height: 620px;
       background-image: url('images/art-nouveau-pattern.png');
       background-repeat: repeat;
       background-size: 140px;
+      background-color: transparent;
       transform: rotate(38deg);
-      opacity: 0.18;
+      mix-blend-mode: multiply;
+      opacity: 0.35;
       pointer-events: none;
       z-index: 0;
-      /* Fade from corner inward — disappears before reaching content */
       -webkit-mask-image: radial-gradient(
-        ellipse 500px 500px at 100% 0%,
+        ellipse 540px 540px at 100% 0%,
         rgba(0,0,0,1)   0%,
-        rgba(0,0,0,0.8) 30%,
-        rgba(0,0,0,0.3) 58%,
-        rgba(0,0,0,0)   78%
+        rgba(0,0,0,0.85) 28%,
+        rgba(0,0,0,0.35) 56%,
+        rgba(0,0,0,0)    76%
       );
       mask-image: radial-gradient(
-        ellipse 500px 500px at 100% 0%,
+        ellipse 540px 540px at 100% 0%,
         rgba(0,0,0,1)   0%,
-        rgba(0,0,0,0.8) 30%,
-        rgba(0,0,0,0.3) 58%,
-        rgba(0,0,0,0)   78%
+        rgba(0,0,0,0.85) 28%,
+        rgba(0,0,0,0.35) 56%,
+        rgba(0,0,0,0)    76%
       );
     }
 
-    /* Contact sits on white — slightly reduced */
+    /* Contact on white — same blend mode, slightly reduced */
     #contact::before {
-      opacity: 0.14;
+      opacity: 0.28;
     }
 
   </style>
