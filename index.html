@@ -9,14 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --bg:     #07001f;
-    --panel:  rgba(255,255,255,0.04);
-    --border: rgba(255,255,255,0.08);
-    --purple: #6e45ff;
-    --green:  #3dfd98;
-    --text:   #ffffff;
-    --muted:  rgba(255,255,255,0.58);
-    --max:    1100px;
+    --bg:      #F7F7F5;
+    --bg-alt:  #EFEDEA;
+    --card:    #FFFFFF;
+    --text:    #111111;
+    --muted:   #6B6B6B;
+    --border:  #E3E3E0;
+    --purple:  #6E45FF;
+    --green:   #3DFD98;
+    --max:     1100px;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,37 +31,50 @@
     overflow-x: hidden;
   }
 
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    background:
-      radial-gradient(ellipse 900px 600px at 10% 5%,  rgba(110,69,255,0.14) 0%, transparent 60%),
-      radial-gradient(ellipse 500px 400px at 90% 15%, rgba(61,253,152,0.05) 0%, transparent 55%);
-  }
-
   .container {
     max-width: var(--max);
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 28px;
     position: relative;
-    z-index: 1;
   }
 
-  h1 { font-size: clamp(38px, 5.5vw, 64px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.08; }
-  h2 { font-size: clamp(26px, 3.5vw, 42px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.12; }
-  p  { color: var(--muted); line-height: 1.75; }
+  /* ── TYPOGRAPHY ── */
+  h1 {
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    color: var(--text);
+  }
+  h2 {
+    font-size: clamp(24px, 3vw, 38px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.14;
+    color: var(--text);
+  }
+  p { color: var(--muted); line-height: 1.78; }
 
+  /* ── SECTION LABEL ── */
   .label {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
     font-size: 11px;
     font-weight: 600;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.13em;
     text-transform: uppercase;
-    color: var(--green);
-    margin-bottom: 16px;
+    color: var(--purple);
+    margin-bottom: 14px;
+  }
+  .label::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
   }
 
   /* ── BUTTONS ── */
@@ -68,8 +82,8 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 13px 24px;
-    border-radius: 6px;
+    padding: 13px 22px;
+    border-radius: 8px;
     font-family: inherit;
     font-size: 14px;
     font-weight: 600;
@@ -83,21 +97,22 @@
   }
   .btn:hover  { transform: translateY(-2px); }
   .btn:active { transform: translateY(0); opacity: 0.85; }
-  .btn:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+  .btn:focus-visible { outline: 2px solid var(--purple); outline-offset: 3px; }
 
   .btn-primary {
     background: var(--purple);
     color: #fff;
-    box-shadow: 0 6px 24px rgba(110,69,255,0.38);
+    box-shadow: 0 4px 18px rgba(110,69,255,0.28);
   }
-  .btn-primary:hover { box-shadow: 0 10px 36px rgba(110,69,255,0.55); }
+  .btn-primary:hover { box-shadow: 0 8px 28px rgba(110,69,255,0.38); }
 
   .btn-ghost {
-    background: transparent;
-    color: rgba(255,255,255,0.75);
-    border: 1px solid rgba(255,255,255,0.16);
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   }
-  .btn-ghost:hover { border-color: rgba(255,255,255,0.3); color: #fff; }
+  .btn-ghost:hover { border-color: #BBBBB8; }
 
   .btn-sm { padding: 9px 16px; font-size: 13px; }
 
@@ -106,11 +121,11 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    padding: 16px 0;
-    background: rgba(7,0,31,0.8);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 15px 0;
+    background: rgba(247,247,245,0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
   }
   .nav-inner {
     display: flex;
@@ -119,14 +134,14 @@
     gap: 16px;
   }
   .nav-logo {
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 700;
-    color: #fff;
+    color: var(--text);
     text-decoration: none;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
     flex-shrink: 0;
   }
-  .nav-logo span { color: var(--green); }
+  .nav-logo span { color: var(--purple); }
   .nav-links {
     display: flex;
     align-items: center;
@@ -140,55 +155,54 @@
     text-decoration: none;
     transition: color 0.15s;
   }
-  .nav-links a:hover { color: #fff; }
+  .nav-links a:hover { color: var(--text); }
   @media (max-width: 600px) {
     .nav-links { display: none; }
     .nav-cta   { display: none; }
   }
 
-  /* ── DIVIDER ── */
-  .divider {
-    height: 1px;
-    background: var(--border);
-    position: relative;
-    z-index: 1;
-  }
+  /* ── SECTION BACKGROUNDS ── */
+  section { position: relative; }
+  .bg-alt { background: var(--bg-alt); }
 
   /* ── SECTION BASE ── */
   section {
     padding: 88px 0;
-    position: relative;
-    z-index: 1;
   }
   .section-head { margin-bottom: 52px; }
-  .section-head h2 { margin-top: 6px; }
-  .section-head p  { margin-top: 14px; font-size: 17px; max-width: 520px; }
+  .section-head h2 { margin-top: 8px; }
+  .section-head p  { margin-top: 14px; font-size: 17px; max-width: 500px; }
 
   /* ── HERO ── */
-  .hero {
-    padding: 96px 0 80px;
-  }
+  .hero { padding: 100px 0 88px; }
   .hero-eyebrow {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.11em;
     text-transform: uppercase;
-    color: var(--green);
+    color: var(--purple);
     margin-bottom: 28px;
-    padding: 6px 14px;
-    border: 1px solid rgba(61,253,152,0.22);
+    padding: 6px 14px 6px 10px;
+    border: 1px solid rgba(110,69,255,0.2);
     border-radius: 100px;
-    background: rgba(61,253,152,0.06);
+    background: rgba(110,69,255,0.06);
   }
-  .hero h1 { max-width: 760px; margin-bottom: 22px; }
+  .hero-eyebrow::before {
+    content: '';
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+  }
+  .hero h1 { max-width: 720px; margin-bottom: 22px; }
   .hero-sub {
     font-size: 18px;
     color: var(--muted);
-    max-width: 500px;
-    line-height: 1.72;
+    max-width: 480px;
+    line-height: 1.74;
     margin-bottom: 40px;
   }
   .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -200,21 +214,22 @@
     gap: 20px;
   }
   .example-card {
-    background: var(--panel);
+    background: var(--card);
     border: 1px solid var(--border);
     border-radius: 14px;
     overflow: hidden;
-    transition: border-color 0.22s ease, transform 0.22s ease;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+    transition: box-shadow 0.22s ease, transform 0.22s ease;
   }
   .example-card:hover {
-    border-color: rgba(110,69,255,0.35);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 12px 40px rgba(0,0,0,0.07);
     transform: translateY(-4px);
   }
   .example-img {
     width: 100%;
     aspect-ratio: 4/3;
     overflow: hidden;
-    background: rgba(255,255,255,0.03);
+    background: var(--bg-alt);
   }
   .example-img img {
     width: 100%;
@@ -224,20 +239,20 @@
     transition: transform 0.4s ease;
   }
   .example-card:hover .example-img img { transform: scale(1.05); }
-  .example-info { padding: 20px 20px 22px; }
+  .example-info { padding: 20px 20px 22px; border-top: 1px solid var(--border); }
   .example-type {
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.11em;
     text-transform: uppercase;
-    color: var(--green);
-    margin-bottom: 5px;
+    color: var(--purple);
+    margin-bottom: 4px;
   }
   .example-name {
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 600;
-    color: #fff;
-    margin-bottom: 16px;
+    color: var(--text);
+    margin-bottom: 14px;
   }
   .example-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 
@@ -245,9 +260,11 @@
   .steps {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    background: var(--card);
     border: 1px solid var(--border);
     border-radius: 14px;
     overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.03);
   }
   .step {
     padding: 40px 34px;
@@ -258,17 +275,17 @@
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.14em;
-    color: var(--green);
+    color: var(--purple);
     margin-bottom: 14px;
   }
   .step-label {
-    font-size: 21px;
+    font-size: 20px;
     font-weight: 700;
     letter-spacing: -0.02em;
-    color: #fff;
-    margin-bottom: 12px;
+    color: var(--text);
+    margin-bottom: 10px;
   }
-  .step p { font-size: 15px; line-height: 1.72; }
+  .step p { font-size: 15px; line-height: 1.74; }
 
   /* ── WHY ── */
   .why-grid {
@@ -283,23 +300,39 @@
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
   }
   .why-list li {
     display: flex;
     align-items: flex-start;
     gap: 12px;
     font-size: 15px;
-    color: rgba(255,255,255,0.84);
-    padding: 15px 18px;
-    background: var(--panel);
+    color: var(--text);
+    padding: 14px 18px;
+    background: var(--card);
     border: 1px solid var(--border);
     border-radius: 10px;
     line-height: 1.5;
-    transition: border-color 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .why-list li:hover { border-color: rgba(61,253,152,0.2); }
-  .why-check { color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .why-list li:hover {
+    border-color: rgba(110,69,255,0.25);
+    box-shadow: 0 2px 8px rgba(110,69,255,0.08);
+  }
+  .why-check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: rgba(61,253,152,0.18);
+    font-size: 10px;
+    font-weight: 700;
+    color: #0B9A5A;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
 
   /* ── PRICING ── */
   .pricing-grid {
@@ -309,25 +342,32 @@
     align-items: start;
   }
   .price-card {
-    background: var(--panel);
+    background: var(--card);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 34px 28px;
+    padding: 32px 28px;
     display: flex;
     flex-direction: column;
     gap: 18px;
-    transition: border-color 0.2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.03);
+    transition: box-shadow 0.2s, transform 0.2s;
   }
-  .price-card:hover { border-color: rgba(255,255,255,0.14); }
+  .price-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.07), 0 12px 40px rgba(0,0,0,0.06);
+    transform: translateY(-3px);
+  }
   .price-card.featured {
     border-color: var(--purple);
-    background: rgba(110,69,255,0.09);
+    border-width: 2px;
     position: relative;
+    box-shadow: 0 4px 20px rgba(110,69,255,0.12), 0 12px 48px rgba(110,69,255,0.08);
   }
-  .price-card.featured:hover { border-color: rgba(110,69,255,0.7); }
+  .price-card.featured:hover {
+    box-shadow: 0 6px 24px rgba(110,69,255,0.18), 0 16px 56px rgba(110,69,255,0.12);
+  }
   .popular-chip {
     position: absolute;
-    top: -12px;
+    top: -13px;
     left: 50%;
     transform: translateX(-50%);
     background: var(--purple);
@@ -343,13 +383,19 @@
     font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.13em;
     color: var(--muted);
   }
-  .price-amount { display: flex; align-items: baseline; gap: 4px; }
-  .price-amount .amount { font-size: 46px; font-weight: 700; letter-spacing: -0.05em; line-height: 1; }
-  .price-amount .period { font-size: 14px; color: var(--muted); }
-  .price-desc { font-size: 14px; color: var(--muted); line-height: 1.6; margin-top: -6px; }
+  .price-amount { display: flex; align-items: baseline; gap: 5px; flex-wrap: wrap; }
+  .price-amount .amount {
+    font-size: 44px;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    color: var(--text);
+  }
+  .price-amount .period { font-size: 14px; color: var(--muted); line-height: 1.4; }
+  .price-desc { font-size: 14px; line-height: 1.6; margin-top: -4px; }
   .price-divider { height: 1px; background: var(--border); }
   .price-features { list-style: none; display: flex; flex-direction: column; gap: 10px; }
   .price-features li {
@@ -357,10 +403,22 @@
     align-items: flex-start;
     gap: 10px;
     font-size: 14px;
-    color: rgba(255,255,255,0.82);
-    line-height: 1.45;
+    color: var(--text);
+    line-height: 1.5;
   }
-  .price-features li .check { color: var(--green); font-weight: 700; flex-shrink: 0; }
+  .price-features li .check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: rgba(61,253,152,0.18);
+    font-size: 9px;
+    font-weight: 700;
+    color: #0B9A5A;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
   .price-cta { text-align: center; justify-content: center; }
 
   /* ── CONTACT ── */
@@ -377,31 +435,32 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    padding: 16px 26px;
-    border-radius: 8px;
+    padding: 15px 24px;
+    border-radius: 10px;
     font-family: inherit;
     font-size: 15px;
     font-weight: 600;
     text-decoration: none;
     border: 1px solid var(--border);
-    background: var(--panel);
-    color: #fff;
-    transition: border-color 0.2s, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+    background: var(--card);
+    color: var(--text);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
   }
-  .contact-btn:hover { transform: translateY(-2px); }
-  .contact-btn:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
-  .contact-btn.wa  { border-color: rgba(37,211,102,0.28); background: rgba(37,211,102,0.05); }
-  .contact-btn.wa:hover  { border-color: rgba(37,211,102,0.55); }
-  .contact-btn.em:hover  { border-color: rgba(110,69,255,0.45); }
-  .contact-btn.ig:hover  { border-color: rgba(255,100,100,0.35); }
-  .cbi { width: 20px; height: 20px; flex-shrink: 0; }
+  .contact-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.09), 0 12px 32px rgba(0,0,0,0.06); }
+  .contact-btn:focus-visible { outline: 2px solid var(--purple); outline-offset: 3px; }
+  .contact-btn.wa  { border-color: rgba(37,211,102,0.35); background: rgba(37,211,102,0.05); }
+  .contact-btn.wa:hover  { border-color: rgba(37,211,102,0.6); }
+  .contact-btn.em:hover  { border-color: rgba(110,69,255,0.3); }
+  .contact-btn.ig:hover  { border-color: #BBBBB8; }
+  .cbi { width: 20px; height: 20px; flex-shrink: 0; color: var(--muted); }
+  .contact-btn.wa .cbi { color: #22A966; }
 
   /* ── FOOTER ── */
   footer {
     padding: 28px 0;
     border-top: 1px solid var(--border);
-    position: relative;
-    z-index: 1;
+    background: var(--card);
   }
   .footer-inner {
     display: flex;
@@ -410,17 +469,17 @@
     flex-wrap: wrap;
     gap: 10px;
   }
-  .footer-logo { font-size: 15px; font-weight: 700; color: #fff; text-decoration: none; letter-spacing: -0.02em; }
-  .footer-logo span { color: var(--green); }
+  .footer-logo { font-size: 15px; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+  .footer-logo span { color: var(--purple); }
   .footer-copy { font-size: 13px; color: var(--muted); }
 
   /* ── FADE IN ── */
   .fi {
     opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(24px);
     transition:
-      opacity   0.65s cubic-bezier(0.22,1,0.36,1),
-      transform 0.65s cubic-bezier(0.22,1,0.36,1);
+      opacity   0.6s cubic-bezier(0.22,1,0.36,1),
+      transform 0.6s cubic-bezier(0.22,1,0.36,1);
   }
   .fi.in { opacity: 1; transform: translateY(0); }
   .fi-d1 { transition-delay: 0.08s; }
@@ -429,18 +488,19 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 860px) {
-    .examples-grid  { grid-template-columns: 1fr; max-width: 400px; }
+    .examples-grid  { grid-template-columns: 1fr; max-width: 420px; }
     .steps          { grid-template-columns: 1fr; }
     .step           { border-right: none; border-bottom: 1px solid var(--border); }
     .step:last-child { border-bottom: none; }
     .why-grid       { grid-template-columns: 1fr; gap: 36px; }
-    .pricing-grid   { grid-template-columns: 1fr; max-width: 400px; }
+    .pricing-grid   { grid-template-columns: 1fr; max-width: 420px; }
     .examples-grid,
     .pricing-grid   { margin: 0 auto; }
   }
   @media (max-width: 520px) {
     section { padding: 64px 0; }
     .hero   { padding: 72px 0 56px; }
+    .container { padding: 0 18px; }
   }
 </style>
 </head>
@@ -473,11 +533,9 @@
   </div>
 </section>
 
-<div class="divider"></div>
-
 
 <!-- ── EXAMPLES ── -->
-<section id="examples">
+<section id="examples" class="bg-alt">
   <div class="container">
     <div class="section-head fi">
       <div class="label">Recent work</div>
@@ -532,8 +590,6 @@
   </div>
 </section>
 
-<div class="divider"></div>
-
 
 <!-- ── PROCESS ── -->
 <section id="process">
@@ -563,11 +619,9 @@
   </div>
 </section>
 
-<div class="divider"></div>
-
 
 <!-- ── WHY ── -->
-<section id="why">
+<section id="why" class="bg-alt">
   <div class="container">
     <div class="section-head fi">
       <div class="label">Why it works</div>
@@ -592,8 +646,6 @@
   </div>
 </section>
 
-<div class="divider"></div>
-
 
 <!-- ── PRICING ── -->
 <section id="pricing">
@@ -601,61 +653,61 @@
     <div class="section-head fi">
       <div class="label">Pricing</div>
       <h2>Straightforward pricing</h2>
-      <p>No hidden fees. No long-term contracts. Pick what fits your business right now.</p>
+      <p>No hidden fees. No long-term contracts. One-off projects — you own it outright.</p>
     </div>
     <div class="pricing-grid">
 
       <div class="price-card fi">
-        <div class="price-tier">Starter</div>
+        <div class="price-tier">Landing Page</div>
         <div class="price-amount">
           <span class="amount">£299</span>
-          <span class="period">/mo</span>
+          <span class="period">one-off</span>
         </div>
-        <p class="price-desc">A clean, fast single-page site to get you online and taking enquiries.</p>
+        <p class="price-desc">A single, high-converting page — everything a visitor needs to get in touch.</p>
         <div class="price-divider"></div>
         <ul class="price-features">
-          <li><span class="check">✓</span> 1-page landing site</li>
-          <li><span class="check">✓</span> Mobile-first design</li>
-          <li><span class="check">✓</span> Contact &amp; booking form</li>
+          <li><span class="check">✓</span> 1-page design</li>
+          <li><span class="check">✓</span> Mobile-first &amp; fast</li>
+          <li><span class="check">✓</span> Contact &amp; enquiry form</li>
           <li><span class="check">✓</span> Delivered in 5 days</li>
-          <li><span class="check">✓</span> 1 revision round</li>
+          <li><span class="check">✓</span> 2 revision rounds</li>
         </ul>
         <a href="#contact" class="btn btn-ghost price-cta">Get started</a>
       </div>
 
       <div class="price-card featured fi fi-d1">
         <div class="popular-chip">Most popular</div>
-        <div class="price-tier">Growth</div>
+        <div class="price-tier">Website</div>
         <div class="price-amount">
           <span class="amount">£599</span>
-          <span class="period">/mo</span>
+          <span class="period">one-off</span>
         </div>
-        <p class="price-desc">A full website with booking flow, gallery, and everything a local business needs.</p>
+        <p class="price-desc">A complete 3–5 page website, designed to convert visitors into enquiries.</p>
         <div class="price-divider"></div>
         <ul class="price-features">
-          <li><span class="check">✓</span> Up to 6 pages</li>
-          <li><span class="check">✓</span> Booking system integration</li>
+          <li><span class="check">✓</span> 3–5 pages</li>
           <li><span class="check">✓</span> Gallery &amp; services section</li>
-          <li><span class="check">✓</span> Basic SEO setup</li>
+          <li><span class="check">✓</span> Contact &amp; enquiry form</li>
+          <li><span class="check">✓</span> Mobile-first &amp; fast</li>
           <li><span class="check">✓</span> 3 revision rounds</li>
         </ul>
         <a href="#contact" class="btn btn-primary price-cta">Start the conversation &rarr;</a>
       </div>
 
       <div class="price-card fi fi-d2">
-        <div class="price-tier">Pro</div>
+        <div class="price-tier">Website + Booking</div>
         <div class="price-amount">
-          <span class="amount">£999</span>
-          <span class="period">/mo</span>
+          <span class="amount">£599</span>
+          <span class="period">+ £49/mo</span>
         </div>
-        <p class="price-desc">A fully custom site plus ongoing updates, support, and content management.</p>
+        <p class="price-desc">Everything in Website, plus a booking system with email confirmations built in.</p>
         <div class="price-divider"></div>
         <ul class="price-features">
-          <li><span class="check">✓</span> Fully custom design</li>
-          <li><span class="check">✓</span> Unlimited pages</li>
-          <li><span class="check">✓</span> Ongoing monthly updates</li>
-          <li><span class="check">✓</span> Priority support</li>
-          <li><span class="check">✓</span> Analytics &amp; reporting</li>
+          <li><span class="check">✓</span> Everything in Website</li>
+          <li><span class="check">✓</span> Online booking system</li>
+          <li><span class="check">✓</span> Email confirmations</li>
+          <li><span class="check">✓</span> Appointment management</li>
+          <li><span class="check">✓</span> Ongoing support</li>
         </ul>
         <a href="#contact" class="btn btn-ghost price-cta">Get started</a>
       </div>
@@ -664,11 +716,9 @@
   </div>
 </section>
 
-<div class="divider"></div>
-
 
 <!-- ── CONTACT ── -->
-<section id="contact" class="contact-section">
+<section id="contact" class="contact-section bg-alt">
   <div class="container">
     <div class="section-head fi">
       <div class="label">Get in touch</div>
@@ -713,12 +763,11 @@
 
 
 <script>
-  // Fade-in on scroll
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
+  }, { threshold: 0.1, rootMargin: '0px 0px -28px 0px' });
   document.querySelectorAll('.fi').forEach(el => io.observe(el));
 </script>
 
