@@ -924,8 +924,8 @@ body {
     ══════════════════════════════════════════════ */
     @media (max-width: 767px) {
 
-      /* ── Art Nouveau texture — narrower on mobile ── */
-      #home::before, #services::before, #gallery::before { width: 50% !important; }
+      /* ── Art Nouveau texture — narrow strip on mobile ── */
+      #home::before, #services::before, #gallery::before { width: 20% !important; }
 
       /* ── Overflow containment ── */
       html, body { width: 100%; max-width: 100%; overflow-x: hidden !important; }
@@ -962,7 +962,10 @@ body {
 
       /* ── HERO ── */
       /* Push content below fixed nav (nav ~60px) + small breathing room */
-      .hero-section { padding-top: 50px !important; min-height: auto !important; }
+      /* padding-top = nav height (59px) so content starts flush below nav */
+      .hero-section { padding-top: 59px !important; min-height: auto !important; }
+      /* Trim band: match nav height exactly so no gap */
+      .hero-trim-top { top: 59px !important; }
       .hero-content-grid { gap: 0.5rem !important; min-height: auto !important; padding: 0.5rem 0 1rem !important; }
 
       /* Hero address eyebrow */
