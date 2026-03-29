@@ -924,6 +924,9 @@ body {
     ══════════════════════════════════════════════ */
     @media (max-width: 767px) {
 
+      /* ── Art Nouveau texture — narrower on mobile ── */
+      #home::before, #services::before, #gallery::before { width: 50% !important; }
+
       /* ── Overflow containment ── */
       html, body { width: 100%; max-width: 100%; overflow-x: hidden !important; }
       *, *::before, *::after { box-sizing: border-box; }
