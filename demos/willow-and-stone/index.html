@@ -924,10 +924,16 @@ body {
     ══════════════════════════════════════════════ */
     @media (max-width: 767px) {
 
-      /* ── Art Nouveau texture — tight right-edge strip on mobile ── */
+      /* ── Art Nouveau pattern — right side, reinstated to 50% on mobile ── */
       #home::before, #services::before, #gallery::before {
-        width: 15% !important;
-        background-size: 80px !important;
+        width: 50% !important;
+        background-size: 220px !important;
+      }
+
+      /* ── Hero grain/gradient — clip to left 40% of screen ── */
+      .hero-grain, .hero-gradient {
+        -webkit-mask-image: linear-gradient(to right, black 0%, black 35%, transparent 55%);
+        mask-image: linear-gradient(to right, black 0%, black 35%, transparent 55%);
       }
 
       /* ── Overflow containment ── */
