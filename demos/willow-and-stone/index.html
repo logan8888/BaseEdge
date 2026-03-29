@@ -924,8 +924,11 @@ body {
     ══════════════════════════════════════════════ */
     @media (max-width: 767px) {
 
-      /* ── Art Nouveau texture — narrow strip on mobile ── */
-      #home::before, #services::before, #gallery::before { width: 20% !important; }
+      /* ── Art Nouveau texture — tight right-edge strip on mobile ── */
+      #home::before, #services::before, #gallery::before {
+        width: 15% !important;
+        background-size: 80px !important;
+      }
 
       /* ── Overflow containment ── */
       html, body { width: 100%; max-width: 100%; overflow-x: hidden !important; }
