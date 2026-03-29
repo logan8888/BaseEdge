@@ -896,8 +896,8 @@ body {
     /* Services and Gallery — inset shadow works directly (no layered children) */
     #services,
     #gallery {
-      border-top: 8px solid #C4A882;
-      border-bottom: 8px solid #C4A882;
+      border-top: 8px solid #E6DED5;
+      border-bottom: 8px solid #E6DED5;
     }
 
     /* Hero trim bands — explicit divs at z-index 5 (above all animation layers
@@ -909,7 +909,7 @@ body {
       position: absolute;
       left: 0; right: 0;
       height: 8px;
-      background: #C4A882;
+      background: #E6DED5;
       pointer-events: none;
       z-index: 5;
     }
@@ -1041,7 +1041,7 @@ body {
       .btn { font-size: 13px !important; min-height: 36px !important; padding: 8px 16px !important; }
       .map-btn { display: none !important; }
       /* Reduce space above hero CTA buttons */
-      #home .mt-6 { margin-top: 10px !important; }
+      #home .mt-6 { margin-top: 4px !important; }
 
       /* ── CTA SECTION ── */
       .cta-section h2, .cta-section .section-title, .cta-section .section-title-tight {
@@ -1657,7 +1657,7 @@ body {
   const nav = document.getElementById('top-nav');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 40) {
-      nav.style.borderBottomColor = '#C4A882';
+      nav.style.borderBottomColor = '#E6DED5';
       nav.style.boxShadow = '0 2px 18px rgba(31,28,26,0.06)';
     } else {
       nav.style.borderBottomColor = '#E6DED5';
