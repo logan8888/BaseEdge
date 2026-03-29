@@ -886,17 +886,22 @@ body {
 
     /* Hero trim bands — explicit divs at z-index 5 (above all animation layers
        0–3, below hero content at z-10). Box-shadow and borders on #home itself
-       are buried under gradient/grain children and cannot be used here. */
+       are buried under gradient/grain children and cannot be used here.
+       Top trim is offset by nav height so it appears below the fixed nav,
+       matching the visual position of bands on scrolled sections. */
     .hero-trim {
       position: absolute;
       left: 0; right: 0;
       height: 8px;
-      background: rgba(196,168,130,0.18);
+      background: rgba(196,168,130,0.22);
       pointer-events: none;
       z-index: 5;
     }
-    .hero-trim-top    { top: 0; }
+    .hero-trim-top    { top: 69px; }   /* mobile nav height */
     .hero-trim-bottom { bottom: 0; }
+    @media (min-width: 768px) {
+      .hero-trim-top  { top: 71px; }   /* desktop nav height */
+    }
 
     /* ── Mobile address line ──────────────────────── */
     @media (max-width: 767px) {
