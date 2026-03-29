@@ -109,13 +109,17 @@ body {
       background: linear-gradient(to left, transparent, #C4A882);
     }
 
-    /* ── Mobile header: logo centering only (no font sizes here) ── */
+    /* ── Mobile header ── */
     @media (max-width: 767px) {
-      .nav-inner { position: relative; }
+      /* No burger on mobile — logo centers via flex */
+      #mob-btn { display: none !important; }
+      /* Hide the balancing spacer div (only needed when burger exists) */
+      .nav-inner > div[aria-hidden="true"] { display: none !important; }
+      /* Reset logo to static flow so flex centering works */
       .logo-anchor {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
+        position: static !important;
+        left: auto !important;
+        transform: none !important;
         margin-left: 0 !important;
       }
     }
@@ -934,37 +938,28 @@ body {
         padding-left: 16px !important;
         padding-right: 16px !important;
       }
-      /* Burger: smaller, nudged left */
-      #mob-btn {
-        margin-left: auto !important;
-        position: relative;
-        z-index: 5;
-        width: 32px !important;
-        height: 32px !important;
-        margin-right: 4px !important;
-      }
-      #mob-btn svg { width: 16px !important; height: 16px !important; }
-
       /* ── LOGO ── */
       header .logo-mark {
-        font-size: 16px !important;
+        font-size: 19px !important;
         letter-spacing: -0.01em !important;
         line-height: 1 !important;
+        white-space: nowrap !important;
       }
       header .logo-sub {
-        font-size: 6px !important;
-        letter-spacing: 0.16em !important;
+        font-size: 7px !important;
+        letter-spacing: 0.18em !important;
         line-height: 1 !important;
+        white-space: nowrap !important;
       }
       header .logo-sub-wrap {
-        gap: 5px !important;
-        margin-top: 3px !important;
+        gap: 6px !important;
+        margin-top: 4px !important;
       }
-      header .logo-line { width: 14px !important; }
+      header .logo-line { width: 16px !important; }
 
       /* ── HERO ── */
       /* Push content below fixed nav (nav ~60px) + small breathing room */
-      .hero-section { padding-top: 62px !important; min-height: auto !important; }
+      .hero-section { padding-top: 50px !important; min-height: auto !important; }
       .hero-content-grid { gap: 0.5rem !important; min-height: auto !important; padding: 0.5rem 0 1rem !important; }
 
       /* Hero address eyebrow */
