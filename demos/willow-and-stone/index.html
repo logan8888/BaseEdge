@@ -109,9 +109,8 @@ body {
       background: linear-gradient(to left, transparent, #C4A882);
     }
 
-    /* ── Mobile header refinements ────────────────── */
+    /* ── Mobile header: logo centering only (no font sizes here) ── */
     @media (max-width: 767px) {
-      /* Centre logo, keep hamburger right */
       .nav-inner { position: relative; }
       .logo-anchor {
         position: absolute;
@@ -119,9 +118,6 @@ body {
         transform: translateX(-50%);
         margin-left: 0 !important;
       }
-      /* Mobile logo: comfortably fits inside header */
-      .logo-mark { font-size: 20px; }
-      .logo-sub  { font-size: 7.5px; letter-spacing: 0.18em; }
     }
 
     /* ────────────────────────────────────────────────
@@ -918,176 +914,100 @@ body {
     }
 
     /* ══════════════════════════════════════════════
-       MOBILE OVERRIDE — max-width: 768px
-       Fixes: horizontal scroll, oversized type,
-       overflowing text, broken cards, logo sizing
+       MOBILE OVERRIDE — max-width: 767px
+       Single authoritative block. All sizes in px
+       for reliability. !important beats inline styles.
     ══════════════════════════════════════════════ */
-    @media (max-width: 768px) {
-      html, body {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden !important;
-      }
+    @media (max-width: 767px) {
 
-      * {
-        box-sizing: border-box;
-      }
+      /* ── Overflow containment ── */
+      html, body { width: 100%; max-width: 100%; overflow-x: hidden !important; }
+      *, *::before, *::after { box-sizing: border-box; }
+      img, svg, video { max-width: 100%; height: auto; }
+      section, div, nav, header { max-width: 100%; }
+      .grid, .flex, .md\:grid-cols-2, .md\:grid-cols-5 { min-width: 0 !important; }
 
-      body * {
-        max-width: 100%;
-      }
-
-      img, svg, video {
-        max-width: 100%;
-        height: auto;
-      }
-
-      section, div, nav, header, .wrap, .hero-content-grid, .hero-img-panel,
-      .service-card, .gallery-item, .cta-section, .trust-bar, .card-body {
-        max-width: 100%;
-      }
-
-      .ws-logo-img {
-        height: 42px !important;
-        width: auto !important;
-        max-width: 78vw !important;
-        margin: 0 auto !important;
-        display: block !important;
-      }
-
-      header .max-w-6xl,
-      #top-nav .max-w-6xl {
+      /* ── NAV layout ── */
+      header .max-w-6xl, #top-nav .max-w-6xl {
         position: relative;
         justify-content: center !important;
         padding-left: 16px !important;
         padding-right: 16px !important;
       }
+      #mob-btn { margin-left: auto !important; position: relative; z-index: 5; }
 
-      header a.flex.items-center.flex-shrink-0,
-      #top-nav a.flex.items-center.flex-shrink-0 {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
+      /* ── LOGO ── */
+      /* Use header selector for higher specificity than base .logo-mark rule */
+      header .logo-mark {
+        font-size: 13px !important;
+        letter-spacing: 0em !important;
+        line-height: 1 !important;
       }
-
-      #mob-btn {
-        margin-left: auto !important;
-        position: relative;
-        z-index: 5;
+      header .logo-sub {
+        font-size: 5.5px !important;
+        letter-spacing: 0.15em !important;
+        line-height: 1 !important;
       }
-
-      h1 {
-        font-size: 2rem !important;
-        line-height: 1.08 !important;
+      header .logo-sub-wrap {
+        gap: 4px !important;
+        margin-top: 3px !important;
       }
+      header .logo-line { width: 12px !important; }
 
-      h2 {
-        font-size: 1.55rem !important;
-        line-height: 1.12 !important;
-      }
+      /* ── HERO ── */
+      .hero-section { padding-top: 1rem !important; min-height: auto !important; }
+      .hero-content-grid { gap: 1rem !important; min-height: auto !important; padding: 0.75rem 0 1rem !important; }
 
-      h3 {
-        font-size: 1.2rem !important;
-        line-height: 1.2 !important;
-      }
+      /* Hero address eyebrow — inline font-size: 10px, keep that, just cap it */
+      .hero-address { font-size: 9px !important; letter-spacing: 0.12em !important; }
 
-      .section-title,
-      .section-title-tight {
-        font-size: 1.55rem !important;
+      /* Hero heading — overrides inline clamp() */
+      #home h1 { font-size: 20px !important; line-height: 1.15 !important; }
+
+      /* Hero paragraph — overrides inline font-size: 17px */
+      #home p { font-size: 13px !important; line-height: 1.6 !important; }
+
+      /* Hero call link */
+      #home a[href^="tel"] { font-size: 11px !important; }
+
+      /* ── EYEBROWS (all sections) ── */
+      .eyebrow { font-size: 9px !important; letter-spacing: 0.14em !important; }
+
+      /* ── SECTION HEADINGS ── */
+      h2, .section-title, .section-title-tight {
+        font-size: 22px !important;
         line-height: 1.1 !important;
       }
+      h3 { font-size: 17px !important; line-height: 1.2 !important; }
 
-      .hero-section p,
-      .font-sans,
-      p,
-      .text-warm,
-      .text-charcoal {
-        font-size: 0.95rem !important;
-        line-height: 1.55 !important;
-      }
+      /* ── BODY COPY (all sections) ── */
+      p { font-size: 13px !important; line-height: 1.6 !important; }
 
-      .eyebrow {
-        font-size: 0.72rem !important;
-        letter-spacing: 0.14em !important;
-      }
+      /* ── WORKSLOT BADGE ── */
+      .workslot-badge { font-size: 11px !important; padding: 6px 10px !important; line-height: 1.3 !important; }
 
-      .hero-content-grid {
-        gap: 1.25rem !important;
-        min-height: auto !important;
-        padding: 1rem 0 1rem !important;
-      }
+      /* ── BUTTONS ── */
+      .btn, .map-btn { font-size: 13px !important; min-height: 44px !important; padding: 10px 14px !important; }
 
-      .hero-section {
-        padding-top: 1.25rem !important;
-        min-height: auto !important;
-      }
-
-      .btn,
-      .map-btn {
-        font-size: 0.95rem !important;
-        min-height: 44px !important;
-        padding: 10px 16px !important;
-      }
-
-      .workslot-badge {
-        font-size: 0.85rem !important;
-        line-height: 1.3 !important;
-        padding: 8px 14px !important;
-      }
-
-      .cta-section h2,
-      .cta-section .section-title,
-      .cta-section .section-title-tight {
-        font-size: 1.5rem !important;
-        line-height: 1.05 !important;
+      /* ── CTA SECTION ── */
+      .cta-section h2, .cta-section .section-title, .cta-section .section-title-tight {
+        font-size: 22px !important;
+        line-height: 1.1 !important;
         word-break: break-word !important;
         overflow-wrap: anywhere !important;
       }
+      .cta-section p { font-size: 13px !important; line-height: 1.55 !important; }
 
-      .cta-section p {
-        font-size: 0.88rem !important;
-        line-height: 1.5 !important;
-      }
+      /* ── CONTACT SECTION ── */
+      #contact, #contact * { overflow-wrap: anywhere !important; word-break: break-word !important; }
+      #contact h2, #contact h3 { font-size: 18px !important; line-height: 1.2 !important; margin-bottom: 12px !important; }
+      #contact p, #contact a { font-size: 12px !important; line-height: 1.45 !important; }
+      #contact .eyebrow { font-size: 9px !important; }
 
-      #contact,
-      #contact * {
-        overflow-wrap: anywhere !important;
-        word-break: break-word !important;
-      }
+      /* ── OPENING HOURS ── */
+      #contact span { font-size: 11px !important; line-height: 1.4 !important; white-space: nowrap; }
+      #contact .flex.justify-between { flex-wrap: nowrap !important; gap: 8px !important; }
 
-      /* Contact headings */
-      #contact h3 {
-        font-size: 1rem !important;
-        line-height: 1.3 !important;
-        margin-bottom: 1rem !important;
-      }
-
-      /* Contact body text — override blanket .text-warm rule */
-      #contact p,
-      #contact a {
-        font-size: 13px !important;
-        line-height: 1.45 !important;
-      }
-
-      /* Opening hours rows */
-      #contact span {
-        font-size: 12px !important;
-        line-height: 1.4 !important;
-      }
-
-      /* Opening hours section heading */
-      #contact .eyebrow {
-        font-size: 0.65rem !important;
-      }
-
-      .grid,
-      .flex,
-      .md\:grid-cols-2,
-      .md\:grid-cols-5 {
-        min-width: 0 !important;
-      }
     }
 
   </style>
