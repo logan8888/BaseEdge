@@ -934,29 +934,37 @@ body {
         padding-left: 16px !important;
         padding-right: 16px !important;
       }
-      #mob-btn { margin-left: auto !important; position: relative; z-index: 5; }
+      /* Burger: smaller, nudged left */
+      #mob-btn {
+        margin-left: auto !important;
+        position: relative;
+        z-index: 5;
+        width: 32px !important;
+        height: 32px !important;
+        margin-right: 4px !important;
+      }
+      #mob-btn svg { width: 16px !important; height: 16px !important; }
 
       /* ── LOGO ── */
-      /* Use header selector for higher specificity than base .logo-mark rule */
       header .logo-mark {
-        font-size: 13px !important;
-        letter-spacing: 0em !important;
+        font-size: 16px !important;
+        letter-spacing: -0.01em !important;
         line-height: 1 !important;
       }
       header .logo-sub {
-        font-size: 5.5px !important;
-        letter-spacing: 0.15em !important;
+        font-size: 6px !important;
+        letter-spacing: 0.16em !important;
         line-height: 1 !important;
       }
       header .logo-sub-wrap {
-        gap: 4px !important;
+        gap: 5px !important;
         margin-top: 3px !important;
       }
-      header .logo-line { width: 12px !important; }
+      header .logo-line { width: 14px !important; }
 
       /* ── HERO ── */
-      /* Push content below fixed nav (nav ~69px) + small breathing room */
-      .hero-section { padding-top: 76px !important; min-height: auto !important; }
+      /* Push content below fixed nav (nav ~60px) + small breathing room */
+      .hero-section { padding-top: 62px !important; min-height: auto !important; }
       .hero-content-grid { gap: 0.5rem !important; min-height: auto !important; padding: 0.5rem 0 1rem !important; }
 
       /* Hero address eyebrow */
