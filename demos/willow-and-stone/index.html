@@ -896,9 +896,8 @@ body {
     /* Services and Gallery — inset shadow works directly (no layered children) */
     #services,
     #gallery {
-      box-shadow:
-        inset 0  8px 0 rgba(196,168,130,0.18),
-        inset 0 -8px 0 rgba(196,168,130,0.18);
+      border-top: 8px solid #C4A882;
+      border-bottom: 8px solid #C4A882;
     }
 
     /* Hero trim bands — explicit divs at z-index 5 (above all animation layers
@@ -910,7 +909,7 @@ body {
       position: absolute;
       left: 0; right: 0;
       height: 8px;
-      background: rgba(196,168,130,0.22);
+      background: #C4A882;
       pointer-events: none;
       z-index: 5;
     }
@@ -1101,7 +1100,7 @@ body {
      NAV
 ══════════════════════════════════════════════════════ -->
 <header id="top-nav" class="fixed top-0 left-0 right-0 z-50"
-  style="background: #F8F5F1; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid rgba(230,222,213,0.55); transition: border-color 0.3s ease, box-shadow 0.3s ease;">
+  style="background: #F8F5F1; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid #E6DED5; transition: border-color 0.3s ease, box-shadow 0.3s ease;">
 
   <div class="nav-inner max-w-6xl mx-auto px-5 py-3.5 flex items-center justify-between gap-4">
 
@@ -1653,10 +1652,10 @@ body {
   const nav = document.getElementById('top-nav');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 40) {
-      nav.style.borderBottomColor = 'rgba(196,168,130,0.35)';
+      nav.style.borderBottomColor = '#C4A882';
       nav.style.boxShadow = '0 2px 18px rgba(31,28,26,0.06)';
     } else {
-      nav.style.borderBottomColor = 'rgba(230,222,213,0.55)';
+      nav.style.borderBottomColor = '#E6DED5';
       nav.style.boxShadow = 'none';
     }
   }, { passive: true });
