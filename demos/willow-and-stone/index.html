@@ -48,17 +48,7 @@
 #gallery,
 #booking,
 #contact {
-  scroll-margin-top: 100px;
-}
-
-@media (min-width: 1024px) {
-  #home,
-  #services,
-  #gallery,
-  #booking,
-  #contact {
-    scroll-margin-top: 100px;
-  }
+  scroll-margin-top: 72px;
 }
 
 body {
@@ -1293,7 +1283,7 @@ body {
         <div class="reveal reveal-d4 mt-5">
           <a href="tel:01702458321" class="font-sans text-warm hover:text-charcoal transition-colors"
             style="font-size: 13px; letter-spacing: 0.02em; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(196,168,130,0.55);">
-            Click here to call us on 01702 458321
+             Call us on 01702 458321
           </a>
         </div>
 
@@ -1720,7 +1710,7 @@ body {
     function getActiveSection() {
       const headerH = headerEl ? headerEl.offsetHeight : 80;
       // Trigger point: section top must clear the header + a small buffer
-      const triggerY = headerH + 24;
+      const triggerY = headerH + 8;
 
       // At the very bottom of the page, force the last section active.
       // Contact is often too short to scroll past the trigger naturally.
