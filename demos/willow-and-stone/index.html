@@ -962,14 +962,14 @@ body {
 
       /* ── HERO ── */
       /* Push content below fixed nav (nav ~60px) + small breathing room */
-      /* padding-top = nav height (59px) so content starts flush below nav */
-      .hero-section { padding-top: 59px !important; min-height: auto !important; }
-      /* Trim band: match nav height exactly so no gap */
+      /* padding-top = nav height (59px) + small breath */
+      .hero-section { padding-top: 62px !important; min-height: auto !important; }
       .hero-trim-top { top: 59px !important; }
       .hero-content-grid { gap: 0.5rem !important; min-height: auto !important; padding: 0.5rem 0 1rem !important; }
 
-      /* Hero address eyebrow */
-      .hero-address { font-size: 9px !important; letter-spacing: 0.12em !important; margin-bottom: 10px !important; }
+      /* Hide address and WorkSlot badge on mobile */
+      .hero-address { display: none !important; }
+      .workslot-badge { display: none !important; }
 
       /* Hero heading — overrides inline clamp() */
       #home h1 { font-size: 20px !important; line-height: 1.15 !important; margin-bottom: 10px !important; }
