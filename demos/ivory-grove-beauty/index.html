@@ -257,7 +257,7 @@
     /* ─── DIVIDER ────────────────────────────────────── */
     .rule { width: 36px; height: 1px; background: #7A9E76; }
 
-    /* ─── WOOD GRAIN texture (very subtle) ────────────── */
+    /* ─── WOOD GRAIN texture (real bleached wood image) ── */
     .wood-grain {
       position: relative;
     }
@@ -265,9 +265,10 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.035 0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)' opacity='1'/%3E%3C/svg%3E");
-      background-size: 300px 300px;
-      opacity: 0.035;
+      background-image: url('images/bleached%20wood.jpg');
+      background-size: 520px auto;
+      background-repeat: repeat;
+      opacity: 0.32;
       pointer-events: none;
       z-index: 0;
       mix-blend-mode: multiply;
@@ -482,7 +483,7 @@
 <!-- ══════════════════════════════════════
      TREATMENTS
 ══════════════════════════════════════ -->
-<section id="treatments" style="background:#F9F8F6; padding:96px 0;">
+<section id="treatments" class="wood-grain" style="background:#F9F8F6; padding:96px 0;">
   <div class="max-w-7xl mx-auto px-6">
 
     <div class="text-center mb-14 reveal">
@@ -627,7 +628,7 @@
 <!-- ══════════════════════════════════════
      TEAM
 ══════════════════════════════════════ -->
-<section id="team" style="background:#F9F8F6; padding:96px 0;">
+<section id="team" class="wood-grain" style="background:#F9F8F6; padding:96px 0;">
   <div class="max-w-6xl mx-auto px-6">
 
     <div class="text-center mb-14 reveal">
@@ -670,7 +671,7 @@
 <!-- ══════════════════════════════════════
      GALLERY
 ══════════════════════════════════════ -->
-<section id="gallery" style="background:#FFFFFF; padding:96px 0;">
+<section id="gallery" class="wood-grain" style="background:#FFFFFF; padding:96px 0;">
   <div class="max-w-7xl mx-auto px-6">
 
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10 reveal">
@@ -722,7 +723,7 @@
 <!-- ══════════════════════════════════════
      TESTIMONIALS
 ══════════════════════════════════════ -->
-<section style="background:#F9F8F6; padding:96px 0;">
+<section class="wood-grain" style="background:#F9F8F6; padding:96px 0;">
   <div class="max-w-6xl mx-auto px-6">
 
     <div class="text-center mb-12 reveal">
@@ -852,7 +853,7 @@
 <!-- ══════════════════════════════════════
      BRANDS
 ══════════════════════════════════════ -->
-<section style="background:#F9F8F6; padding:72px 0; border-top:1px solid #E3E1DD;">
+<section class="wood-grain" style="background:#F9F8F6; padding:72px 0; border-top:1px solid #E3E1DD;">
   <div class="max-w-6xl mx-auto px-6">
 
     <div class="text-center mb-10 reveal">
