@@ -49,7 +49,7 @@
     /* ─── TYPOGRAPHY ────────────────────────────────── */
     .disp-xl {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(3rem, 5.5vw, 5.2rem);
+      font-size: clamp(2.8rem, 4.8vw, 4.8rem);
       font-weight: 400;
       line-height: 1.05;
       letter-spacing: -0.02em;
@@ -315,8 +315,7 @@
 
     <!-- Logo -->
     <a href="#" class="flex-shrink-0">
-      <div class="logo-name">Ivory Grove</div>
-      <div class="logo-sub-text">Beauty Studio</div>
+      <img src="images/ivory-grove-logo.png" alt="Ivory Grove Beauty Studio" style="height:48px; width:auto; display:block;" />
     </a>
 
     <!-- Desktop nav -->
@@ -364,7 +363,7 @@
 <!-- ══════════════════════════════════════
      HERO
 ══════════════════════════════════════ -->
-<section id="home" class="wood-grain pt-28 md:pt-32 pb-0 bg-white">
+<section id="home" class="wood-grain pt-20 md:pt-24 pb-0 bg-white">
   <div class="max-w-7xl mx-auto px-6">
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center pb-14 md:pb-20">
@@ -372,10 +371,14 @@
       <!-- Text -->
       <div class="reveal">
         <div class="eyebrow mb-5">Billericay, Essex</div>
-        <h1 class="disp-xl text-charcoal mb-6">
-          Refined beauty<br>
-          <em style="font-style: italic; font-weight: 300;">in a brighter space.</em>
-        </h1>
+        <div style="position:relative;">
+          <img src="images/flower.png" alt="" aria-hidden="true"
+            style="position:absolute; width:150px; top:-40px; left:-8px; mix-blend-mode:multiply; pointer-events:none; opacity:0.9; z-index:0;" />
+          <h1 class="disp-xl text-charcoal mb-6" style="position:relative; z-index:1; padding-left:76px;">
+            Refined beauty<br>
+            <em style="font-style: italic; font-weight: 300;">in a brighter space.</em>
+          </h1>
+        </div>
         <p class="body-lg max-w-md mb-8">
           Ivory Grove is a calm, white-walled beauty studio in the heart of Billericay. We offer considered, results-led treatments in an unhurried environment designed around you.
         </p>
@@ -414,27 +417,19 @@
         </div>
       </div>
 
-      <!-- Hero image -->
+      <!-- Hero image gallery -->
       <div class="reveal d1 hidden lg:block">
         <div style="position: relative;">
-          <img src="https://placehold.co/620x780/F2F1EF/C8C5C0" alt="Ivory Grove Beauty Studio interior"
-            style="width:100%; height:680px; object-fit:cover; display:block;" />
+          <div id="hero-gallery" style="position:relative; width:100%; height:680px; overflow:hidden;">
+            <img src="images/salon.jpg" alt="Ivory Grove salon" class="hero-slide"
+              style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:1; transition:opacity 1.4s ease;" />
+            <img src="images/treatment room.jpg" alt="Ivory Grove treatment room" class="hero-slide"
+              style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 1.4s ease;" />
+          </div>
           <!-- Floating caption card -->
           <div style="position:absolute; bottom:28px; left:-28px; background:#FFFFFF; border:1px solid #E3E1DD; padding:18px 24px; max-width:220px; box-shadow: 0 8px 32px rgba(0,0,0,0.07);">
             <div class="eyebrow mb-1">Now booking</div>
             <div style="font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:500; color:#1A1A1A; line-height:1.3;">Spring treatments<br>from £28</div>
-          </div>
-          <!-- Botanical line decal -->
-          <div style="position:absolute; top:24px; right:24px; opacity:0.15;">
-            <svg width="60" height="90" viewBox="0 0 60 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M30 85 Q30 50 30 5" stroke="#7A9E76" stroke-width="1" fill="none"/>
-              <path d="M30 55 Q10 45 5 30" stroke="#7A9E76" stroke-width="1" fill="none"/>
-              <path d="M30 55 Q50 45 55 30" stroke="#7A9E76" stroke-width="1" fill="none"/>
-              <path d="M30 40 Q15 30 12 18" stroke="#7A9E76" stroke-width="1" fill="none"/>
-              <path d="M30 40 Q45 30 48 18" stroke="#7A9E76" stroke-width="1" fill="none"/>
-              <path d="M30 70 Q20 62 16 52" stroke="#7A9E76" stroke-width="1" fill="none"/>
-              <path d="M30 70 Q40 62 44 52" stroke="#7A9E76" stroke-width="1" fill="none"/>
-            </svg>
           </div>
         </div>
       </div>
@@ -517,7 +512,7 @@
 
       <!-- Facials -->
       <div class="treatment-card reveal d3">
-        <img src="https://placehold.co/480x260/EDEEF0/BDBFC3" alt="Facial treatments" />
+        <img src="images/facial.png" alt="Facial treatments" style="width:100%; height:240px; object-fit:cover; object-position:center top; display:block;" />
         <div class="p-6">
           <div class="eyebrow mb-2">Facials</div>
           <h3 class="disp-sm text-charcoal mb-2">Prescriptive Facials</h3>
@@ -527,7 +522,7 @@
 
       <!-- Skin Treatments -->
       <div class="treatment-card reveal d1">
-        <img src="https://placehold.co/480x260/EEEEEC/C2C2C0" alt="Skin treatments" />
+        <img src="images/dermatological-treatment.jpg" alt="Advanced skin treatments" style="width:100%; height:240px; object-fit:cover; object-position:center 20%; display:block;" />
         <div class="p-6">
           <div class="eyebrow mb-2">Skin Treatments</div>
           <h3 class="disp-sm text-charcoal mb-2">Advanced Skin Care</h3>
@@ -856,19 +851,37 @@
 <section class="wood-grain" style="background:#F9F8F6; padding:72px 0; border-top:1px solid #E3E1DD;">
   <div class="max-w-6xl mx-auto px-6">
 
-    <div class="text-center mb-10 reveal">
-      <div class="eyebrow mb-3">Professional products</div>
-      <h2 class="disp-md text-charcoal mb-3">Trusted Skincare &amp; Beauty Brands</h2>
-      <p class="body-sm max-w-lg mx-auto">We use carefully selected professional products to ensure consistent, high-quality results for every client.</p>
-    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center reveal">
 
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 reveal d1">
-      <div class="brand-pill">Dermalogica</div>
-      <div class="brand-pill">The Gel Bottle</div>
-      <div class="brand-pill">LVL Lashes</div>
-      <div class="brand-pill">HD Brows</div>
-      <div class="brand-pill">Nouveau Lashes</div>
-      <div class="brand-pill">Cliniccare</div>
+      <!-- Products image -->
+      <div style="position:relative; overflow:hidden; border-radius:2px;">
+        <img src="images/products.png" alt="Professional skincare products used at Ivory Grove" style="width:100%; height:340px; object-fit:cover; object-position:center; display:block;" />
+        <div style="position:absolute; inset:0; background:linear-gradient(to right, rgba(249,248,246,0.15) 0%, transparent 60%);"></div>
+      </div>
+
+      <!-- Text + logos -->
+      <div>
+        <div class="eyebrow mb-3">Professional products</div>
+        <h2 class="disp-md text-charcoal mb-4">Trusted Skincare<br>&amp; Beauty Brands</h2>
+        <p class="body-md mb-8">We use carefully selected professional products to ensure consistent, high-quality results for every client.</p>
+
+        <!-- Brand logo grid -->
+        <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:16px;">
+          <div style="background:#FFFFFF; border:1px solid #E3E1DD; padding:20px 24px; display:flex; align-items:center; justify-content:center; min-height:80px;">
+            <img src="images/icons/VI-Peel-Logo-min_edited_edited.avif" alt="VI Peel" style="width:100%; height:64px; mix-blend-mode:multiply; object-fit:contain;" />
+          </div>
+          <div style="background:#FFFFFF; border:1px solid #E3E1DD; padding:20px 24px; display:flex; align-items:center; justify-content:center; min-height:80px;">
+            <img src="images/icons/cicaidia logo_edited.avif" alt="Cicadia" style="width:100%; height:64px; mix-blend-mode:multiply; object-fit:contain;" />
+          </div>
+          <div style="background:#FFFFFF; border:1px solid #E3E1DD; padding:20px 24px; display:flex; align-items:center; justify-content:center; min-height:80px;">
+            <img src="images/icons/8b5a5d_18353fcdadc540f899ce1a8e5debeeee~mv2.avif" alt="Brand" style="width:100%; height:64px; mix-blend-mode:multiply; object-fit:contain;" />
+          </div>
+          <div style="background:#FFFFFF; border:1px solid #E3E1DD; padding:20px 24px; display:flex; align-items:center; justify-content:center; min-height:80px;">
+            <img src="images/icons/8b5a5d_23b7ebde5ea84073b1ee8fea625af61d~mv2.avif" alt="Brand" style="width:100%; height:64px; mix-blend-mode:multiply; object-fit:contain;" />
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </div>
@@ -960,6 +973,17 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ── Hero gallery auto-slide ── */
+  const heroSlides = document.querySelectorAll('.hero-slide');
+  if (heroSlides.length > 1) {
+    let current = 0;
+    setInterval(() => {
+      heroSlides[current].style.opacity = '0';
+      current = (current + 1) % heroSlides.length;
+      heroSlides[current].style.opacity = '1';
+    }, 4500);
+  }
 </script>
 
 </body>
