@@ -283,9 +283,10 @@
     position: absolute;
     left: 0; right: 0;
     top: 50%;
-    height: 1px;
+    height: 4px;
     transform: translateY(-50%);
-    background: linear-gradient(90deg, transparent 0%, #C8C8C8 20%, #E8E8E8 40%, #A0A0A0 50%, #E8E8E8 60%, #C8C8C8 80%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, #B0B0B0 15%, #E8E8E8 35%, #F5F5F5 50%, #E8E8E8 65%, #B0B0B0 85%, transparent 100%);
+    border-radius: 2px;
   }
   .section-divider::after {
     content: '';
@@ -621,6 +622,7 @@
   </div>
 </section>
 
+<div class="section-divider"></div>
 
 <!-- ── SERVICE STRIP ── -->
 <div class="service-strip">
@@ -908,12 +910,12 @@
 
   function onScroll() {
     const scrollY = window.scrollY + 120;
-    let active = null;
+    let active = 'examples'; // default to Work
     sections.forEach(id => {
       const el = document.getElementById(id);
       if (el && el.offsetTop <= scrollY) active = id;
     });
-    const link = active ? document.querySelector('#nav-links a[data-section="' + active + '"]') : null;
+    const link = document.querySelector('#nav-links a[data-section="' + active + '"]');
     movePill(link);
   }
 
