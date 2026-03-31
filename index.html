@@ -909,12 +909,17 @@
   }
 
   function onScroll() {
-    const scrollY = window.scrollY + 120;
-    let active = 'examples'; // default to Work
-    sections.forEach(id => {
-      const el = document.getElementById(id);
-      if (el && el.offsetTop <= scrollY) active = id;
-    });
+    const scrollY   = window.scrollY + 120;
+    const atBottom  = (window.innerHeight + window.scrollY) >= document.body.scrollHeight - 40;
+    let active = 'examples';
+    if (atBottom) {
+      active = 'contact';
+    } else {
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= scrollY) active = id;
+      });
+    }
     const link = document.querySelector('#nav-links a[data-section="' + active + '"]');
     movePill(link);
   }
