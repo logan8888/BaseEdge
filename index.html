@@ -136,17 +136,35 @@
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 2px;
     list-style: none;
+    position: relative;
+  }
+  .nav-pill {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 30px;
+    background: var(--text);
+    border-radius: 100px;
+    pointer-events: none;
+    transition: left 0.32s cubic-bezier(0.34,1.56,0.64,1), width 0.32s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s ease;
+    opacity: 0;
+    z-index: 0;
   }
   .nav-links a {
+    position: relative;
+    z-index: 1;
     font-size: 13px;
     font-weight: 500;
     color: var(--muted);
     text-decoration: none;
-    transition: color 0.15s;
+    padding: 6px 14px;
+    border-radius: 100px;
+    transition: color 0.18s ease;
   }
   .nav-links a:hover { color: var(--text); }
+  .nav-links a.active { color: #fff; }
   @media (max-width: 600px) {
     .nav-links, .nav-cta { display: none; }
   }
@@ -249,6 +267,30 @@
     font-size: 16px;
     line-height: 1;
     user-select: none;
+  }
+
+  /* ── METALLIC SECTION DIVIDER ── */
+  .section-divider {
+    position: relative;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, #C8C8C8 20%, #E8E8E8 40%, #A0A0A0 50%, #E8E8E8 60%, #C8C8C8 80%, transparent 100%);
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .section-divider::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0) 20%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0) 80%, transparent 100%);
+    transform: skewX(-15deg);
+    transition: none;
+  }
+  .section-divider:hover::after {
+    left: 120%;
+    transition: left 0.55s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   /* ── SECTION BASE ── */
@@ -536,11 +578,12 @@
 <!-- ── NAV ── -->
 <nav>
   <div class="container nav-inner">
-    <a href="#" class="nav-logo"><img src="brand assets/loganfreeth.com/images/logan-freeth-logo.png" alt="Logan Freeth Web Design" style="height:36px; width:auto; display:block;" /></a>
-    <ul class="nav-links">
-      <li><a href="#examples">Work</a></li>
-      <li><a href="#process">Process</a></li>
-      <li><a href="#pricing">Pricing</a></li>
+    <a href="#" class="nav-logo"><img src="brand assets/loganfreeth.com/images/logan-freeth-logo.png" alt="Logan Freeth Web Design" style="height:50px; width:auto; display:block;" /></a>
+    <ul class="nav-links" id="nav-links">
+      <div class="nav-pill" id="nav-pill"></div>
+      <li><a href="#examples" data-section="examples">Work</a></li>
+      <li><a href="#process"  data-section="process">Process</a></li>
+      <li><a href="#pricing"  data-section="pricing">Pricing</a></li>
     </ul>
     <a href="#contact" class="btn btn-primary nav-cta">Start a project</a>
   </div>
@@ -583,6 +626,8 @@
   </div>
 </div>
 
+
+<div class="section-divider"></div>
 
 <!-- ── EXAMPLES ── -->
 <section id="examples">
@@ -644,6 +689,8 @@
 </section>
 
 
+<div class="section-divider"></div>
+
 <!-- ── PROCESS ── -->
 <section id="process">
   <div class="container">
@@ -673,6 +720,8 @@
 </section>
 
 
+<div class="section-divider"></div>
+
 <!-- ── WHY ── -->
 <section id="why" class="grit">
   <div class="container">
@@ -699,6 +748,8 @@
   </div>
 </section>
 
+
+<div class="section-divider"></div>
 
 <!-- ── PRICING ── -->
 <section id="pricing">
@@ -770,6 +821,8 @@
 </section>
 
 
+<div class="section-divider"></div>
+
 <!-- ── CONTACT ── -->
 <section id="contact" class="grit">
   <div class="container">
@@ -816,12 +869,45 @@
 
 
 <script>
+  /* ── Reveal on scroll ── */
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
   document.querySelectorAll('.fi').forEach(el => io.observe(el));
+
+  /* ── Nav pill scroll-spy ── */
+  const pill     = document.getElementById('nav-pill');
+  const navLinks = document.querySelectorAll('#nav-links a[data-section]');
+  const sections = ['examples', 'process', 'pricing', 'contact'];
+
+  function movePill(link) {
+    if (!link) { pill.style.opacity = '0'; return; }
+    const li   = link.parentElement;
+    const ul   = li.parentElement;
+    const ulRect = ul.getBoundingClientRect();
+    const liRect = li.getBoundingClientRect();
+    pill.style.left    = (liRect.left - ulRect.left) + 'px';
+    pill.style.width   = liRect.width + 'px';
+    pill.style.opacity = '1';
+    navLinks.forEach(a => a.classList.remove('active'));
+    link.classList.add('active');
+  }
+
+  function onScroll() {
+    const scrollY = window.scrollY + 120;
+    let active = null;
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.offsetTop <= scrollY) active = id;
+    });
+    const link = active ? document.querySelector('#nav-links a[data-section="' + active + '"]') : null;
+    movePill(link);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 </script>
 
 </body>
