@@ -151,6 +151,22 @@
     .nav-links, .nav-cta { display: none; }
   }
 
+  /* ── GRITTY TEXTURE ── */
+  .grit {
+    position: relative;
+  }
+  .grit::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.08;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 12 -6'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' fill='black'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+  }
+  .grit > * { position: relative; z-index: 1; }
+
   /* ── HERO ── */
   .hero {
     background: var(--bg);
@@ -530,7 +546,7 @@
 
 
 <!-- ── HERO ── -->
-<section class="hero">
+<section class="hero grit">
   <div class="container">
     <div class="hero-grid">
       <div class="hero-text">
@@ -656,7 +672,7 @@
 
 
 <!-- ── WHY ── -->
-<section id="why">
+<section id="why" class="grit">
   <div class="container">
     <div class="section-head fi">
       <div class="label">Why it works</div>
@@ -753,7 +769,7 @@
 
 
 <!-- ── CONTACT ── -->
-<section id="contact">
+<section id="contact" class="grit">
   <div class="container">
     <div class="section-head fi">
       <div class="label">Get in touch</div>
