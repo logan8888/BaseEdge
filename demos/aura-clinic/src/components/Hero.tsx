@@ -32,7 +32,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="flex flex-col gap-6 max-w-xl"
+          className="flex flex-col gap-6 max-w-xl items-center text-center md:items-start md:text-left"
         >
           <div className="flex flex-col gap-3">
             <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-aura-charcoal/50">
@@ -60,7 +60,7 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        <div className="flex justify-end">
+        <div className="flex justify-center md:justify-end">
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
