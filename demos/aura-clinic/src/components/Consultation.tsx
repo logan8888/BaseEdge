@@ -36,7 +36,7 @@ const Consultation = () => {
           transition={{ duration: 1.2, delay: 0.2 }}
           className="flex flex-col gap-8 items-center"
         >
-          <button className="btn-primary px-16 py-6 text-base tracking-[0.4em] shadow-2xl">
+          <button className="btn-primary px-8 py-2.5 text-[10px] tracking-[0.3em] shadow-lg">
             Book Now
           </button>
           
