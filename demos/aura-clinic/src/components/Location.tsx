@@ -73,8 +73,8 @@ const Location = () => {
             <div className="aspect-[4/5] w-4/5 overflow-hidden rounded-sm shadow-2xl relative z-10 group">
               <div className="absolute inset-0 bg-aura-stone/10 flex items-center justify-center">
                 <img
-                  src="/reception.jpg"
-                  alt="Aura Clinic Premises"
+                  src="/exterior.jpg"
+                  alt="Aura Clinic Exterior"
                   className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-all duration-1000"
                 />
                 <div className="absolute inset-0 bg-aura-charcoal/5" />
