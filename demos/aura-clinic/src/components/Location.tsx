@@ -68,26 +68,16 @@ const Location = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1.5, ease: "easeOut" }}
-            className="relative"
+            className="relative flex justify-center"
           >
-            <div className="aspect-[4/5] overflow-hidden rounded-sm shadow-2xl relative z-10 group">
-              {/* Map Placeholder */}
+            <div className="aspect-[4/5] w-4/5 overflow-hidden rounded-sm shadow-2xl relative z-10 group">
               <div className="absolute inset-0 bg-aura-stone/10 flex items-center justify-center">
-                 <img 
-                  src="https://images.unsplash.com/photo-1541339907198-e08759df9a73?auto=format&fit=crop&q=80&w=1200" 
-                  alt="Luxury Clinic Exterior" 
-                  className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000"
+                <img
+                  src="/reception.jpg"
+                  alt="Aura Clinic Premises"
+                  className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-all duration-1000"
                 />
-                <div className="absolute inset-0 bg-aura-charcoal/10" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-4 text-white z-20 pointer-events-none group-hover:opacity-0 transition-opacity duration-500">
-                  <div className="w-12 h-12 rounded-full border border-white/40 flex items-center justify-center backdrop-blur-sm">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                      <circle cx="12" cy="10" r="3" />
-                    </svg>
-                  </div>
-                  <span className="text-[10px] uppercase tracking-[0.4em] font-bold">Harley Street</span>
-                </div>
+                <div className="absolute inset-0 bg-aura-charcoal/5" />
               </div>
             </div>
             {/* Aesthetic Decor */}
