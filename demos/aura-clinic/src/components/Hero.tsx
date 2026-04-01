@@ -46,7 +46,7 @@ const Hero = () => {
             </h1>
           </div>
 
-          <p className="text-base md:text-lg text-aura-charcoal/70 leading-relaxed font-light">
+          <p className="text-sm text-aura-charcoal/70 leading-relaxed font-light">
             Welcome to Aura. We provide medically-led aesthetics in the heart of London, focused on enhancing your natural beauty through advanced skincare and precision injectables.
           </p>
 
@@ -64,7 +64,8 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
-          className="relative aspect-[4/5] md:aspect-[3/4] overflow-hidden shadow-2xl rounded-sm md:max-w-[80%] md:ml-auto"
+          className="relative aspect-[4/5] md:aspect-[3/4] overflow-hidden shadow-2xl rounded-sm"
+          style={{ maxWidth: '80%', marginLeft: 'auto' }}
         >
           <AnimatePresence mode="wait">
             <motion.img

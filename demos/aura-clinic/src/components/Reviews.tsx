@@ -20,7 +20,7 @@ const Reviews = () => {
             <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-aura-charcoal/50">
               Client Experiences
             </span>
-            <h2 className="text-4xl md:text-6xl font-serif text-aura-charcoal leading-[1.05]">
+            <h2 className="text-4xl md:text-5xl font-serif text-aura-charcoal leading-[1.05]">
               Trusted by <br />
               <span className="italic">Thousands.</span>
             </h2>
@@ -44,7 +44,7 @@ const Reviews = () => {
                       </svg>
                     ))}
                   </div>
-                  <p className="text-sm md:text-base font-light text-aura-charcoal/70 leading-relaxed italic">
+                  <p className="text-xs font-light text-aura-charcoal/70 leading-relaxed italic">
                     "{review.text}"
                   </p>
                 </div>

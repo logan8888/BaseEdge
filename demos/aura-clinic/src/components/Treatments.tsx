@@ -28,7 +28,7 @@ const Treatments = () => {
                 <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-aura-charcoal/50">
                   Our Services
                 </span>
-                <h2 className="text-5xl md:text-7xl font-serif text-aura-charcoal leading-[1.05]">
+                <h2 className="text-4xl md:text-5xl font-serif text-aura-charcoal leading-[1.05]">
                   Bespoke <br />
                   <span className="italic">Offerings.</span>
                 </h2>
@@ -45,7 +45,7 @@ const Treatments = () => {
                     className="group flex flex-col gap-2 cursor-pointer border-b border-aura-charcoal/5 pb-4 hover:border-aura-charcoal/20 transition-all duration-300"
                   >
                     <div className="flex justify-between items-center">
-                      <h3 className="text-xl md:text-2xl font-serif text-aura-charcoal transition-all duration-300 group-hover:pl-2 group-hover:italic">
+                      <h3 className="text-base md:text-lg font-serif text-aura-charcoal transition-all duration-300 group-hover:pl-2 group-hover:italic">
                         {cat.name}
                       </h3>
                       <span className="text-aura-charcoal/30 group-hover:text-aura-charcoal transition-all duration-300">

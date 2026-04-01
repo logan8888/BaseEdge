@@ -18,13 +18,13 @@ const Consultation = () => {
             <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-aura-charcoal/50">
               Your Journey Begins Here
             </span>
-            <h2 className="text-4xl md:text-7xl font-serif text-aura-charcoal leading-[1.05]">
+            <h2 className="text-4xl md:text-5xl font-serif text-aura-charcoal leading-[1.05]">
               Schedule a <br />
               <span className="italic">Consultation.</span>
             </h2>
           </div>
           
-          <p className="text-lg md:text-xl text-aura-charcoal/70 leading-relaxed font-light">
+          <p className="text-sm text-aura-charcoal/70 leading-relaxed font-light">
             Book your complimentary skin assessment today and discover how we can help you achieve your aesthetic goals through our bespoke medical-grade treatments.
           </p>
         </motion.div>

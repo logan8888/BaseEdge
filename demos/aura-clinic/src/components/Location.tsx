@@ -16,14 +16,14 @@ const Location = () => {
               <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-aura-charcoal/50">
                 Our Flagship Clinic
               </span>
-              <h2 className="text-4xl md:text-6xl font-serif text-aura-charcoal leading-[1.05]">
+              <h2 className="text-4xl md:text-5xl font-serif text-aura-charcoal leading-[1.05]">
                 A Sanctuary <br />
                 <span className="italic">in the City.</span>
               </h2>
             </div>
             
             <div className="flex flex-col gap-10 max-w-md">
-              <p className="text-lg text-aura-charcoal/70 leading-relaxed font-light">
+              <p className="text-sm text-aura-charcoal/70 leading-relaxed font-light">
                 Our London flagship clinic is designed as a sanctuary of calm, offering a discreet and luxurious environment for your aesthetic journey.
               </p>
               

@@ -16,17 +16,17 @@ const FeaturePanel = () => {
             <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-aura-charcoal/50">
               Our Philosophy
             </span>
-            <h2 className="text-5xl md:text-7xl font-serif leading-[1.05] text-aura-charcoal">
+            <h2 className="text-4xl md:text-5xl font-serif leading-[1.05] text-aura-charcoal">
               Enhance, <br />
               <span className="italic">Don't Change.</span>
             </h2>
           </div>
           
           <div className="flex flex-col gap-5 max-w-lg">
-            <p className="text-base md:text-lg text-aura-charcoal/70 leading-relaxed font-light">
+            <p className="text-sm text-aura-charcoal/70 leading-relaxed font-light">
               We believe in the power of subtle enhancement. Our philosophy is rooted in medical excellence and artistic precision, ensuring results that feel completely natural and uniquely you.
             </p>
-            <p className="text-base md:text-lg text-aura-charcoal/70 leading-relaxed font-light">
+            <p className="text-sm text-aura-charcoal/70 leading-relaxed font-light">
               Every face is different. That's why we create bespoke treatment plans tailored to your specific anatomy and aesthetic goals.
             </p>
           </div>

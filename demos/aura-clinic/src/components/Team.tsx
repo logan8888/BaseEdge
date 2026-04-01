@@ -30,7 +30,7 @@ const Team = () => {
             <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-aura-charcoal/50">
               Meet the Team
             </span>
-            <h2 className="text-4xl md:text-6xl font-serif text-aura-charcoal leading-[1.05]">
+            <h2 className="text-4xl md:text-5xl font-serif text-aura-charcoal leading-[1.05]">
               Expertise & <br />
               <span className="italic">Excellence.</span>
             </h2>
@@ -57,7 +57,7 @@ const Team = () => {
                 
                 <div className="flex flex-col gap-4">
                   <div className="flex flex-col gap-1">
-                    <h3 className="text-2xl font-serif text-aura-charcoal tracking-wide">
+                    <h3 className="text-lg font-serif text-aura-charcoal tracking-wide">
                       {member.name}
                     </h3>
                     <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-aura-charcoal/50">
