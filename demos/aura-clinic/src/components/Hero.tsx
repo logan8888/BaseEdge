@@ -38,7 +38,7 @@ const Hero = () => {
             <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-aura-charcoal/50">
               The Flagship London Clinic
             </span>
-            <h1 className="text-4xl md:text-5xl font-serif leading-[1.05] text-aura-charcoal">
+            <h1 className="text-5xl md:text-5xl font-serif leading-[1.05] text-aura-charcoal">
               Refined <br />
               <span className="italic font-normal">Treatments,</span> <br />
               Beautiful <br />
@@ -65,7 +65,7 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
-          className="relative w-[55%] aspect-[4/5] md:aspect-[3/4] overflow-hidden shadow-2xl rounded-sm"
+          className="relative w-[66%] md:w-[55%] aspect-[4/5] md:aspect-[3/4] overflow-hidden shadow-2xl rounded-sm"
         >
           <AnimatePresence>
             <motion.img
