@@ -65,7 +65,7 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
-          className="relative w-4/5 aspect-[4/5] md:aspect-[3/4] overflow-hidden shadow-2xl rounded-sm"
+          className="relative w-[55%] aspect-[4/5] md:aspect-[3/4] overflow-hidden shadow-2xl rounded-sm"
         >
           <AnimatePresence mode="wait">
             <motion.img
