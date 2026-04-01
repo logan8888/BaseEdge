@@ -1,15 +1,32 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import RisingPetals from './RisingPetals';
 import FloatingShapes from './FloatingShapes';
 
+const galleryImages = [
+  { src: '/reception.jpg',         alt: 'Aura Clinic Reception' },
+  { src: '/treatment-room-01.jpg', alt: 'Treatment Room' },
+  { src: '/treatment-room-02.jpg', alt: 'Treatment Room' },
+  { src: '/treatment-01.jpg',      alt: 'Treatment' },
+];
+
 const Hero = () => {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent(prev => (prev + 1) % galleryImages.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="relative min-h-[75vh] flex items-center justify-center pt-20 pb-4 overflow-hidden bg-aura-cream">
       <FloatingShapes />
       <RisingPetals />
       {/* Background Subtle Gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-aura-beige/20 via-transparent to-aura-cream z-[1]" />
-      
+
       <div className="container-custom relative z-10 grid md:grid-cols-2 gap-6 items-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -28,11 +45,11 @@ const Hero = () => {
               Results.
             </h1>
           </div>
-          
+
           <p className="text-base md:text-lg text-aura-charcoal/70 leading-relaxed font-light">
             Welcome to Aura. We provide medically-led aesthetics in the heart of London, focused on enhancing your natural beauty through advanced skincare and precision injectables.
           </p>
-          
+
           <div className="flex flex-wrap gap-4 pt-2">
             <button className="btn-primary px-10 py-5">
               Book Consultation
@@ -42,19 +59,36 @@ const Hero = () => {
             </button>
           </div>
         </motion.div>
-        
+
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
           className="relative aspect-[4/5] md:aspect-[3/4] overflow-hidden shadow-2xl rounded-sm"
         >
-          <img 
-            src="https://images.unsplash.com/photo-1570172233541-1219927703f0?auto=format&fit=crop&q=80&w=1200" 
-            alt="Luxury Clinic Interior" 
-            className="w-full h-full object-cover transform transition-transform duration-[5s] hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-aura-charcoal/5" />
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={current}
+              src={galleryImages[current].src}
+              alt={galleryImages[current].alt}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </AnimatePresence>
+          <div className="absolute inset-0 bg-aura-charcoal/5 z-10" />
+          {/* Dot indicators */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+            {galleryImages.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${i === current ? 'bg-white scale-125' : 'bg-white/40'}`}
+              />
+            ))}
+          </div>
         </motion.div>
       </div>
       
