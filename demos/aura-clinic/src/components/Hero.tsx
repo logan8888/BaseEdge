@@ -50,11 +50,11 @@ const Hero = () => {
             Welcome to Aura. We provide medically-led aesthetics in the heart of London, focused on enhancing your natural beauty through advanced skincare and precision injectables.
           </p>
 
-          <div className="flex flex-wrap gap-4 pt-2">
-            <button className="btn-primary px-10 py-5">
+          <div className="flex flex-wrap gap-3 pt-2">
+            <button className="btn-primary px-5 py-2.5 text-[10px]">
               Book Consultation
             </button>
-            <button className="btn-secondary px-10 py-5">
+            <button className="btn-secondary px-5 py-2.5 text-[10px]">
               View Treatments
             </button>
           </div>
