@@ -1,5 +1,13 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import RisingPetals from './RisingPetals';
+
+const galleryImages = [
+  { src: '/treatment-01.jpg', alt: 'Treatment' },
+  { src: '/treatment-02.jpg', alt: 'Treatment' },
+  { src: '/treatment-03.jpg', alt: 'Treatment' },
+  { src: '/treatment-04.jpg', alt: 'Treatment' },
+];
 
 const categories = [
   { name: "Anti-wrinkle", desc: "Smooth and rejuvenate your expression with precision injectables." },
@@ -11,6 +19,15 @@ const categories = [
 ];
 
 const Treatments = () => {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent(prev => (prev + 1) % galleryImages.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section id="treatments" className="relative bg-aura-beige/30 py-10 md:py-16 overflow-hidden">
       <RisingPetals />
@@ -77,11 +94,27 @@ const Treatments = () => {
             className="order-1 md:order-2 relative"
           >
             <div className="aspect-[3/4] overflow-hidden rounded-sm shadow-2xl relative z-10">
-              <img 
-                src="https://images.unsplash.com/photo-1576091160550-2173bdb999ef?auto=format&fit=crop&q=80&w=1200" 
-                alt="Elegant Portrait" 
-                className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
-              />
+              <AnimatePresence>
+                <motion.img
+                  key={current}
+                  src={galleryImages[current].src}
+                  alt={galleryImages[current].alt}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1.4, ease: "easeInOut" }}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </AnimatePresence>
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                {galleryImages.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrent(i)}
+                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${i === current ? 'bg-white scale-125' : 'bg-white/40'}`}
+                  />
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>
