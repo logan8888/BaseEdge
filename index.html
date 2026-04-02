@@ -283,20 +283,20 @@
     position: absolute;
     left: 0; right: 0;
     top: 50%;
-    height: 4px;
+    height: 7px;
     transform: translateY(-50%);
     background: linear-gradient(90deg, transparent 0%, #B0B0B0 15%, #E8E8E8 35%, #F5F5F5 50%, #E8E8E8 65%, #B0B0B0 85%, transparent 100%);
-    border-radius: 2px;
+    border-radius: 3px;
   }
   .section-divider::after {
     content: '';
     position: absolute;
-    top: 0;
+    top: 50%;
     left: -60%;
     width: 60%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0) 20%, rgba(255,255,255,0.95) 50%, rgba(255,255,255,0) 80%, transparent 100%);
-    transform: skewX(-15deg);
+    height: 7px;
+    transform: translateY(-50%) skewX(-15deg);
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0) 10%, rgba(255,255,255,0.98) 50%, rgba(255,255,255,0) 90%, transparent 100%);
     transition: none;
   }
   .section-divider:hover::after {
@@ -592,6 +592,7 @@
     <a href="#" class="nav-logo"><img src="brand assets/loganfreeth.com/images/logan-freeth-logo.png" alt="Logan Freeth Web Design" style="height:50px; width:auto; display:block;" /></a>
     <ul class="nav-links" id="nav-links">
       <div class="nav-pill" id="nav-pill"></div>
+      <li><a href="#" data-section="home">Home</a></li>
       <li><a href="#examples" data-section="examples">Work</a></li>
       <li><a href="#process"  data-section="process">Process</a></li>
       <li><a href="#pricing"  data-section="pricing">Pricing</a></li>
@@ -893,10 +894,10 @@
   /* ── Nav pill scroll-spy ── */
   const pill     = document.getElementById('nav-pill');
   const navLinks = document.querySelectorAll('#nav-links a[data-section]');
-  const sections = ['examples', 'process', 'why', 'pricing', 'contact'];
+  const sections = ['examples', 'process', 'pricing', 'contact'];
 
   function movePill(link) {
-    if (!link) { pill.style.opacity = '0'; return; }
+    if (!link) { pill.style.opacity = '0'; navLinks.forEach(a => a.classList.remove('active')); return; }
     const li   = link.parentElement;
     const ul   = li.parentElement;
     const ulRect = ul.getBoundingClientRect();
@@ -911,7 +912,7 @@
   function onScroll() {
     const scrollY   = window.scrollY + 120;
     const atBottom  = (window.innerHeight + window.scrollY) >= document.body.scrollHeight - 40;
-    let active = 'examples';
+    let active = 'home';
     if (atBottom) {
       active = 'contact';
     } else {
