@@ -184,11 +184,76 @@
   .nav-links a:hover { color: var(--text); }
   .nav-links a.active { color: #fff; }
 
+  /* ── BURGER BUTTON ── */
+  .nav-burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    flex-shrink: 0;
+  }
+  .nav-burger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 0.22s ease, opacity 0.18s ease;
+    transform-origin: center;
+  }
+  .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-burger.open span:nth-child(2) { opacity: 0; }
+  .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── MOBILE MENU ── */
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    padding: 12px 18px 16px;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 57px;
+    z-index: 99;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu-link {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 10px 6px;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.15s ease;
+  }
+  .mobile-menu-link:last-of-type { border-bottom: none; }
+  .mobile-menu-link:hover { color: var(--text); }
+
   @media (max-width: 600px) {
     .nav-links,
     .nav-cta {
       display: none;
     }
+    .nav-burger { display: flex; }
+
+    /* Smaller logo on mobile */
+    .nav-logo img { height: 32px !important; }
+
+    /* Smaller hero headline */
+    h1 { font-size: clamp(28px, 8.5vw, 42px); }
+
+    /* Reduce general text sizes */
+    h2 { font-size: clamp(20px, 5.5vw, 28px); }
+    .hero-sub { font-size: 15px; }
+    p { font-size: 14px; }
+    .hero-eyebrow { font-size: 10px; }
   }
 
   /* ── GRITTY TEXTURE ── */
@@ -202,7 +267,7 @@
     inset: 0;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.15;
+    opacity: 0.20;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 12 -6'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' fill='black'/%3E%3C/svg%3E");
     background-size: 180px 180px;
     -webkit-mask-image: linear-gradient(to right, black 0%, black 30%, transparent 55%);
@@ -942,8 +1007,22 @@
       <li><a href="#contact"  data-section="contact">Contact</a></li>
     </ul>
     <a href="#contact" class="btn btn-primary nav-cta" style="padding: 9px 18px; font-size:13px;">Get Started</a>
+    <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- Mobile menu drawer -->
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <a href="#" class="mobile-menu-link" data-mobile-section="home">Home</a>
+  <a href="#examples" class="mobile-menu-link" data-mobile-section="examples">Work</a>
+  <a href="#process"  class="mobile-menu-link" data-mobile-section="process">Process</a>
+  <a href="#tools"    class="mobile-menu-link" data-mobile-section="tools">Tools</a>
+  <a href="#pricing"  class="mobile-menu-link" data-mobile-section="pricing">Pricing</a>
+  <a href="#contact"  class="mobile-menu-link" data-mobile-section="contact">Contact</a>
+  <a href="#contact" class="btn btn-primary" style="margin-top:8px; width:100%; justify-content:center;">Get Started</a>
+</div>
 
 
 <!-- ── HERO ── -->
@@ -1419,6 +1498,27 @@ From landing pages and booking systems to AI receptionist setups — everything 
 
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  /* ── Burger menu ── */
+  const burger     = document.getElementById('nav-burger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  burger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    burger.setAttribute('aria-expanded', isOpen);
+    mobileMenu.setAttribute('aria-hidden', !isOpen);
+  });
+
+  // Close menu when a link is tapped
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+    });
+  });
 
   /* ── Tools tab switcher ── */
   document.querySelectorAll('.tools-tab').forEach(tab => {
