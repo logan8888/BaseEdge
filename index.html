@@ -281,7 +281,7 @@
 
     /* Tighten section vertical padding */
     section { padding: 12px 0 !important; }
-    section.hero { padding: 0 0 10px !important; }
+    section.hero { padding: 8px 0 10px !important; }
     .section-head { margin-bottom: 16px; }
 
     /* Tighten steps */
@@ -900,7 +900,12 @@
     .hero-grid { grid-template-columns: 1fr; gap: 40px; }
     .hero-img { justify-content: center; }
     .hero-img img { max-width: 280px; }
-    .examples-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+    .examples-grid { grid-template-columns: 1fr; max-width: 100%; margin: 0; gap: 14px; }
+    .example-info { padding: 8px 0 0; }
+    .example-name { font-size: 11px !important; margin-bottom: 4px; }
+    .example-type { font-size: 8px !important; }
+    .example-actions { gap: 4px; }
+    section#examples .container { padding: 0 10px; }
     .steps { grid-template-columns: 1fr; padding-top: 50px; border-top: none; gap: 0; }
     .step { padding: 24px 0; padding-right: 0; border-bottom: 1px solid var(--border); }
     .step:last-child { border-bottom: none; }
