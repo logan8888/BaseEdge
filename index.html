@@ -253,6 +253,11 @@
     /* Smaller hero headline */
     h1 { font-size: clamp(22px, 6.5vw, 32px); }
 
+    /* Dividers static on mobile — no hover animation */
+    .section-divider { cursor: default; }
+    .section-divider::after { display: none; }
+    .section-divider:hover::after { display: none; }
+
     /* Reduce general text sizes */
     h2 { font-size: clamp(18px, 5vw, 25px); }
     .hero-sub { font-size: 13.5px; }
@@ -403,7 +408,7 @@
     top: 50%;
     height: 7px;
     transform: translateY(-50%);
-    background: linear-gradient(90deg, transparent 0%, #B0B0B0 15%, #E8E8E8 35%, #F5F5F5 50%, #E8E8E8 65%, #B0B0B0 85%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, #9A9A96 15%, #D0D0CC 35%, #E3E3E0 50%, #D0D0CC 65%, #9A9A96 85%, transparent 100%);
     border-radius: 3px;
   }
 
