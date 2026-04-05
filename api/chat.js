@@ -1,4 +1,4 @@
-const Anthropic = require('@anthropic-ai/sdk');
+const Anthropic = require('@anthropic-ai/sdk').default || require('@anthropic-ai/sdk');
 
 const SYSTEM_PROMPT = `You are the BaseEdge assistant — a friendly, sharp digital receptionist for BaseEdge, a UK-based agency that builds websites, booking systems, and AI receptionist tools for local businesses.
 
@@ -43,7 +43,7 @@ Your job: help visitors understand what BaseEdge does, answer their questions cl
 - If something is outside what's listed above, say so honestly and point them to hello@baseedge.co.uk
 - Do not invent services, prices, or features that aren't listed here`;
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
