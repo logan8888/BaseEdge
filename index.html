@@ -281,15 +281,23 @@
     section#examples .container, section#ai-reels .container { padding: 0 6px !important; }
 
     /* Tighten section vertical padding */
-    section { padding: 12px 0 !important; }
-    section.hero { padding: 8px 0 10px !important; }
+    section { padding: 4px 0 !important; }
+    section.hero { padding: 4px 0 8px !important; }
     .section-head { margin-bottom: 6px !important; }
     .section-head p { margin-bottom: 4px !important; }
     .section-head h2 { margin-bottom: 4px !important; margin-top: 2px !important; }
 
-    /* Tighten steps */
-    .steps { padding-top: 2px; padding-bottom: 4px; gap: 0; }
+    /* Tighten steps — use !important to override 900px block */
+    .steps { padding-top: 2px !important; padding-bottom: 4px !important; gap: 0 !important; }
     .step { padding: 8px 0 !important; }
+
+    /* Eyebrow — reduce top gap */
+    .hero-eyebrow { margin-top: 0 !important; padding-top: 0 !important; }
+
+    /* Sections: tools / workslot / ai-reels — bigger h2, smaller ticked list */
+    section#tools h2, section#workslot h2, section#ai-reels h2 { font-size: clamp(13px, 3.5vw, 18px) !important; }
+    section#tools .why-list li, section#workslot .why-list li, section#ai-reels .why-list li { font-size: 6px !important; padding: 3px 0 !important; line-height: 1.4; }
+    section#tools .why-check, section#workslot .why-check, section#ai-reels .why-check { font-size: 6px !important; min-width: 12px !important; height: 12px !important; }
     .step p { margin-bottom: 0; }
     .step-header { margin-bottom: 4px; }
 
