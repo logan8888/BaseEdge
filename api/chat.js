@@ -48,6 +48,11 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
+  if (!process.env.ANTHROPIC_API_KEY) {
+    console.error('ANTHROPIC_API_KEY is not set');
+    return res.status(500).json({ error: 'API key not configured — please contact hello@baseedge.co.uk.' });
+  }
+
   const { messages } = req.body || {};
 
   if (!Array.isArray(messages) || messages.length === 0) {
