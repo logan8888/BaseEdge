@@ -41,7 +41,7 @@
 
   /* ── TYPOGRAPHY ── */
   h1 {
-    font-size: clamp(38px, 5.2vw, 66px);
+    font-size: clamp(23px, 3.1vw, 40px);
     font-weight: 700;
     letter-spacing: -0.035em;
     line-height: 1.06;
@@ -49,7 +49,7 @@
   }
 
   h2 {
-    font-size: clamp(24px, 3vw, 38px);
+    font-size: clamp(14px, 1.8vw, 23px);
     font-weight: 700;
     letter-spacing: -0.025em;
     line-height: 1.14;
@@ -509,6 +509,13 @@
   .step { padding-right: 40px; }
   .step:last-child { padding-right: 0; }
 
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
   .step-num {
     display: inline-flex;
     align-items: center;
@@ -521,7 +528,7 @@
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.04em;
-    margin-bottom: 16px;
+    flex-shrink: 0;
   }
 
   .step-label {
@@ -529,7 +536,7 @@
     font-weight: 700;
     letter-spacing: -0.02em;
     color: var(--text);
-    margin-bottom: 20px;
+    margin-bottom: 0;
   }
 
   .step p {
@@ -1153,18 +1160,15 @@ From landing pages and booking systems to AI receptionist setups — everything 
     </div>
     <div class="steps">
       <div class="step fi">
-        <div class="step-num">01</div>
-        <div class="step-label">Attract</div>
+        <div class="step-header"><div class="step-num">01</div><div class="step-label">Attract</div></div>
         <p>Attention comes first. Short-form content, promotional visuals, AI-assisted reels, and consistent social media posts help put your business in front of more people. The goal here is simple: stay visible, look professional, and give potential customers a reason to click through and find out more. Alot of businesses do not know what to post and do not have the time for photoshoots using an out sourced animation team makes sense when a business is trying to gain traction and attract customers</p>
       </div>
       <div class="step fi fi-d1">
-        <div class="step-num">02</div>
-        <div class="step-label">Convert</div>
+        <div class="step-header"><div class="step-num">02</div><div class="step-label">Convert</div></div>
         <p>Once someone is interested, they need a clear next step. We recommend a focused landing page or website that works perfectly on mobile and immediately presents the most important actions — such as WhatsApp, phone call, enquiry form, or booking. This removes friction and helps turn visits into real enquiries.</p>
       </div>
       <div class="step fi fi-d2">
-        <div class="step-num">03</div>
-        <div class="step-label">Manage</div>
+        <div class="step-header"><div class="step-num">03</div><div class="step-label">Manage</div></div>
         <p>Once enquiries start coming in, the business needs a better way to handle them. That may mean a booking system like WorkSlot App, a simple collection flow, better contact handling, QR access for returning customers, or an AI receptionist that helps answer questions and capture leads. The aim is not complexity — it is making the business easier to run.</p>
       </div>
     </div>

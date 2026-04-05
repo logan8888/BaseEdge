@@ -1,4 +1,4 @@
-const Anthropic = require('@anthropic-ai/sdk').default || require('@anthropic-ai/sdk');
+import Anthropic from '@anthropic-ai/sdk';
 
 const SYSTEM_PROMPT = `You are the BaseEdge assistant — a friendly, sharp digital receptionist for BaseEdge, a UK-based agency that builds websites, booking systems, and AI receptionist tools for local businesses.
 
@@ -43,7 +43,7 @@ Your job: help visitors understand what BaseEdge does, answer their questions cl
 - If something is outside what's listed above, say so honestly and point them to hello@baseedge.co.uk
 - Do not invent services, prices, or features that aren't listed here`;
 
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
@@ -54,14 +54,13 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: 'messages must be a non-empty array' });
   }
 
-  // Limit conversation history to last 20 messages to control token cost
   const trimmedMessages = messages.slice(-20);
 
   try {
     const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
     const response = await client.messages.create({
-      model: 'claude-opus-4-6',
+      model: 'claude-haiku-4-5',
       max_tokens: 512,
       system: SYSTEM_PROMPT,
       messages: trimmedMessages,
@@ -71,15 +70,15 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({ reply: text });
 
   } catch (err) {
-    console.error('Claude API error:', err);
+    console.error('Claude API error:', err.status, err.message);
 
     if (err.status === 401) {
-      return res.status(500).json({ error: 'API configuration error. Please contact hello@baseedge.co.uk.' });
+      return res.status(500).json({ error: 'API key error — please contact hello@baseedge.co.uk.' });
     }
     if (err.status === 429) {
       return res.status(429).json({ error: 'Too many requests. Please try again in a moment.' });
     }
 
-    return res.status(500).json({ error: 'Something went wrong on our end. Please email hello@baseedge.co.uk if this keeps happening.' });
+    return res.status(500).json({ error: `API error ${err.status}: ${err.message}` });
   }
 }
