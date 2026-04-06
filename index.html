@@ -1603,13 +1603,24 @@ From landing pages and booking systems to AI receptionist setups — everything 
     mobileMenu.setAttribute('aria-hidden', !isOpen);
   });
 
-  // Close menu when a link is tapped
+  // Close menu and scroll with nav offset when a link is tapped
   mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', e => {
       mobileMenu.classList.remove('open');
       burger.classList.remove('open');
       burger.setAttribute('aria-expanded', 'false');
       mobileMenu.setAttribute('aria-hidden', 'true');
+
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#') && href.length > 1) {
+        e.preventDefault();
+        const target = document.getElementById(href.slice(1));
+        if (target) {
+          const navHeight = document.querySelector('nav').offsetHeight;
+          const top = target.getBoundingClientRect().top + window.scrollY - navHeight - 4;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      }
     });
   });
 
