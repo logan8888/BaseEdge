@@ -316,6 +316,19 @@
 
     /* Tighten why-this-works */
     .why-col { gap: 0; }
+
+    /* Contact buttons */
+    .contact-actions { flex-direction: column; align-items: center; gap: 8px !important; }
+    .contact-social-row { display: flex; gap: 8px; width: 100%; justify-content: center; }
+    .contact-social-row .contact-btn { flex: 1; justify-content: center; }
+    .contact-btn { padding: 8px 12px !important; font-size: 9px !important; gap: 6px !important; }
+    .cbi { width: 13px !important; height: 13px !important; }
+    .contact-btn.em { width: 100%; justify-content: center; }
+
+    /* Footer */
+    footer { padding: 10px 0 !important; }
+    .footer-logo { font-size: 11px !important; }
+    .footer-copy { font-size: 9px !important; }
   }
 
   /* ── GRITTY TEXTURE ── */
@@ -806,6 +819,8 @@
     gap: 12px;
     flex-wrap: wrap;
   }
+
+  .contact-social-row { display: contents; }
 
   .contact-btn {
     display: inline-flex;
@@ -1488,19 +1503,13 @@ From landing pages and booking systems to AI receptionist setups — everything 
       <p>Whether you need a clearer landing page, a better enquiry system, a booking setup, or an AI receptionist solution, we can help you build a setup that is simpler for customers and easier for your business to run.</p>
     </div>
     <div class="contact-actions">
+      <div class="contact-social-row">
       <a href="https://wa.me/447000000000" class="contact-btn wa fi">
         <svg class="cbi" viewBox="0 0 24 24" fill="currentColor">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
           <path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.099 1.513 5.822L0 24l6.335-1.493A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.933 0-3.741-.516-5.296-1.414l-.38-.224-3.763.887.946-3.668-.247-.397A9.937 9.937 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
         </svg>
         WhatsApp
-      </a>
-      <a href="mailto:enquiries@baseedge.co.uk" class="contact-btn em fi fi-d1">
-        <svg class="cbi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-          <polyline points="22,6 12,13 2,6"/>
-        </svg>
-        hello@baseedge.co.uk
       </a>
       <a href="https://instagram.com/logan.visuals_uk" target="_blank" rel="noopener" class="contact-btn ig fi fi-d2">
         <svg class="cbi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -1509,6 +1518,14 @@ From landing pages and booking systems to AI receptionist setups — everything 
           <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
         </svg>
         Instagram
+      </a>
+      </div>
+      <a href="mailto:enquiries@baseedge.co.uk" class="contact-btn em fi fi-d1">
+        <svg class="cbi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        hello@baseedge.co.uk
       </a>
     </div>
   </div>
