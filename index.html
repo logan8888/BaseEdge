@@ -254,7 +254,8 @@
     h1 { font-size: clamp(17px, 5.2vw, 25px); }
 
     /* Dividers static on mobile — no hover animation */
-    .section-divider { cursor: default; }
+    .section-divider { cursor: default; height: 16px !important; margin: -8px 0 !important; }
+    .section-divider::before { height: 3px !important; }
     .section-divider::after { display: none; }
     .section-divider:hover::after { display: none; }
 
