@@ -68,12 +68,6 @@
       height: 100%;
       pointer-events: none;
       z-index: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.68' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='1'/%3E%3C/svg%3E");
-      background-size: 220px 220px;
-      background-repeat: repeat;
-      opacity: 0.13;
-      -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.4) 42%, transparent 60%);
-      mask-image:         linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.4) 42%, transparent 60%);
     }
 
     /* ── Hero gem canvas ────────────────────────── */
@@ -504,7 +498,7 @@
 
 <!-- ── HERO ─────────────────────────────────────── -->
 <section class="hero-section hero-bg grain relative min-h-screen flex items-center" style="padding-top:14vw;">
-  <div id="hero-grit"></div>
+  <canvas id="hero-grit"></canvas>
   <canvas id="hero-gems"></canvas>
   <canvas id="hero-confetti"></canvas>
   <div class="max-w-6xl mx-auto px-4 md:px-6 w-full py-4" style="position:relative; z-index:2;">
@@ -903,6 +897,53 @@
       }, 620);
     });
   });
+
+  // ── Hero grit texture
+  (function() {
+    const canvas = document.getElementById('hero-grit');
+    const ctx = canvas.getContext('2d');
+
+    function draw() {
+      const hero = canvas.parentElement;
+      const W = canvas.width  = hero.offsetWidth;
+      const H = canvas.height = hero.offsetHeight;
+
+      const imageData = ctx.createImageData(W, H);
+      const data = imageData.data;
+      const fadeEdge = W * 0.55; // fully transparent by 55% across
+
+      for (let y = 0; y < H; y++) {
+        for (let x = 0; x < W; x++) {
+          const i = (y * W + x) * 4;
+          const xFade = Math.max(0, 1 - x / fadeEdge);
+          if (xFade <= 0) { data[i+3] = 0; continue; }
+
+          // random grain value — warm toned (brownish dark)
+          const grain = Math.random();
+          if (grain > 0.62) {
+            // dark grain dot
+            const v = Math.floor(Math.random() * 60 + 80); // 80-140
+            data[i]   = v - 10; // R slightly less
+            data[i+1] = v - 20; // G less
+            data[i+2] = v - 30; // B least (warm)
+            data[i+3] = Math.floor(xFade * 55 * Math.random()); // max ~55 alpha
+          } else if (grain > 0.55) {
+            // light shimmer dot
+            data[i]   = 255;
+            data[i+1] = 248;
+            data[i+2] = 230;
+            data[i+3] = Math.floor(xFade * 40 * Math.random());
+          } else {
+            data[i+3] = 0; // transparent
+          }
+        }
+      }
+      ctx.putImageData(imageData, 0, 0);
+    }
+
+    draw();
+    window.addEventListener('resize', draw);
+  })();
 
   // ── Hero gems (static bokeh sparkles)
   (function() {
