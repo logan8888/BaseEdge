@@ -866,7 +866,7 @@
   // ── Set hero padding-top = exact nav height
   const heroSection = document.getElementById('hero-section');
   function setHeroPadding() {
-    const extra = window.innerWidth < 768 ? 16 : 0;
+    const extra = window.innerWidth < 768 ? 6 : 0;
     heroSection.style.paddingTop = (nav.offsetHeight + extra) + 'px';
   }
   setHeroPadding();
