@@ -360,6 +360,9 @@
       border-bottom-color: rgba(184,134,74,0.25);
     }
     #hero-section { padding-top: 70px; } /* fallback; JS overrides below */
+    @media (max-width: 767px) {
+      .hero-cta a { padding-top: 10px !important; padding-bottom: 10px !important; min-height: 40px !important; }
+    }
 
     /* ── Price item ────────────────────────────── */
     .price-row {
@@ -480,7 +483,7 @@
 <nav id="nav">
   <!-- Mobile: full-width logo -->
   <a href="#" class="block md:hidden" style="padding:4px 0;">
-    <img src="images/eve-logo.png" alt="Eve's Nails & Makeup Boutique" style="width:38%; height:auto; display:block; object-fit:contain; margin:0 auto;" />
+    <img src="images/eve-logo.png" alt="Eve's Nails & Makeup Boutique" style="height:26px; width:auto; max-width:42%; display:block; object-fit:contain; margin:0 auto;" />
   </a>
   <!-- Desktop: logo left + links right -->
   <div class="hidden md:flex max-w-6xl mx-auto px-6 items-center justify-between py-3">
@@ -522,7 +525,7 @@
           Premium nail styling and professional makeup artistry in Stoke-on-Trent. Every appointment is a luxury experience crafted just for you.
         </p>
 
-        <div class="reveal flex flex-col sm:flex-row gap-3 mt-5 justify-center lg:justify-start" style="transition-delay:0.3s;">
+        <div class="hero-cta reveal flex flex-col sm:flex-row gap-3 mt-5 justify-center lg:justify-start" style="transition-delay:0.3s;">
           <a href="#book" class="btn-gold px-8 py-4 rounded-sm text-center" style="min-height:52px; display:flex; align-items:center; justify-content:center;">
             WhatsApp Me
           </a>
