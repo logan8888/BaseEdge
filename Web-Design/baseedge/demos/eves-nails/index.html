@@ -900,24 +900,24 @@
       ctx.clearRect(0, 0, W, H);
 
       const gems = [];
-      const count = 120;
-      for (let i = 0; i < count; i++) {
+      // larger layer — reduced radius, same count
+      for (let i = 0; i < 120; i++) {
         const xFrac = Math.random() * 0.58;
         gems.push({
           x: xFrac * W,
           y: Math.random() * H,
-          r: Math.random() * 4 + 1.5,
+          r: Math.random() * 2.2 + 0.8,   // was 4+1.5, now ~60% smaller
           gold: Math.random() > 0.45,
         });
       }
-      // second micro layer
-      for (let i = 0; i < 80; i++) {
+      // micro layer — more white gems (80% white, 20% gold), 160 total
+      for (let i = 0; i < 160; i++) {
         const xFrac = Math.random() * 0.55;
         gems.push({
           x: xFrac * W,
           y: Math.random() * H,
-          r: Math.random() * 2 + 0.5,
-          gold: Math.random() > 0.5,
+          r: Math.random() * 1.2 + 0.3,
+          gold: Math.random() > 0.80,   // mostly white
         });
       }
 
