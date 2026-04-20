@@ -172,51 +172,7 @@
       height: 100%;
       pointer-events: none;
       z-index: 0;
-      display: none; /* sized by JS */
-      -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 28%, rgba(0,0,0,0.2) 52%, transparent 68%);
-      mask-image:         linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 28%, rgba(0,0,0,0.2) 52%, transparent 68%);
-      background-image:
-        radial-gradient(circle 4px at  6%  7%,  rgba(255,255,255,0.40) 0%, transparent 100%),
-        radial-gradient(circle 2px at 13%  19%, rgba(220,172,96, 0.30) 0%, transparent 100%),
-        radial-gradient(circle 3px at  1%  31%, rgba(255,255,255,0.38) 0%, transparent 100%),
-        radial-gradient(circle 2px at 24%  11%, rgba(228,178,102,0.28) 0%, transparent 100%),
-        radial-gradient(circle 4px at  9%  43%, rgba(255,255,255,0.36) 0%, transparent 100%),
-        radial-gradient(circle 2px at 33%  27%, rgba(215,165,90, 0.26) 0%, transparent 100%),
-        radial-gradient(circle 3px at  5%  61%, rgba(255,255,255,0.38) 0%, transparent 100%),
-        radial-gradient(circle 2px at 19%  53%, rgba(222,172,96, 0.28) 0%, transparent 100%),
-        radial-gradient(circle 1px at 41%  36%, rgba(255,255,255,0.35) 0%, transparent 100%),
-        radial-gradient(circle 3px at  8%  74%, rgba(225,175,98, 0.26) 0%, transparent 100%),
-        radial-gradient(circle 2px at 27%  82%, rgba(255,255,255,0.36) 0%, transparent 100%),
-        radial-gradient(circle 4px at  3%  89%, rgba(218,168,92, 0.28) 0%, transparent 100%),
-        radial-gradient(circle 1px at 38%  64%, rgba(255,255,255,0.34) 0%, transparent 100%),
-        radial-gradient(circle 2px at 16%  76%, rgba(228,178,102,0.26) 0%, transparent 100%),
-        radial-gradient(circle 3px at 45%  48%, rgba(255,255,255,0.30) 0%, transparent 100%),
-        radial-gradient(circle 2px at 22%  35%, rgba(215,162,88, 0.24) 0%, transparent 100%),
-        radial-gradient(circle 1px at 10%  16%, rgba(255,255,255,0.38) 0%, transparent 100%),
-        radial-gradient(circle 3px at 36%  88%, rgba(222,170,95, 0.26) 0%, transparent 100%),
-        radial-gradient(circle 2px at  7%  55%, rgba(255,255,255,0.34) 0%, transparent 100%),
-        radial-gradient(circle 1px at 49%  22%, rgba(230,180,106,0.24) 0%, transparent 100%),
-        radial-gradient(circle 2px at 30%  44%, rgba(255,255,255,0.32) 0%, transparent 100%),
-        radial-gradient(circle 3px at  2%  48%, rgba(218,168,92, 0.26) 0%, transparent 100%),
-        radial-gradient(circle 1px at 43%  72%, rgba(255,255,255,0.30) 0%, transparent 100%),
-        radial-gradient(circle 2px at 15%  92%, rgba(225,175,98, 0.26) 0%, transparent 100%),
-        radial-gradient(circle 3px at 26%  60%, rgba(255,255,255,0.34) 0%, transparent 100%),
-        radial-gradient(circle 1px at 52%  14%, rgba(215,165,90, 0.22) 0%, transparent 100%),
-        radial-gradient(circle 2px at 11%  38%, rgba(255,255,255,0.36) 0%, transparent 100%),
-        radial-gradient(circle 3px at 39%  20%, rgba(222,172,96, 0.24) 0%, transparent 100%),
-        radial-gradient(circle 1px at 47%  80%, rgba(255,255,255,0.28) 0%, transparent 100%),
-        radial-gradient(circle 2px at 21%  68%, rgba(228,178,102,0.24) 0%, transparent 100%),
-        radial-gradient(circle 3px at  4%  24%, rgba(255,255,255,0.36) 0%, transparent 100%),
-        radial-gradient(circle 1px at 34%  52%, rgba(218,168,92, 0.22) 0%, transparent 100%),
-        radial-gradient(circle 2px at 12%  84%, rgba(255,255,255,0.32) 0%, transparent 100%),
-        radial-gradient(circle 3px at 48%  94%, rgba(215,162,88, 0.22) 0%, transparent 100%),
-        radial-gradient(circle 1px at 28%  28%, rgba(255,255,255,0.34) 0%, transparent 100%),
-        radial-gradient(circle 2px at 17%  46%, rgba(225,175,98, 0.24) 0%, transparent 100%),
-        radial-gradient(circle 3px at  6%  96%, rgba(255,255,255,0.30) 0%, transparent 100%),
-        radial-gradient(circle 1px at 42%  56%, rgba(222,170,95, 0.20) 0%, transparent 100%),
-        radial-gradient(circle 2px at 31%  16%, rgba(255,255,255,0.32) 0%, transparent 100%),
-        radial-gradient(circle 3px at 20%  4%,  rgba(218,168,92, 0.24) 0%, transparent 100%);
-      background-size: 100% 100%;
+      display: block;
     }
 
     /* ── Hero confetti canvas ──────────────────── */
@@ -528,7 +484,7 @@
           Premium nail styling and professional makeup artistry in Stoke-on-Trent. Every appointment is a luxury experience crafted just for you.
         </p>
 
-        <div class="hero-cta reveal flex flex-col sm:flex-row gap-3 justify-center lg:justify-start" style="margin-top:4px; margin-bottom:10px; transition-delay:0.3s;">
+        <div class="hero-cta reveal flex flex-col sm:flex-row gap-3 justify-center lg:justify-start" style="margin-top:8px; margin-bottom:20px; transition-delay:0.3s;">
           <a href="#book" class="btn-gold px-8 py-2 text-center" style="min-height:38px; display:flex; align-items:center; justify-content:center;">
             WhatsApp Me
           </a>
@@ -1033,13 +989,13 @@
             data[i]   = v - 10; // R slightly less
             data[i+1] = v - 20; // G less
             data[i+2] = v - 30; // B least (warm)
-            data[i+3] = Math.floor(xFade * 55 * Math.random()); // max ~55 alpha
+            data[i+3] = Math.floor(xFade * 90 * Math.random()); // max ~90 alpha
           } else if (grain > 0.55) {
             // light shimmer dot
             data[i]   = 255;
             data[i+1] = 248;
             data[i+2] = 230;
-            data[i+3] = Math.floor(xFade * 40 * Math.random());
+            data[i+3] = Math.floor(xFade * 70 * Math.random());
           } else {
             data[i+3] = 0; // transparent
           }
