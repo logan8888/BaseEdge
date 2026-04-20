@@ -154,6 +154,61 @@
       background-size: 100% 100%;
     }
 
+    /* ── Hero bokeh layer 2 (micro) ────────────── */
+    #hero-bokeh2 {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(3px);
+      -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 28%, rgba(0,0,0,0.2) 52%, transparent 68%);
+      mask-image:         linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 28%, rgba(0,0,0,0.2) 52%, transparent 68%);
+      background-image:
+        radial-gradient(circle 4px at  6%  7%,  rgba(255,255,255,0.40) 0%, transparent 100%),
+        radial-gradient(circle 2px at 13%  19%, rgba(220,172,96, 0.30) 0%, transparent 100%),
+        radial-gradient(circle 3px at  1%  31%, rgba(255,255,255,0.38) 0%, transparent 100%),
+        radial-gradient(circle 2px at 24%  11%, rgba(228,178,102,0.28) 0%, transparent 100%),
+        radial-gradient(circle 4px at  9%  43%, rgba(255,255,255,0.36) 0%, transparent 100%),
+        radial-gradient(circle 2px at 33%  27%, rgba(215,165,90, 0.26) 0%, transparent 100%),
+        radial-gradient(circle 3px at  5%  61%, rgba(255,255,255,0.38) 0%, transparent 100%),
+        radial-gradient(circle 2px at 19%  53%, rgba(222,172,96, 0.28) 0%, transparent 100%),
+        radial-gradient(circle 1px at 41%  36%, rgba(255,255,255,0.35) 0%, transparent 100%),
+        radial-gradient(circle 3px at  8%  74%, rgba(225,175,98, 0.26) 0%, transparent 100%),
+        radial-gradient(circle 2px at 27%  82%, rgba(255,255,255,0.36) 0%, transparent 100%),
+        radial-gradient(circle 4px at  3%  89%, rgba(218,168,92, 0.28) 0%, transparent 100%),
+        radial-gradient(circle 1px at 38%  64%, rgba(255,255,255,0.34) 0%, transparent 100%),
+        radial-gradient(circle 2px at 16%  76%, rgba(228,178,102,0.26) 0%, transparent 100%),
+        radial-gradient(circle 3px at 45%  48%, rgba(255,255,255,0.30) 0%, transparent 100%),
+        radial-gradient(circle 2px at 22%  35%, rgba(215,162,88, 0.24) 0%, transparent 100%),
+        radial-gradient(circle 1px at 10%  16%, rgba(255,255,255,0.38) 0%, transparent 100%),
+        radial-gradient(circle 3px at 36%  88%, rgba(222,170,95, 0.26) 0%, transparent 100%),
+        radial-gradient(circle 2px at  7%  55%, rgba(255,255,255,0.34) 0%, transparent 100%),
+        radial-gradient(circle 1px at 49%  22%, rgba(230,180,106,0.24) 0%, transparent 100%),
+        radial-gradient(circle 2px at 30%  44%, rgba(255,255,255,0.32) 0%, transparent 100%),
+        radial-gradient(circle 3px at  2%  48%, rgba(218,168,92, 0.26) 0%, transparent 100%),
+        radial-gradient(circle 1px at 43%  72%, rgba(255,255,255,0.30) 0%, transparent 100%),
+        radial-gradient(circle 2px at 15%  92%, rgba(225,175,98, 0.26) 0%, transparent 100%),
+        radial-gradient(circle 3px at 26%  60%, rgba(255,255,255,0.34) 0%, transparent 100%),
+        radial-gradient(circle 1px at 52%  14%, rgba(215,165,90, 0.22) 0%, transparent 100%),
+        radial-gradient(circle 2px at 11%  38%, rgba(255,255,255,0.36) 0%, transparent 100%),
+        radial-gradient(circle 3px at 39%  20%, rgba(222,172,96, 0.24) 0%, transparent 100%),
+        radial-gradient(circle 1px at 47%  80%, rgba(255,255,255,0.28) 0%, transparent 100%),
+        radial-gradient(circle 2px at 21%  68%, rgba(228,178,102,0.24) 0%, transparent 100%),
+        radial-gradient(circle 3px at  4%  24%, rgba(255,255,255,0.36) 0%, transparent 100%),
+        radial-gradient(circle 1px at 34%  52%, rgba(218,168,92, 0.22) 0%, transparent 100%),
+        radial-gradient(circle 2px at 12%  84%, rgba(255,255,255,0.32) 0%, transparent 100%),
+        radial-gradient(circle 3px at 48%  94%, rgba(215,162,88, 0.22) 0%, transparent 100%),
+        radial-gradient(circle 1px at 28%  28%, rgba(255,255,255,0.34) 0%, transparent 100%),
+        radial-gradient(circle 2px at 17%  46%, rgba(225,175,98, 0.24) 0%, transparent 100%),
+        radial-gradient(circle 3px at  6%  96%, rgba(255,255,255,0.30) 0%, transparent 100%),
+        radial-gradient(circle 1px at 42%  56%, rgba(222,170,95, 0.20) 0%, transparent 100%),
+        radial-gradient(circle 2px at 31%  16%, rgba(255,255,255,0.32) 0%, transparent 100%),
+        radial-gradient(circle 3px at 20%  4%,  rgba(218,168,92, 0.24) 0%, transparent 100%);
+      background-size: 100% 100%;
+    }
+
     /* ── Hero confetti canvas ──────────────────── */
     #hero-confetti {
       position: absolute;
@@ -284,11 +339,9 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(245,234,224,0.35);
-      backdrop-filter: blur(0px);
-      -webkit-backdrop-filter: blur(0px);
-      border-bottom: 1px solid rgba(184,134,74,0.08);
-      transition: border-color 0.3s ease;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
     }
     nav.scrolled {
       background: rgba(245,234,224,0.88);
@@ -296,7 +349,7 @@
       -webkit-backdrop-filter: blur(12px);
       border-bottom-color: rgba(184,134,74,0.25);
     }
-    @media (min-width: 768px) { .hero-section { padding-top: 90px !important; } }
+    @media (min-width: 768px) { .hero-section { padding-top: 60px !important; } }
 
     /* ── Price item ────────────────────────────── */
     .price-row {
@@ -417,12 +470,12 @@
 <nav id="nav">
   <!-- Mobile: full-width logo -->
   <a href="#" class="block md:hidden">
-    <img src="images/eve-logo.png" alt="Eve's Nails & Makeup Boutique" style="width:36%; height:auto; display:block; object-fit:contain; margin:0 auto;" />
+    <img src="images/eve-logo.png" alt="Eve's Nails & Makeup Boutique" style="width:29%; height:auto; display:block; object-fit:contain; margin:0 auto;" />
   </a>
   <!-- Desktop: logo left + links right -->
   <div class="hidden md:flex max-w-6xl mx-auto px-6 items-center justify-between py-0">
     <a href="#">
-      <img src="images/eve-logo.png" alt="Eve's Nails & Makeup Boutique" style="height:38px; width:auto; max-width:120px; display:block; object-fit:contain;" />
+      <img src="images/eve-logo.png" alt="Eve's Nails & Makeup Boutique" style="height:30px; width:auto; max-width:96px; display:block; object-fit:contain;" />
     </a>
     <div class="flex items-center gap-8">
       <a href="#services" class="text-xs tracking-widest uppercase text-muted hover:text-gold transition-colors duration-200" style="letter-spacing:0.16em;">Services</a>
@@ -436,6 +489,7 @@
 <!-- ── HERO ─────────────────────────────────────── -->
 <section class="hero-section hero-bg grain relative min-h-screen flex items-center" style="padding-top:14vw;">
   <div id="hero-bokeh"></div>
+  <div id="hero-bokeh2"></div>
   <canvas id="hero-confetti"></canvas>
   <div class="max-w-6xl mx-auto px-4 md:px-6 w-full py-4" style="position:relative; z-index:2;">
     <div class="flex flex-col lg:flex-row items-center gap-4 lg:gap-20">
@@ -443,7 +497,7 @@
       <!-- Text -->
       <div class="flex-1 text-center lg:text-left">
   
-        <div class="reveal" style="display:inline-flex; align-items:center; gap:8px; margin-bottom:14px; transition-delay:0.05s;">
+        <div class="reveal" style="display:inline-flex; align-items:center; gap:8px; margin-bottom:10px; margin-top:0; transition-delay:0.05s;">
           <span style="display:block; width:28px; height:1px; background:linear-gradient(90deg, transparent, #B8864A);"></span>
           <span style="font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:#8B5E2A;">Nails &amp; Makeup &nbsp;·&nbsp; Stoke-on-Trent</span>
           <span style="display:block; width:28px; height:1px; background:linear-gradient(90deg, #B8864A, transparent);"></span>
