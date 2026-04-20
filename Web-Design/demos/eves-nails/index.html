@@ -960,24 +960,24 @@
       // type: 'bronze' = #a37f46, 'light' = pale gold, 'white' = bright white
       const gems = [];
 
-      // larger layer — mix of bronze, light, and a few white
-      for (let i = 0; i < 150; i++) {
+      // larger layer — gold & white sparkles, 3–6 px radius
+      for (let i = 0; i < 140; i++) {
         const rnd = Math.random();
         gems.push({
           x: Math.random() * 0.58 * W,
           y: Math.random() * H,
-          r: Math.random() * 1.8 + 0.5,
-          type: rnd < 0.55 ? 'bronze' : rnd < 0.80 ? 'light' : 'white',
+          r: Math.random() * 3 + 3,          // 3–6 px
+          type: rnd < 0.50 ? 'gold' : rnd < 0.75 ? 'rose' : 'white',
         });
       }
-      // micro layer — mostly white, some bronze/light
-      for (let i = 0; i < 160; i++) {
+      // micro layer — tiny white/pale-gold, 1.5–3.5 px radius
+      for (let i = 0; i < 180; i++) {
         const rnd = Math.random();
         gems.push({
-          x: Math.random() * 0.55 * W,
+          x: Math.random() * 0.56 * W,
           y: Math.random() * H,
-          r: Math.random() * 1.2 + 0.3,
-          type: rnd < 0.75 ? 'white' : rnd < 0.90 ? 'light' : 'bronze',
+          r: Math.random() * 2 + 1.5,        // 1.5–3.5 px
+          type: rnd < 0.65 ? 'white' : rnd < 0.85 ? 'gold' : 'rose',
         });
       }
 
@@ -986,35 +986,36 @@
         if (xFade <= 0) return;
 
         ctx.save();
-        const grd = ctx.createRadialGradient(g.x, g.y, 0, g.x, g.y, g.r * 1.4);
+        const halo = g.r * 2.2;
+        const grd = ctx.createRadialGradient(g.x, g.y, 0, g.x, g.y, halo);
 
-        if (g.type === 'bronze') {
-          grd.addColorStop(0,   `rgba(235,215,180, ${0.72 * xFade})`);
-          grd.addColorStop(0.4, `rgba(220,200,165, ${0.38 * xFade})`);
-          grd.addColorStop(1,   'rgba(220,200,165, 0)');
-        } else if (g.type === 'light') {
-          grd.addColorStop(0,   `rgba(248,238,220, ${0.62 * xFade})`);
-          grd.addColorStop(0.4, `rgba(240,228,210, ${0.30 * xFade})`);
-          grd.addColorStop(1,   'rgba(240,228,210, 0)');
+        if (g.type === 'gold') {
+          grd.addColorStop(0,   `rgba(198,152,62,  ${0.80 * xFade})`);
+          grd.addColorStop(0.45,`rgba(210,170,90,  ${0.40 * xFade})`);
+          grd.addColorStop(1,   'rgba(210,170,90, 0)');
+        } else if (g.type === 'rose') {
+          grd.addColorStop(0,   `rgba(210,160,140, ${0.72 * xFade})`);
+          grd.addColorStop(0.45,`rgba(220,178,158, ${0.34 * xFade})`);
+          grd.addColorStop(1,   'rgba(220,178,158, 0)');
         } else {
-          grd.addColorStop(0,   `rgba(255,252,242, ${0.82 * xFade})`);
-          grd.addColorStop(0.4, `rgba(250,246,236, ${0.42 * xFade})`);
-          grd.addColorStop(1,   'rgba(250,246,236, 0)');
+          grd.addColorStop(0,   `rgba(255,255,255, ${0.90 * xFade})`);
+          grd.addColorStop(0.45,`rgba(255,248,235, ${0.45 * xFade})`);
+          grd.addColorStop(1,   'rgba(255,248,235, 0)');
         }
 
         ctx.fillStyle = grd;
         ctx.beginPath();
-        ctx.arc(g.x, g.y, g.r * 1.4, 0, Math.PI * 2);
+        ctx.arc(g.x, g.y, halo, 0, Math.PI * 2);
         ctx.fill();
 
         // bright centre dot
-        ctx.fillStyle = g.type === 'bronze'
-          ? `rgba(252,245,230, ${0.88 * xFade})`
-          : g.type === 'light'
-          ? `rgba(255,250,240, ${0.84 * xFade})`
-          : `rgba(255,255,255,  ${0.96 * xFade})`;
+        ctx.fillStyle = g.type === 'gold'
+          ? `rgba(255,230,140, ${0.95 * xFade})`
+          : g.type === 'rose'
+          ? `rgba(255,220,205, ${0.92 * xFade})`
+          : `rgba(255,255,255,  ${0.98 * xFade})`;
         ctx.beginPath();
-        ctx.arc(g.x, g.y, g.r * 0.4, 0, Math.PI * 2);
+        ctx.arc(g.x, g.y, g.r * 0.35, 0, Math.PI * 2);
         ctx.fill();
         ctx.restore();
       });
