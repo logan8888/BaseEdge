@@ -480,6 +480,7 @@
 
 <!-- ── NAV ──────────────────────────────────────── -->
 <nav id="nav">
+  <canvas id="nav-fx" style="position:absolute;top:0;left:0;width:50%;height:100%;pointer-events:none;z-index:0;opacity:0;transition:opacity 0.4s ease;"></canvas>
   <!-- Mobile: full-width logo -->
   <a href="#" class="block md:hidden" style="padding:4px 0;">
     <img src="images/eve-logo.png" alt="Eve's Nails & Makeup Boutique" style="height:26px; width:auto; max-width:42%; display:block; object-fit:contain; margin:0 auto;" />
@@ -861,6 +862,73 @@
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 1);
   }, { passive: true });
+
+  // ── Nav fx canvas (grit + gems on left when scrolled)
+  (function() {
+    const canvas = document.getElementById('nav-fx');
+    const ctx = canvas.getContext('2d');
+    let drawn = false;
+
+    function drawNavFx() {
+      const W = canvas.width  = canvas.offsetWidth;
+      const H = canvas.height = canvas.offsetHeight;
+      ctx.clearRect(0, 0, W, H);
+
+      // grit pixels
+      const imageData = ctx.createImageData(W, H);
+      const data = imageData.data;
+      for (let y = 0; y < H; y++) {
+        for (let x = 0; x < W; x++) {
+          const i = (y * W + x) * 4;
+          const xFade = Math.max(0, 1 - x / (W * 0.85));
+          const grain = Math.random();
+          if (grain > 0.60) {
+            const v = Math.floor(Math.random() * 50 + 90);
+            data[i] = v - 8; data[i+1] = v - 18; data[i+2] = v - 28;
+            data[i+3] = Math.floor(xFade * 45 * Math.random());
+          } else if (grain > 0.53) {
+            data[i] = 255; data[i+1] = 248; data[i+2] = 230;
+            data[i+3] = Math.floor(xFade * 32 * Math.random());
+          } else {
+            data[i+3] = 0;
+          }
+        }
+      }
+      ctx.putImageData(imageData, 0, 0);
+
+      // gem sparkles
+      for (let i = 0; i < 28; i++) {
+        const x = Math.random() * W;
+        const y = Math.random() * H;
+        const r = Math.random() * 2.5 + 1.5;
+        const xFade = Math.max(0, 1 - x / (W * 0.88));
+        if (xFade <= 0) continue;
+        const halo = r * 2;
+        const grd = ctx.createRadialGradient(x, y, 0, x, y, halo);
+        grd.addColorStop(0,    `rgba(255,255,255,${0.85 * xFade})`);
+        grd.addColorStop(0.45, `rgba(255,250,240,${0.35 * xFade})`);
+        grd.addColorStop(1,    'rgba(255,250,240,0)');
+        ctx.fillStyle = grd;
+        ctx.beginPath();
+        ctx.arc(x, y, halo, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = `rgba(255,255,255,${0.95 * xFade})`;
+        ctx.beginPath();
+        ctx.arc(x, y, r * 0.3, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      drawn = true;
+    }
+
+    function onScroll() {
+      const scrolled = window.scrollY > 1;
+      if (scrolled && !drawn) drawNavFx();
+      canvas.style.opacity = scrolled ? '1' : '0';
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => { drawn = false; if (window.scrollY > 1) drawNavFx(); });
+  })();
 
   // ── Set hero padding-top = exact nav height
   const heroSection = document.getElementById('hero-section');
