@@ -470,7 +470,7 @@
 <nav id="nav">
   <!-- Mobile: full-width logo -->
   <a href="#" class="block md:hidden" style="padding:10px 0;">
-    <img src="images/eve-logo.png" alt="Eve's Nails & Makeup Boutique" style="width:29%; height:auto; display:block; object-fit:contain; margin:0 auto;" />
+    <img src="images/eve-logo.png" alt="Eve's Nails & Makeup Boutique" style="width:38%; height:auto; display:block; object-fit:contain; margin:0 auto;" />
   </a>
   <!-- Desktop: logo left + links right -->
   <div class="hidden md:flex max-w-6xl mx-auto px-6 items-center justify-between py-3">
@@ -498,7 +498,7 @@
   
         <div class="reveal" style="display:inline-flex; align-items:center; gap:8px; margin-bottom:10px; margin-top:0; transition-delay:0.05s;">
           <span style="display:block; width:28px; height:1px; background:linear-gradient(90deg, transparent, #B8864A);"></span>
-          <span style="font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:#8B5E2A;">Nails &amp; Makeup &nbsp;·&nbsp; Stoke-on-Trent</span>
+          <span style="font-family:'DM Sans',sans-serif; font-size:clamp(5px,1.3vw,10px); font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:#8B5E2A;">Nails &amp; Makeup &nbsp;·&nbsp; Stoke-on-Trent</span>
           <span style="display:block; width:28px; height:1px; background:linear-gradient(90deg, #B8864A, transparent);"></span>
         </div>
 
@@ -849,7 +849,7 @@
   // ── Nav scroll effect
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
+    nav.classList.toggle('scrolled', window.scrollY > 1);
   }, { passive: true });
 
   // ── Gold band — trigger full sweep on cursor touch
