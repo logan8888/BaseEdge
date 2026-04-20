@@ -251,6 +251,7 @@
       font-family: 'DM Sans', sans-serif;
       border: none;
       cursor: pointer;
+      border-radius: 999px;
       transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s ease;
     }
     .btn-gold:hover {
@@ -274,6 +275,7 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       cursor: pointer;
+      border-radius: 999px;
       transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
     }
     .btn-outline-gold:hover {
@@ -360,9 +362,6 @@
       border-bottom-color: rgba(184,134,74,0.25);
     }
     #hero-section { padding-top: 70px; } /* fallback; JS overrides below */
-    @media (max-width: 767px) {
-      .hero-cta a { padding-top: 10px !important; padding-bottom: 10px !important; min-height: 40px !important; }
-    }
 
     /* ── Price item ────────────────────────────── */
     .price-row {
@@ -526,10 +525,10 @@
         </p>
 
         <div class="hero-cta reveal flex flex-col sm:flex-row gap-3 mt-5 justify-center lg:justify-start" style="transition-delay:0.3s;">
-          <a href="#book" class="btn-gold px-8 py-4 rounded-sm text-center" style="min-height:52px; display:flex; align-items:center; justify-content:center;">
+          <a href="#book" class="btn-gold px-8 py-2 text-center" style="min-height:38px; display:flex; align-items:center; justify-content:center;">
             WhatsApp Me
           </a>
-          <a href="#gallery" class="btn-outline-gold px-8 py-4 rounded-sm text-center" style="min-height:52px; display:flex; align-items:center; justify-content:center;">
+          <a href="#gallery" class="btn-outline-gold px-8 py-2 text-center" style="min-height:38px; display:flex; align-items:center; justify-content:center;">
             View My Work
           </a>
         </div>
@@ -869,7 +868,7 @@
   // ── Set hero padding-top = exact nav height
   const heroSection = document.getElementById('hero-section');
   function setHeroPadding() {
-    const extra = window.innerWidth < 768 ? 6 : 0;
+    const extra = window.innerWidth < 768 ? 0 : 0;
     heroSection.style.paddingTop = (nav.offsetHeight + extra) + 'px';
   }
   setHeroPadding();
