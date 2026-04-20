@@ -518,7 +518,7 @@
           <em style="font-style:italic; color:#8B5E2A;">Becomes Art</em>
         </h1>
 
-        <p class="reveal" style="font-family:'DM Sans',sans-serif; font-size:clamp(13px,2.5vw,18px); color:#8B6B58; line-height:1.7; max-width:480px; margin:16px 0 0; transition-delay:0.2s;">
+        <p class="reveal" style="font-family:'DM Sans',sans-serif; font-size:clamp(10px,2vw,14px); color:#8B6B58; line-height:1.7; max-width:480px; margin:16px 0 0; transition-delay:0.2s;">
           Premium nail styling and professional makeup artistry in Stoke-on-Trent. Every appointment is a luxury experience crafted just for you.
         </p>
 
@@ -1012,11 +1012,11 @@
     const ctx = canvas.getContext('2d');
 
     const COLORS = [
-      'rgba(212,169,106,', // warm gold
-      'rgba(232,200,170,', // blush
-      'rgba(184,134,74,',  // amber
-      'rgba(245,220,195,', // cream
-      'rgba(210,160,120,', // rose gold
+      'rgba(255,255,255,',  // pure white
+      'rgba(255,252,245,',  // warm white
+      'rgba(255,248,235,',  // cream white
+      'rgba(250,248,255,',  // cool white
+      'rgba(255,255,250,',  // neutral white
     ];
 
     let W, H, pieces;
@@ -1034,7 +1034,7 @@
         y: Math.random() * H,
         r: Math.random() * 5 + 1.5,
         vx: (Math.random() - 0.3) * 0.5,
-        vy: -(Math.random() * 0.8 + 0.25),
+        vy: -(Math.random() * 1.4 + 0.7),
         alpha: Math.random() * 0.75 + 0.2,
         color: COLORS[Math.floor(Math.random() * COLORS.length)],
         shape: Math.random() > 0.5 ? 'circle' : 'rect',
@@ -1043,7 +1043,7 @@
         rot: Math.random() * Math.PI * 2,
         rotV: (Math.random() - 0.5) * 0.04,
         life: 0,
-        maxLife: Math.random() * 400 + 200,
+        maxLife: Math.random() * 400 + 400,
       };
     }
 
