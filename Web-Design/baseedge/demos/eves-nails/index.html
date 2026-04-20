@@ -966,7 +966,7 @@
         gems.push({
           x: Math.random() * 0.58 * W,
           y: Math.random() * H,
-          r: Math.random() * 3.2 + 0.8,  // varied sizes
+          r: Math.random() * 1.8 + 0.5,
           type: rnd < 0.55 ? 'bronze' : rnd < 0.80 ? 'light' : 'white',
         });
       }
@@ -986,32 +986,32 @@
         if (xFade <= 0) return;
 
         ctx.save();
-        const grd = ctx.createRadialGradient(g.x, g.y, 0, g.x, g.y, g.r * 2.5);
+        const grd = ctx.createRadialGradient(g.x, g.y, 0, g.x, g.y, g.r * 1.4);
 
         if (g.type === 'bronze') {
-          grd.addColorStop(0,   `rgba(163,127,70, ${0.78 * xFade})`);
-          grd.addColorStop(0.4, `rgba(140,108,55, ${0.48 * xFade})`);
-          grd.addColorStop(1,   'rgba(140,108,55, 0)');
+          grd.addColorStop(0,   `rgba(235,215,180, ${0.72 * xFade})`);
+          grd.addColorStop(0.4, `rgba(220,200,165, ${0.38 * xFade})`);
+          grd.addColorStop(1,   'rgba(220,200,165, 0)');
         } else if (g.type === 'light') {
-          grd.addColorStop(0,   `rgba(210,185,140, ${0.70 * xFade})`);
-          grd.addColorStop(0.4, `rgba(195,170,125, ${0.40 * xFade})`);
-          grd.addColorStop(1,   'rgba(195,170,125, 0)');
+          grd.addColorStop(0,   `rgba(248,238,220, ${0.62 * xFade})`);
+          grd.addColorStop(0.4, `rgba(240,228,210, ${0.30 * xFade})`);
+          grd.addColorStop(1,   'rgba(240,228,210, 0)');
         } else {
-          grd.addColorStop(0,   `rgba(255,252,242, ${0.90 * xFade})`);
-          grd.addColorStop(0.4, `rgba(245,240,225, ${0.52 * xFade})`);
-          grd.addColorStop(1,   'rgba(245,240,225, 0)');
+          grd.addColorStop(0,   `rgba(255,252,242, ${0.82 * xFade})`);
+          grd.addColorStop(0.4, `rgba(250,246,236, ${0.42 * xFade})`);
+          grd.addColorStop(1,   'rgba(250,246,236, 0)');
         }
 
         ctx.fillStyle = grd;
         ctx.beginPath();
-        ctx.arc(g.x, g.y, g.r * 2.5, 0, Math.PI * 2);
+        ctx.arc(g.x, g.y, g.r * 1.4, 0, Math.PI * 2);
         ctx.fill();
 
         // bright centre dot
         ctx.fillStyle = g.type === 'bronze'
-          ? `rgba(210,175,100, ${0.92 * xFade})`
+          ? `rgba(252,245,230, ${0.88 * xFade})`
           : g.type === 'light'
-          ? `rgba(240,225,190, ${0.88 * xFade})`
+          ? `rgba(255,250,240, ${0.84 * xFade})`
           : `rgba(255,255,255,  ${0.96 * xFade})`;
         ctx.beginPath();
         ctx.arc(g.x, g.y, g.r * 0.4, 0, Math.PI * 2);
