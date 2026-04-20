@@ -60,7 +60,7 @@
       z-index: 1;
     }
 
-    /* ── Hero bokeh texture ─────────────────────── */
+    /* ── Hero gem canvas ────────────────────────── */
     #hero-bokeh {
       position: absolute;
       inset: 0;
@@ -68,7 +68,7 @@
       height: 100%;
       pointer-events: none;
       z-index: 0;
-      filter: blur(4px);
+      display: none;
       -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 30%, rgba(0,0,0,0.35) 58%, transparent 74%);
       mask-image:         linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 30%, rgba(0,0,0,0.35) 58%, transparent 74%);
       background-image:
@@ -154,15 +154,15 @@
       background-size: 100% 100%;
     }
 
-    /* ── Hero bokeh layer 2 (micro) ────────────── */
-    #hero-bokeh2 {
+    /* ── Hero gem canvas ──────────────────────── */
+    #hero-gems {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       pointer-events: none;
       z-index: 0;
-      filter: blur(3px);
+      display: none; /* sized by JS */
       -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 28%, rgba(0,0,0,0.2) 52%, transparent 68%);
       mask-image:         linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 28%, rgba(0,0,0,0.2) 52%, transparent 68%);
       background-image:
@@ -469,11 +469,11 @@
 <!-- ── NAV ──────────────────────────────────────── -->
 <nav id="nav">
   <!-- Mobile: full-width logo -->
-  <a href="#" class="block md:hidden">
+  <a href="#" class="block md:hidden" style="padding:10px 0;">
     <img src="images/eve-logo.png" alt="Eve's Nails & Makeup Boutique" style="width:29%; height:auto; display:block; object-fit:contain; margin:0 auto;" />
   </a>
   <!-- Desktop: logo left + links right -->
-  <div class="hidden md:flex max-w-6xl mx-auto px-6 items-center justify-between py-0">
+  <div class="hidden md:flex max-w-6xl mx-auto px-6 items-center justify-between py-3">
     <a href="#">
       <img src="images/eve-logo.png" alt="Eve's Nails & Makeup Boutique" style="height:30px; width:auto; max-width:96px; display:block; object-fit:contain;" />
     </a>
@@ -488,8 +488,7 @@
 
 <!-- ── HERO ─────────────────────────────────────── -->
 <section class="hero-section hero-bg grain relative min-h-screen flex items-center" style="padding-top:14vw;">
-  <div id="hero-bokeh"></div>
-  <div id="hero-bokeh2"></div>
+  <canvas id="hero-gems"></canvas>
   <canvas id="hero-confetti"></canvas>
   <div class="max-w-6xl mx-auto px-4 md:px-6 w-full py-4" style="position:relative; z-index:2;">
     <div class="flex flex-col lg:flex-row items-center gap-4 lg:gap-20">
@@ -887,6 +886,75 @@
       }, 620);
     });
   });
+
+  // ── Hero gems (static bokeh sparkles)
+  (function() {
+    const canvas = document.getElementById('hero-gems');
+    const ctx    = canvas.getContext('2d');
+
+    function draw() {
+      const hero = canvas.parentElement;
+      const W = canvas.width  = hero.offsetWidth;
+      const H = canvas.height = hero.offsetHeight;
+      canvas.style.display = 'block';
+      ctx.clearRect(0, 0, W, H);
+
+      const gems = [];
+      const count = 120;
+      for (let i = 0; i < count; i++) {
+        const xFrac = Math.random() * 0.58;
+        gems.push({
+          x: xFrac * W,
+          y: Math.random() * H,
+          r: Math.random() * 4 + 1.5,
+          gold: Math.random() > 0.45,
+        });
+      }
+      // second micro layer
+      for (let i = 0; i < 80; i++) {
+        const xFrac = Math.random() * 0.55;
+        gems.push({
+          x: xFrac * W,
+          y: Math.random() * H,
+          r: Math.random() * 2 + 0.5,
+          gold: Math.random() > 0.5,
+        });
+      }
+
+      gems.forEach(g => {
+        const xFade = Math.max(0, 1 - g.x / (W * 0.58));
+        if (xFade <= 0) return;
+
+        ctx.save();
+        const grd = ctx.createRadialGradient(g.x, g.y, 0, g.x, g.y, g.r * 2.5);
+        if (g.gold) {
+          grd.addColorStop(0,   `rgba(212,168,88, ${0.72 * xFade})`);
+          grd.addColorStop(0.4, `rgba(200,155,75, ${0.45 * xFade})`);
+          grd.addColorStop(1,   'rgba(200,155,75, 0)');
+        } else {
+          grd.addColorStop(0,   `rgba(255,252,240, ${0.88 * xFade})`);
+          grd.addColorStop(0.4, `rgba(245,238,220, ${0.50 * xFade})`);
+          grd.addColorStop(1,   'rgba(245,238,220, 0)');
+        }
+        ctx.fillStyle = grd;
+        ctx.beginPath();
+        ctx.arc(g.x, g.y, g.r * 2.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        // bright centre dot
+        ctx.fillStyle = g.gold
+          ? `rgba(240,200,110, ${0.90 * xFade})`
+          : `rgba(255,255,255, ${0.95 * xFade})`;
+        ctx.beginPath();
+        ctx.arc(g.x, g.y, g.r * 0.4, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      });
+    }
+
+    draw();
+    window.addEventListener('resize', draw);
+  })();
 
   // ── Hero confetti
   (function() {
