@@ -359,7 +359,7 @@
       -webkit-backdrop-filter: blur(12px);
       border-bottom-color: rgba(184,134,74,0.25);
     }
-    @media (min-width: 768px) { .hero-section { padding-top: clamp(65px,8vw,90px) !important; } }
+    #hero-section { padding-top: 70px; } /* fallback; JS overrides below */
 
     /* ── Price item ────────────────────────────── */
     .price-row {
@@ -497,7 +497,7 @@
 </nav>
 
 <!-- ── HERO ─────────────────────────────────────── -->
-<section class="hero-section hero-bg grain relative min-h-screen flex items-start" style="padding-top:clamp(65px,8vw,90px);">
+<section id="hero-section" class="hero-section hero-bg grain relative flex items-start" style="min-height:100svh;">
   <canvas id="hero-grit"></canvas>
   <canvas id="hero-gems"></canvas>
   <canvas id="hero-confetti"></canvas>
@@ -862,6 +862,14 @@
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 1);
   }, { passive: true });
+
+  // ── Set hero padding-top = exact nav height
+  const heroSection = document.getElementById('hero-section');
+  function setHeroPadding() {
+    heroSection.style.paddingTop = nav.offsetHeight + 'px';
+  }
+  setHeroPadding();
+  window.addEventListener('resize', setHeroPadding);
 
   // ── Gold band — trigger full sweep on cursor touch
   document.querySelectorAll('[data-band]').forEach(band => {
