@@ -359,7 +359,7 @@
       -webkit-backdrop-filter: blur(12px);
       border-bottom-color: rgba(184,134,74,0.25);
     }
-    @media (min-width: 768px) { .hero-section { padding-top: 80px !important; } }
+    @media (min-width: 768px) { .hero-section { padding-top: clamp(65px,8vw,90px) !important; } }
 
     /* ── Price item ────────────────────────────── */
     .price-row {
@@ -497,11 +497,11 @@
 </nav>
 
 <!-- ── HERO ─────────────────────────────────────── -->
-<section class="hero-section hero-bg grain relative min-h-screen flex items-start" style="padding-top:20vw;">
+<section class="hero-section hero-bg grain relative min-h-screen flex items-start" style="padding-top:clamp(65px,8vw,90px);">
   <canvas id="hero-grit"></canvas>
   <canvas id="hero-gems"></canvas>
   <canvas id="hero-confetti"></canvas>
-  <div class="max-w-6xl mx-auto px-4 md:px-6 w-full py-4" style="position:relative; z-index:2;">
+  <div class="max-w-6xl mx-auto px-4 md:px-6 w-full" style="position:relative; z-index:2;">
     <div class="flex flex-col lg:flex-row items-center gap-4 lg:gap-20">
 
       <!-- Text -->
@@ -524,7 +524,7 @@
 
         <div class="reveal flex flex-col sm:flex-row gap-3 mt-5 justify-center lg:justify-start" style="transition-delay:0.3s;">
           <a href="#book" class="btn-gold px-8 py-4 rounded-sm text-center" style="min-height:52px; display:flex; align-items:center; justify-content:center;">
-            Book Your Appointment
+            WhatsApp Me
           </a>
           <a href="#gallery" class="btn-outline-gold px-8 py-4 rounded-sm text-center" style="min-height:52px; display:flex; align-items:center; justify-content:center;">
             View My Work
