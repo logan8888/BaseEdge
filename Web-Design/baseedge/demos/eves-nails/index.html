@@ -318,6 +318,11 @@
       border-bottom-color: rgba(184,134,74,0.25);
     }
     #hero-section { padding-top: 70px; } /* fallback; JS overrides below */
+    @media (max-width: 767px) {
+      .btn-gold, .btn-outline-gold { font-size: 10px !important; padding-left: 14px !important; padding-right: 14px !important; letter-spacing: 0.08em !important; }
+      footer a { font-size: 8px !important; letter-spacing: 0.08em !important; }
+      footer p { font-size: 8px !important; }
+    }
 
     /* ── Price item ────────────────────────────── */
     .price-row {
@@ -758,7 +763,9 @@
     </div>
 
     <!-- WorkSlot booking widget placeholder -->
-    <div class="reveal" style="background:#FDF6F0; border:1px solid rgba(184,134,74,0.25); border-radius:2px; padding:20px 16px; margin-bottom:20px; box-shadow:0 16px 64px rgba(0,0,0,0.5);">
+    <div class="reveal" style="position:relative; overflow:hidden; background:#FDF6F0; border:1px solid rgba(184,134,74,0.25); border-radius:2px; padding:20px 16px; margin-bottom:20px; box-shadow:0 16px 64px rgba(0,0,0,0.5);">
+      <canvas id="book-fx" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+      <div style="position:relative;z-index:1;">
       <p style="font-family:'Great Vibes',cursive; font-size:22px; color:#8B5E2A; margin-bottom:8px;">Message me to check for availability</p>
       <div id="workslot-booking" style="min-height:80px; display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:center; gap:12px;">
         <a href="https://wa.me/447757783471" target="_blank" rel="noopener" class="btn-gold px-6 py-2 inline-flex items-center gap-2" style="min-height:38px; font-size:12px;">
@@ -770,6 +777,7 @@
           07757 783471
         </a>
       </div>
+      </div><!-- /z-index wrapper -->
     </div>
 
     <!-- Instagram alternative -->
@@ -818,6 +826,57 @@
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 1);
   }, { passive: true });
+
+  // ── Booking card grit + gems
+  (function() {
+    const canvas = document.getElementById('book-fx');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    function draw() {
+      const W = canvas.width  = canvas.offsetWidth;
+      const H = canvas.height = canvas.offsetHeight;
+      ctx.clearRect(0, 0, W, H);
+      // grit pixels — left side only
+      const img = ctx.createImageData(W, H);
+      const d = img.data;
+      for (let y = 0; y < H; y++) {
+        for (let x = 0; x < W; x++) {
+          const i = (y * W + x) * 4;
+          const xFade = Math.max(0, 1 - x / (W * 0.6));
+          if (xFade <= 0) { d[i+3]=0; continue; }
+          const g = Math.random();
+          if (g > 0.60) {
+            const v = Math.floor(Math.random()*50+90);
+            d[i]=v-8; d[i+1]=v-18; d[i+2]=v-28;
+            d[i+3]=Math.floor(xFade*80*Math.random());
+          } else if (g > 0.53) {
+            d[i]=255; d[i+1]=248; d[i+2]=230;
+            d[i+3]=Math.floor(xFade*60*Math.random());
+          } else { d[i+3]=0; }
+        }
+      }
+      ctx.putImageData(img, 0, 0);
+      // gem sparkles
+      for (let i = 0; i < 60; i++) {
+        const x = Math.random() * W * 0.65;
+        const y = Math.random() * H;
+        const r = Math.random() * 2.5 + 1.5;
+        const xFade = Math.max(0, 1 - x / (W * 0.65));
+        if (xFade <= 0) continue;
+        const halo = r * 2.2;
+        const grd = ctx.createRadialGradient(x, y, 0, x, y, halo);
+        grd.addColorStop(0,    `rgba(255,255,255,${0.88*xFade})`);
+        grd.addColorStop(0.45, `rgba(255,250,240,${0.40*xFade})`);
+        grd.addColorStop(1,    'rgba(255,250,240,0)');
+        ctx.fillStyle = grd;
+        ctx.beginPath(); ctx.arc(x, y, halo, 0, Math.PI*2); ctx.fill();
+        ctx.fillStyle = `rgba(255,255,255,${0.96*xFade})`;
+        ctx.beginPath(); ctx.arc(x, y, r*0.35, 0, Math.PI*2); ctx.fill();
+      }
+    }
+    draw();
+    window.addEventListener('resize', draw);
+  })();
 
   // ── Nav fx canvas (grit + gems on left when scrolled)
   (function() {
