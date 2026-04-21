@@ -320,8 +320,9 @@
     #hero-section { padding-top: 70px; } /* fallback; JS overrides below */
     @media (max-width: 767px) {
       .btn-gold, .btn-outline-gold { font-size: 10px !important; padding-left: 14px !important; padding-right: 14px !important; letter-spacing: 0.08em !important; }
-      footer a { font-size: 8px !important; letter-spacing: 0.08em !important; }
+      footer a { font-size: 8px !important; letter-spacing: 0.08em !important; padding: 1px 3px !important; }
       footer p { font-size: 8px !important; }
+      footer .flex.gap-6 { gap: 6px !important; }
     }
 
     /* ── Price item ────────────────────────────── */
@@ -751,8 +752,9 @@
 
 <div class="gold-band" data-band><div class="gold-band-shine"></div></div>
 <!-- ── BOOKING ────────────────────────────────────── -->
-<section id="book" class="booking-bg py-6 px-4 md:py-14 md:px-6">
-  <div class="max-w-2xl mx-auto text-center">
+<section id="book" class="booking-bg py-6 px-4 md:py-14 md:px-6" style="position:relative; overflow:hidden;">
+  <canvas id="book-fx" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+  <div class="max-w-2xl mx-auto text-center" style="position:relative;z-index:1;">
 
     <div class="reveal">
       <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.6rem,4vw,2.8rem); font-weight:300; letter-spacing:-0.01em; color:#3B1F10; line-height:1.1;">Book Your Appointment</h2>
@@ -763,9 +765,7 @@
     </div>
 
     <!-- WorkSlot booking widget placeholder -->
-    <div class="reveal" style="position:relative; overflow:hidden; background:#FDF6F0; border:1px solid rgba(184,134,74,0.25); border-radius:2px; padding:20px 16px; margin-bottom:20px; box-shadow:0 16px 64px rgba(0,0,0,0.5);">
-      <canvas id="book-fx" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
-      <div style="position:relative;z-index:1;">
+    <div class="reveal" style="background:#FDF6F0; border:1px solid rgba(184,134,74,0.25); border-radius:2px; padding:20px 16px; margin-bottom:20px; box-shadow:0 16px 64px rgba(0,0,0,0.5);">
       <p style="font-family:'Great Vibes',cursive; font-size:22px; color:#8B5E2A; margin-bottom:8px;">Message me to check for availability</p>
       <div id="workslot-booking" style="min-height:80px; display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:center; gap:12px;">
         <a href="https://wa.me/447757783471" target="_blank" rel="noopener" class="btn-gold px-6 py-2 inline-flex items-center gap-2" style="min-height:38px; font-size:12px;">
@@ -777,7 +777,6 @@
           07757 783471
         </a>
       </div>
-      </div><!-- /z-index wrapper -->
     </div>
 
     <!-- Instagram alternative -->
