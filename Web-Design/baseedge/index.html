@@ -588,7 +588,7 @@ section#receptionist { background: var(--warm); }
 /* WORKSLOT — slate-light purple theme */
 section#workslot {
   background: #F4F3F8;
-  padding: 80px 0;
+  padding: 48px 0;
   font-family: 'Satoshi', 'Space Grotesk', Arial, sans-serif;
   position: relative;
   overflow: hidden;
@@ -800,8 +800,8 @@ footer { padding: 24px 0; border-top: 1px solid var(--border); background: var(-
     </a>
     <ul class="nav-links" id="nav-links">
       <div class="nav-pill" id="nav-pill"></div>
-      <li><a href="#examples" data-section="examples">Work</a></li>
       <li><a href="#process" data-section="process">How It Works</a></li>
+      <li><a href="#examples" data-section="examples">Examples</a></li>
       <li><a href="#receptionist" data-section="receptionist">Receptionist</a></li>
       <li><a href="#workslot" data-section="workslot">WorkSlot</a></li>
       <li><a href="#ai-reels" data-section="ai-reels">Reels</a></li>
@@ -815,8 +815,8 @@ footer { padding: 24px 0; border-top: 1px solid var(--border); background: var(-
 </nav>
 
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-  <a href="#examples" class="mobile-menu-link">Work</a>
   <a href="#process" class="mobile-menu-link">How It Works</a>
+  <a href="#examples" class="mobile-menu-link">Examples</a>
   <a href="#receptionist" class="mobile-menu-link">Receptionist</a>
   <a href="#workslot" class="mobile-menu-link">WorkSlot</a>
   <a href="#ai-reels" class="mobile-menu-link">Reels</a>
@@ -874,20 +874,51 @@ footer { padding: 24px 0; border-top: 1px solid var(--border); background: var(-
 
 <div class="section-divider"></div>
 
+<!-- HOW IT WORKS -->
+<section id="process">
+  <div class="container">
+    <div class="section-head fi">
+      <div class="label">Our preferred sequence</div>
+      <h2>How it works</h2>
+    </div>
+
+    <div class="steps">
+
+      <div class="step fi">
+        <img src="images/001-attract.webp" alt="Attract" style="width:100%; margin-bottom:12px; border-radius:8px; display:block;" />
+        <p>Get noticed on social media with short-form visuals and reels.</p>
+      </div>
+
+      <div class="step fi fi-d1">
+        <img src="images/002-convert.webp" alt="Convert" style="width:100%; margin-bottom:12px; border-radius:8px; display:block;" />
+        <p>Send traffic to a focused mobile page with one clear next step.</p>
+      </div>
+
+      <div class="step fi fi-d2">
+        <img src="images/003-manage.webp" alt="Manage" style="width:100%; margin-bottom:12px; border-radius:8px; display:block;" />
+        <p>Handle bookings, enquiries, and calls — automatically.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
 <!-- LANDING PAGES -->
 <section id="examples">
   <div class="container">
 
     <!-- Always-visible header -->
     <div class="examples-head fi">
-      <div class="label">Our work</div>
+      <div class="label">Landing page examples</div>
       <div class="examples-head-row">
         <div>
           <h2>Landing pages designed to convert.</h2>
           <p style="margin-top:6px;">Mobile-first. Clear. Built to turn visitors into enquiries.</p>
         </div>
         <button class="examples-toggle" id="examples-toggle" aria-expanded="false" aria-controls="examples-panel">
-          <span class="lbl-open">See our work</span>
+          <span class="lbl-open">See examples</span>
           <span class="lbl-close">Close</span>
           <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
@@ -974,37 +1005,6 @@ footer { padding: 24px 0; border-top: 1px solid var(--border); background: var(-
       </div>
     </div>
 
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- HOW IT WORKS -->
-<section id="process">
-  <div class="container">
-    <div class="section-head fi">
-      <div class="label">How it works</div>
-      <h2>How it works</h2>
-    </div>
-
-    <div class="steps">
-
-      <div class="step fi">
-        <img src="images/001-attract.webp" alt="Attract" style="width:100%; margin-bottom:12px; border-radius:8px; display:block;" />
-        <p>Get noticed on social media with short-form visuals and reels.</p>
-      </div>
-
-      <div class="step fi fi-d1">
-        <img src="images/002-convert.webp" alt="Convert" style="width:100%; margin-bottom:12px; border-radius:8px; display:block;" />
-        <p>Send traffic to a focused mobile page with one clear next step.</p>
-      </div>
-
-      <div class="step fi fi-d2">
-        <img src="images/003-manage.webp" alt="Manage" style="width:100%; margin-bottom:12px; border-radius:8px; display:block;" />
-        <p>Handle bookings, enquiries, and calls — automatically.</p>
-      </div>
-
-    </div>
   </div>
 </section>
 
@@ -1350,7 +1350,7 @@ footer { padding: 24px 0; border-top: 1px solid var(--border); background: var(-
   /* Nav pill scroll-spy */
   const pill     = document.getElementById('nav-pill');
   const navLinks = document.querySelectorAll('#nav-links a[data-section]');
-  const sections = ['examples', 'process', 'receptionist', 'workslot', 'ai-reels', 'contact'];
+  const sections = ['process', 'examples', 'receptionist', 'workslot', 'ai-reels', 'contact'];
 
   function movePill(link) {
     if (!link) { pill.style.opacity = '0'; navLinks.forEach(a => a.classList.remove('active')); return; }
