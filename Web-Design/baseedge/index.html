@@ -1064,7 +1064,18 @@ footer { padding: 24px 0; border-top: 1px solid var(--border); background: var(-
   <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"
     style="position:absolute;left:0;top:0;width:52%;height:100%;pointer-events:none;z-index:0;"
     viewBox="0 0 530 620" preserveAspectRatio="xMinYMid slice">
-    <g fill="#6B5B95" opacity="0.22">
+    <defs>
+      <linearGradient id="ws-vfade" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%"   stop-color="white" stop-opacity="0"/>
+        <stop offset="22%"  stop-color="white" stop-opacity="1"/>
+        <stop offset="78%"  stop-color="white" stop-opacity="1"/>
+        <stop offset="100%" stop-color="white" stop-opacity="0"/>
+      </linearGradient>
+      <mask id="ws-vmask">
+        <rect x="0" y="0" width="530" height="620" fill="url(#ws-vfade)"/>
+      </mask>
+    </defs>
+    <g fill="#6B5B95" opacity="0.22" mask="url(#ws-vmask)">
 <circle cx="22" cy="22" r="20.4"/>
 <circle cx="66" cy="22" r="19.1"/>
 <circle cx="110" cy="22" r="17.8"/>
