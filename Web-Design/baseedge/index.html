@@ -476,7 +476,13 @@ section#process { background: var(--bg); }
   grid-template-columns: repeat(3, 1fr);
   gap: 48px;
 }
-.step { display: flex; flex-direction: column; }
+.step {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  cursor: default;
+}
+.step:hover { transform: translateY(-10px); }
 .step-icon-wrap {
   width: 64px; height: 64px;
   border-radius: 18px;
