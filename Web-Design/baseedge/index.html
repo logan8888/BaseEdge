@@ -766,11 +766,24 @@ footer { padding: 24px 0; border-top: 1px solid var(--border); background: var(-
 
   .step:hover { transform: none; }
   .step p { font-size: 11px; }
+  .step { padding: 12px 0; border-bottom: none; }
+  .step:last-child { border-bottom: none; }
   .step-icon-wrap { width: 48px; height: 48px; border-radius: 13px; }
   .step-icon-wrap svg { width: 24px; height: 24px; }
   .step-header-row { gap: 14px; margin-bottom: 10px; }
   .step-label { font-size: 20px; }
-  .ws-dot-bg { transform: scale(0.4); transform-origin: 0 0; }
+  .ws-dot-bg { display: none; }
+  section#workslot::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(107,91,149,0.55) 1.5px, transparent 1.5px);
+    background-size: 14px 14px;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
 
   .section-icon { width: 48px; height: 48px; border-radius: 13px; }
   .section-icon svg { width: 24px; height: 24px; }
