@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Jake Hartley</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Playfair+Display+SC:wght@400;700&family=Outfit:wght@200;300;400;500;600&family=Space+Grotesk:wght@300;400;500;600&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+  }
+
+  body {
+    font-family: 'Space Grotesk', Arial, sans-serif;
+    background-image: url('images/bree-anne-XnpWqPZNfXE-unsplash-opt.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-color: #c9bfb0;
+    color: #111009;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ─────────────────────────────────────────
+     BACKGROUND LAYERS
+  ───────────────────────────────────────── */
+
+
+
+
+
+  /* ─────────────────────────────────────────
+     CENTRAL COLUMN — new image as background
+  ───────────────────────────────────────── */
+
+  .page {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: min(600px, 100vw);
+    height: 100vh;
+    margin: 0 auto;
+    padding: 12px 40px 40px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    text-align: center;
+    background-image: url('images/ashkan-forouzani-cyp7GkqF6b8-unsplash-opt.jpg');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+  }
+
+  /* Carved double-groove lines — left and right sides */
+
+  /* frosted overlay so text stays readable over the column image */
+  .page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(220, 210, 195, 0.62);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* all direct children sit above the overlay and groove lines */
+  .page > * { position: relative; z-index: 2; }
+  /* Block image strips */
+  .block-strip {
+    position: absolute !important;
+    top: 0;
+    bottom: 0;
+    width: 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .block-strip-left  { left: 0; }
+  .block-strip-right { right: 0; }
+  .block-wrap {
+    position: relative;
+    flex-shrink: 0;
+    width: 36px;
+  }
+  .block-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(220, 210, 195, 0.62);
+    pointer-events: none;
+  }
+  .block-strip img {
+    width: 36px;
+    height: auto;
+    flex-shrink: 0;
+    display: block;
+  }
+  .block-gap {
+    width: 36px;
+    flex-shrink: 0;
+  }
+
+  /* top border rule */
+  .page-top-rule {
+    width: 100%;
+    height: 1.5px;
+    background: rgba(17,16,9,0.18);
+    margin-bottom: 20px;
+  }
+
+  /* ─────────────────────────────────────────
+     TYPOGRAPHY
+  ───────────────────────────────────────── */
+
+  .wordmark {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(22px, 5vw, 58px);
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #1a0800;
+    margin-bottom: 32px;
+    line-height: 1.1;
+    /* branded / pyrography effect — deep char, no colour bleed */
+    text-shadow:
+      0 0 1px rgba(0,0,0,0.95),
+      0 0 4px rgba(30,10,0,0.8),
+      0 0 10px rgba(20,8,0,0.5),
+      0 1px 0 rgba(255,210,160,0.08),
+      1px 2px 4px rgba(0,0,0,0.6),
+      0 5px 14px rgba(0,0,0,0.38);
+    max-width: 380px;
+    width: 100%;
+    filter: contrast(1.1);
+  }
+
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(11px, 2.8vw, 18px);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.35;
+    color: rgba(17,16,9,0.72);
+    margin-bottom: 0;
+    max-width: 300px;
+    width: 100%;
+  }
+
+  h1 strong {
+    font-weight: 700;
+    color: #111009;
+  }
+
+  .rule {
+    width: 100%;
+    height: 1px;
+    background: rgba(17,16,9,0.2);
+    margin: 20px auto 18px;
+  }
+
+  .sub {
+    font-family: 'Playfair Display SC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(17,16,9,0.78);
+    line-height: 1.8;
+    margin-bottom: 10px;
+    max-width: 300px;
+    width: 100%;
+  }
+
+  .bio {
+    font-family: 'Space Grotesk', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: rgba(17,16,9,0.62);
+    line-height: 2;
+    text-align: justify;
+    text-align-last: center;
+    max-width: 300px;
+    margin: 0 auto 18px;
+    width: 100%;
+  }
+
+  .orn {
+    font-size: 1.2em;
+    opacity: 0.85;
+    font-style: normal;
+    vertical-align: middle;
+  }
+
+  /* ─────────────────────────────────────────
+     GALLERY
+  ───────────────────────────────────────── */
+
+  .gallery-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.28s cubic-bezier(0.4,0,0.2,1);
+    margin: 0 auto 8px;
+  }
+  .gallery-wrap.open { grid-template-rows: 1fr; }
+  .gallery-inner {
+    overflow: hidden;
+    position: relative;
+    min-height: 0;
+  }
+  .gallery-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    overflow: visible;
+  }
+  .frame-rect {
+    stroke-dasharray: 2316;
+    stroke-dashoffset: 2316;
+  }
+  .gallery-content {
+    padding: 14px;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .gallery-content.visible { opacity: 1; }
+  .gallery-main img {
+    width: 100%;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ─────────────────────────────────────────
+     BUTTONS
+  ───────────────────────────────────────── */
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 16px;
+  }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    width: 100%;
+    padding: 9px 20px;
+    border-radius: 3px;
+    font-family: 'Space Grotesk', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition:
+      transform 0.2s cubic-bezier(0.34,1.56,0.64,1),
+      opacity 0.15s ease,
+      background 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn:active { transform: scale(0.97); opacity: 0.8; }
+
+  .btn-dark {
+    background: #111009;
+    color: #f0ede6;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.22);
+  }
+  .btn-dark:hover { background: #231f17; transform: translateY(-1px); box-shadow: 0 8px 32px rgba(0,0,0,0.28); }
+
+  .btn-outline {
+    background: transparent;
+    color: rgba(17,16,9,0.7);
+    border: 1px solid rgba(17,16,9,0.22);
+  }
+  .btn-outline:hover { background: rgba(17,16,9,0.05); color: #111009; border-color: rgba(17,16,9,0.45); transform: translateY(-1px); }
+
+  .ig-icon { width: 15px; height: 15px; flex-shrink: 0; }
+
+  /* ─────────────────────────────────────────
+     PILLS
+  ───────────────────────────────────────── */
+
+  .pills {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Playfair Display SC', serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(17,16,9,0.78);
+    max-width: 320px;
+    width: 100%;
+  }
+  .pill-sep {
+    flex: 1;
+    height: 1.5px;
+    background: rgba(17,16,9,0.18);
+    margin: 0 10px;
+  }
+
+  /* ─────────────────────────────────────────
+     FOOTER
+  ───────────────────────────────────────── */
+
+  .footer-link {
+    position: fixed;
+    bottom: max(10px, env(safe-area-inset-bottom));
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    font-family: 'Space Grotesk', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(17,16,9,0.5);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.15s;
+  }
+  .footer-link:hover { color: rgba(17,16,9,0.75); }
+
+  /* ─────────────────────────────────────────
+     RESPONSIVE
+  ───────────────────────────────────────── */
+
+  .page.gallery-open { height: auto; min-height: 100vh; overflow-y: auto; }
+
+  @media (max-width: 480px) {
+    .page { padding: 12px 12px 40px; }
+  }
+
+  @media (min-width: 600px) {
+    .buttons { flex-direction: row; max-width: none; width: auto; }
+    .btn { width: auto; padding: 15px 20px; }
+  }
+
+  @media (min-width: 1024px) {
+    .wordmark { font-size: clamp(16px, 4.5vw, 64px); }
+    .page { max-width: 700px; }
+  }
+</style>
+</head>
+<body>
+
+
+<!-- ── Main content ── -->
+<main class="page">
+
+  <div class="block-strip block-strip-left"  id="blocks-left"></div>
+  <div class="block-strip block-strip-right" id="blocks-right"></div>
+
+  <p class="wordmark">Jake Hartley</p>
+
+  <h1>Crafted by hand. <strong>Built to last.</strong></h1>
+
+  <div class="rule"></div>
+
+  <p class="sub"><span class="orn">◆</span> Bespoke Carpenter · London <span class="orn">◆</span></p>
+
+  <p class="bio">Skilled tradesman based in London. Over twelve years delivering bespoke joinery and fitted furniture for residential clients across Greater London and the Home Counties. Every project is handled personally — from initial measurements and material selection through to final installation and finishing. No subcontractors. Just honest craftsmanship, quality timber, and work that stands the test of time.</p>
+
+  <div class="gallery-wrap" id="gallery-wrap">
+    <div class="gallery-inner" id="gallery-inner">
+      <svg class="gallery-frame" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 430" preserveAspectRatio="none" aria-hidden="true">
+        <rect id="frame-rect" class="frame-rect" x="1" y="1" width="758" height="428" fill="none" stroke="rgba(17,16,9,0.18)" stroke-width="1.5"/>
+      </svg>
+      <div class="gallery-content">
+        <div class="gallery-main">
+          <img id="main-img" src="images/bree-anne-XnpWqPZNfXE-unsplash-opt.jpg" alt="Bespoke carpentry work">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <a href="https://wa.me/447000000000" class="btn btn-dark">
+      Enquire
+    </a>
+    <a href="https://instagram.com/" class="btn btn-outline" target="_blank" rel="noopener">
+      <svg class="ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+      </svg>
+      Instagram
+    </a>
+    <button id="btn-projects" class="btn btn-outline">
+      View Work
+    </button>
+  </div>
+
+  <div class="pills">
+    <span>Joinery</span>
+    <span class="pill-sep"></span>
+    <span>Fitted Kitchens</span>
+    <span class="pill-sep"></span>
+    <span>Restoration</span>
+  </div>
+
+
+</main>
+
+<a href="https://baseedge.co.uk" class="footer-link">baseedge.co.uk</a>
+
+<script>
+
+  // ── Block strips — pre-fill once, never rebuild ──
+  const BLOCK_SRCS = ['images/block1.png','images/block2.png','images/block3.png','images/block4.png'];
+
+  (function initBlocks() {
+    const strips = [document.getElementById('blocks-left'), document.getElementById('blocks-right')];
+    strips.forEach(strip => {
+      // measure gap from first real image once loaded
+      let gapSet = false;
+      for (let i = 0; i < 80; i++) {
+        const wrap = document.createElement('div');
+        wrap.className = 'block-wrap';
+        const img = document.createElement('img');
+        img.src = BLOCK_SRCS[i % BLOCK_SRCS.length];
+        img.alt = '';
+        wrap.appendChild(img);
+        strip.appendChild(wrap);
+
+        const gap = document.createElement('div');
+        gap.className = 'block-gap';
+        // set gap height to match block height after first image loads
+        if (!gapSet) {
+          img.addEventListener('load', () => {
+            const h = img.offsetHeight;
+            strip.querySelectorAll('.block-gap').forEach(g => g.style.height = h + 'px');
+          }, { once: true });
+          gapSet = true;
+        }
+        strip.appendChild(gap);
+      }
+    });
+  })();
+
+  // ── Gallery ──
+  const galleryWrap    = document.getElementById('gallery-wrap');
+  const galleryInner   = document.getElementById('gallery-inner');
+  const galleryContent = galleryInner.querySelector('.gallery-content');
+  const frameRect      = document.getElementById('frame-rect');
+  const btnProjects    = document.getElementById('btn-projects');
+
+  const PERIMETER = 2316;
+  const T_EXPAND = 280, T_BORDER = 620, T_CFADE = 200, T_UNDRAW = 480, T_COLL = 280;
+  let galleryOpen = false, closeTimers = [];
+
+  function clearCloseTimers() { closeTimers.forEach(clearTimeout); closeTimers = []; }
+  function resetBorder() {
+    frameRect.style.transition = 'none';
+    frameRect.style.strokeDashoffset = PERIMETER;
+  }
+
+  function openGallery() {
+    clearCloseTimers();
+    galleryOpen = true;
+    btnProjects.textContent = 'Close Work';
+    document.querySelector('.page').classList.add('gallery-open');
+    resetBorder();
+    galleryWrap.classList.add('open');
+    setTimeout(() => {
+      requestAnimationFrame(() => {
+        frameRect.style.transition = `stroke-dashoffset ${T_BORDER}ms cubic-bezier(0.4,0,0.25,1)`;
+        frameRect.style.strokeDashoffset = '0';
+      });
+      setTimeout(() => { galleryContent.classList.add('visible'); }, T_BORDER);
+    }, T_EXPAND + 20);
+  }
+
+  function closeGallery() {
+    clearCloseTimers();
+    galleryOpen = false;
+    btnProjects.textContent = 'View Work';
+    galleryContent.classList.remove('visible');
+    closeTimers.push(setTimeout(() => {
+      frameRect.style.transition = `stroke-dashoffset ${T_UNDRAW}ms cubic-bezier(0.4,0,0.2,1)`;
+      frameRect.style.strokeDashoffset = PERIMETER;
+      closeTimers.push(setTimeout(() => {
+        galleryWrap.classList.remove('open');
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        document.querySelector('.page').scrollTop = 0;
+        closeTimers.push(setTimeout(() => {
+          resetBorder();
+          document.querySelector('.page').classList.remove('gallery-open');
+        }, T_COLL + 50));
+      }, T_UNDRAW));
+    }, T_CFADE));
+  }
+
+  btnProjects.addEventListener('click', () => galleryOpen ? closeGallery() : openGallery());
+
+  // ── Justified fit ──
+  (function () {
+    function fit() {
+      if (window.innerWidth < 600) return;
+      var btns = document.querySelector('.buttons');
+      if (!btns) return;
+      var W = btns.offsetWidth;
+      if (W < 150) return;
+
+      ['h1', '.rule', '.sub', '.bio', '.gallery-wrap', '.pills'].forEach(function (sel) {
+        var el = document.querySelector(sel);
+        if (!el) return;
+        el.style.width = W + 'px';
+        el.style.maxWidth = 'none';
+      });
+
+      function justifyLine(el, lsEm, targetPct) {
+        el.style.whiteSpace = 'nowrap';
+        el.style.fontSize = '';
+        el.style.wordSpacing = 'normal';
+        el.style.letterSpacing = lsEm + 'em';
+        el.style.width = 'max-content';
+        var fs = parseFloat(window.getComputedStyle(el).fontSize);
+        var nw = el.scrollWidth;
+        if (nw > 0) el.style.fontSize = (fs * (W * targetPct) / nw) + 'px';
+        var nw2 = el.scrollWidth;
+        el.style.width = W + 'px';
+        var gaps = el.textContent.trim().split(/\s+/).length - 1;
+        if (gaps > 0 && W > nw2) el.style.wordSpacing = ((W - nw2) / gaps) + 'px';
+      }
+
+      var h1el = document.querySelector('h1');
+      if (h1el) justifyLine(h1el, 0.05, 0.82);
+      var sub = document.querySelector('.sub');
+      if (sub) justifyLine(sub, 0.10, 0.78);
+    }
+
+    function run() { setTimeout(fit, 80); }
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(run);
+    window.addEventListener('load', run);
+    window.addEventListener('resize', function () { setTimeout(fit, 40); });
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>James Alderton</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Playfair+Display+SC:wght@400;700&family=Outfit:wght@200;300;400;500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+  }
+
+  body {
+    font-family: 'Space Grotesk', Arial, sans-serif;
+    background: #dedad3;
+    color: #111009;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  /* ─────────────────────────────────────────
+     BACKGROUND LAYERS
+  ───────────────────────────────────────── */
+
+  /* 1. Shadow animation — dark blobs displaced by turbulence */
+  .shadow-wrap {
+    position: fixed;
+    inset: -80px;
+    z-index: 0;
+    filter: url(#shadow-filter) blur(8px);
+  }
+
+  .shadow-color {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(18, 14, 8, 0.62);
+    mask-image: url('https://framerusercontent.com/images/ceBGguIpUU8luwByxuQz79t7To.png');
+    -webkit-mask-image: url('https://framerusercontent.com/images/ceBGguIpUU8luwByxuQz79t7To.png');
+    mask-size: cover;
+    -webkit-mask-size: cover;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-position: center;
+  }
+
+  /* 2. Film grain — the heavy texture from the reference */
+  .grain {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    background-image: url('https://framerusercontent.com/images/g0QcWrxr87K0ufOxIUFBakwYA8.png');
+    background-size: 180px;
+    background-repeat: repeat;
+    opacity: 0.55;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+  }
+
+  /* 3. Subtle vignette — edges slightly darker */
+  .vignette {
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    background: radial-gradient(ellipse 90% 85% at 50% 50%, transparent 50%, rgba(12,10,6,0.18) 100%);
+    pointer-events: none;
+  }
+
+
+  /* Hidden SVG filter */
+  .filter-svg {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  /* ─────────────────────────────────────────
+     CONTENT
+  ───────────────────────────────────────── */
+
+  .page {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: fit-content;
+    margin: 16px auto 0;
+    padding: 20px 40px;
+    text-align: center;
+    border-top: 1.5px solid rgba(17,16,9,0.18);
+    border-left: 1.5px solid rgba(17,16,9,0.18);
+    border-right: 1.5px solid rgba(17,16,9,0.18);
+    border-bottom: 1.5px solid rgba(17,16,9,0.18);
+    border-radius: 12px 12px 0 0;
+  }
+
+  /* Name — primary hero element */
+  .wordmark {
+    font-family: 'Outfit', Arial, sans-serif;
+    font-size: clamp(14px, 5.5vw, 68px);
+    font-weight: 200;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #111009;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 10;
+    line-height: 1.05;
+    text-shadow: 
+      0 -1px 0 rgba(0,0,0,0.12),
+      0 1px 0 rgba(255,255,255,0.25);
+    max-width: 300px;
+    width: 100%;
+  }
+
+  /* Main headline — supporting tagline */
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(11px, 2.8vw, 18px);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.35;
+    color: rgba(17,16,9,0.72);
+    margin-bottom: 0;
+    max-width: 300px;
+    width: 100%;
+  }
+
+  h1 strong {
+    font-weight: 700;
+    background: linear-gradient(30deg, #ddb030 0%, #f8ea7a 50%, #ddb030 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.85));
+  }
+
+  /* Rule */
+  .rule {
+    width: 100%;
+    height: 1px;
+    background: rgba(17,16,9,0.2);
+    margin: 20px auto 18px;
+  }
+
+  /* Sub copy */
+  .sub {
+    font-family: 'Playfair Display SC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(17,16,9,0.78);
+    line-height: 1.8;
+    margin-bottom: 10px;
+    max-width: 300px;
+    width: 100%;
+  }
+
+  /* Bio */
+  .bio {
+    font-family: 'Space Grotesk', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: rgba(17,16,9,0.62);
+    line-height: 2;
+    text-align: justify;
+    text-align-last: center;
+    max-width: 300px;
+    margin: 0 auto 18px;
+    width: 100%;
+  }
+
+  /* Gallery */
+  .gallery-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.28s cubic-bezier(0.4,0,0.2,1);
+    margin: 0 auto 8px;
+  }
+  .gallery-wrap.open {
+    grid-template-rows: 1fr;
+  }
+  .gallery-inner {
+    overflow: hidden;
+    position: relative;
+    min-height: 0;
+  }
+  .gallery-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    overflow: visible;
+  }
+  .frame-rect {
+    stroke-dasharray: 3032;
+    stroke-dashoffset: 3032;
+  }
+  .gallery-content {
+    padding: 14px;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .gallery-content.visible {
+    opacity: 1;
+  }
+  .gallery-main img {
+    width: 100%;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    display: block;
+  }
+  .gallery-thumbs {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 4px;
+    margin-top: 4px;
+  }
+  .thumb {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    cursor: pointer;
+    display: block;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+  }
+  .thumb.active,
+  .thumb:hover { opacity: 1; }
+
+
+  /* Buttons */
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 16px;
+  }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    width: 100%;
+    padding: 9px 20px;
+    border-radius: 3px;
+    font-family: 'Space Grotesk', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition:
+      transform 0.2s cubic-bezier(0.34,1.56,0.64,1),
+      opacity 0.15s ease,
+      background 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn:active { transform: scale(0.97); opacity: 0.8; }
+
+  .btn-dark {
+    background: #111009;
+    color: #f0ede6;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.22);
+  }
+  .btn-dark:hover { background: #231f17; transform: translateY(-1px); box-shadow: 0 8px 32px rgba(0,0,0,0.28); }
+
+  .btn-outline {
+    background: transparent;
+    color: rgba(17,16,9,0.7);
+    border: 1px solid rgba(17,16,9,0.22);
+  }
+  .btn-outline:hover { background: rgba(17,16,9,0.05); color: #111009; border-color: rgba(17,16,9,0.45); transform: translateY(-1px); }
+
+  /* Instagram icon inline SVG */
+  .ig-icon {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+  }
+
+  /* Inscription ornaments flanking the sub line */
+  .orn {
+    font-size: 1.2em;
+    opacity: 0.85;
+    font-style: normal;
+    vertical-align: middle;
+  }
+
+  /* Pills — word | sep | word | sep | word */
+  .pills {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Playfair Display SC', serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(17,16,9,0.78);
+    max-width: 320px;
+    width: 100%;
+  }
+  .pill-sep {
+    flex: 1;
+    height: 1.5px;
+    background: rgba(17,16,9,0.18);
+    margin: 0 10px;
+  }
+
+  /* Footer */
+  .footer-link {
+    position: fixed;
+    bottom: max(24px, env(safe-area-inset-bottom));
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    font-family: 'Space Grotesk', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(17,16,9,0.5);
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.15s;
+  }
+  .footer-link:hover { color: rgba(17,16,9,0.75); }
+
+  /* ─────────────────────────────────────────
+     DESKTOP SCALE-UP
+  ───────────────────────────────────────── */
+  @media (min-width: 600px) {
+    .buttons {
+      flex-direction: row;
+      max-width: none;
+      width: auto;
+    }
+    .btn { width: auto; padding: 15px 20px; }
+  }
+
+  @media (min-width: 1024px) {
+    .wordmark { font-size: clamp(16px, 4.5vw, 64px); }
+    .grain { opacity: 0.5; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── SVG filter definition ── -->
+<svg class="filter-svg" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow-filter" x="-25%" y="-25%" width="150%" height="150%">
+      <feTurbulence
+        result="undulation"
+        numOctaves="3"
+        baseFrequency="0.0006,0.0025"
+        seed="2"
+        type="turbulence"
+      />
+      <feColorMatrix
+        id="hueRotate"
+        in="undulation"
+        type="hueRotate"
+        values="0"
+      />
+      <feColorMatrix
+        in="dist"
+        result="circulation"
+        type="matrix"
+        values="4 0 0 0 1  4 0 0 0 1  4 0 0 0 1  1 0 0 0 0"
+      />
+      <feDisplacementMap
+        in="SourceGraphic"
+        in2="circulation"
+        scale="55"
+        result="dist"
+      />
+      <feDisplacementMap
+        in="dist"
+        in2="undulation"
+        scale="55"
+        result="output"
+      />
+    </filter>
+  </defs>
+</svg>
+
+<!-- ── Background layers ── -->
+<div class="shadow-wrap">
+  <div class="shadow-color"></div>
+</div>
+<div class="grain"></div>
+<div class="vignette"></div>
+<!-- ── Main content ── -->
+<main class="page">
+
+  <p class="wordmark">James Alderton</p>
+
+  <h1>Practical design. <strong>Lasting impact.</strong></h1>
+
+  <div class="rule"></div>
+
+  <p class="sub"><span class="orn">◆</span> Independent Architect · London <span class="orn">◆</span></p>
+
+  <p class="bio">RIBA registered architect based in London. Over fifteen years delivering bespoke residential projects, loft conversions, extensions and new builds across Greater London and the Home Counties. Every commission is taken on personally — from initial planning consultation and heritage assessment through to tender documentation and site completion. No contractors, no account managers. Just considered, detail-led design built on long-standing client relationships.</p>
+
+  <div class="gallery-wrap" id="gallery-wrap">
+    <div class="gallery-inner" id="gallery-inner">
+      <svg class="gallery-frame" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
+        <rect id="frame-rect" class="frame-rect" x="1" y="1" width="998" height="518" fill="none" stroke="rgba(17,16,9,0.18)" stroke-width="1.5"/>
+      </svg>
+      <div class="gallery-content">
+        <div class="gallery-main">
+          <img id="main-img" src="images/siarhei-plashchynski-zHaf4Czhwo8-unsplash.jpg" alt="">
+        </div>
+        <div class="gallery-thumbs">
+          <img class="thumb active" src="images/siarhei-plashchynski-zHaf4Czhwo8-unsplash.jpg" data-idx="0" alt="">
+          <img class="thumb" src="images/kabir-ahmed-ZmqTEbDsFa4-unsplash.jpg" data-idx="1" alt="">
+          <img class="thumb" src="images/ollie-singleton-ElQF7UN-8Vo-unsplash.jpg" data-idx="2" alt="">
+          <img class="thumb" src="images/kyle-bushnell-BhZbn_161Uc-unsplash.jpg" data-idx="3" alt="">
+          <img class="thumb" src="images/modunite-ltd-hjWqyOMGvNY-unsplash.jpg" data-idx="4" alt="">
+          <img class="thumb" src="images/chris-johnson-pONEjDvHv3g-unsplash.jpg" data-idx="5" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <a href="https://wa.me/447000000000" class="btn btn-dark">
+      Enquire
+    </a>
+    <a href="https://instagram.com/logan.visuals_uk" class="btn btn-outline" target="_blank" rel="noopener">
+      <svg class="ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+      </svg>
+      Instagram
+    </a>
+    <button id="btn-projects" class="btn btn-outline">
+      View Projects
+    </button>
+  </div>
+
+  <div class="pills">
+    <span>Residential</span>
+    <span class="pill-sep"></span>
+    <span>Extensions</span>
+    <span class="pill-sep"></span>
+    <span>New Builds</span>
+  </div>
+
+</main>
+
+
+<script>
+  // ── Hue animation ──
+  const hueEl = document.getElementById('hueRotate');
+  const DURATION = 8000;
+  let start = null;
+  function tick(ts) {
+    if (!start) start = ts;
+    const hue = (((ts - start) % DURATION) / DURATION) * 360;
+    hueEl.setAttribute('values', hue.toFixed(3));
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+
+  // ── Gallery ──
+  const galleryWrap    = document.getElementById('gallery-wrap');
+  const galleryInner   = document.getElementById('gallery-inner');
+  const galleryContent = galleryInner.querySelector('.gallery-content');
+  const frameRect      = document.getElementById('frame-rect');
+  const mainImg        = document.getElementById('main-img');
+  const thumbs         = document.querySelectorAll('.thumb');
+  const btnProjects    = document.getElementById('btn-projects');
+
+  const SRCS = [
+    'images/siarhei-plashchynski-zHaf4Czhwo8-unsplash.jpg',
+    'images/kabir-ahmed-ZmqTEbDsFa4-unsplash.jpg',
+    'images/ollie-singleton-ElQF7UN-8Vo-unsplash.jpg',
+    'images/kyle-bushnell-BhZbn_161Uc-unsplash.jpg',
+    'images/modunite-ltd-hjWqyOMGvNY-unsplash.jpg',
+    'images/chris-johnson-pONEjDvHv3g-unsplash.jpg',
+  ];
+  const PERIMETER = 3032; // 2 * (998 + 518)
+
+  // Timing (ms)
+  const T_EXPAND  = 280;  // grid height
+  const T_BORDER  = 620;  // border draws
+  const T_FADE    = 300;  // content fade
+  // close reverses: content out → border undraws → height collapses
+  const T_CFADE   = 200;
+  const T_UNDRAW  = 480;
+  const T_COLL    = 280;
+
+  let galleryOpen = false;
+  let currentIdx  = 0;
+  let cycleTimer  = null;
+  let closeTimers = [];
+
+  function clearCloseTimers() { closeTimers.forEach(clearTimeout); closeTimers = []; }
+
+  function setActive(idx) {
+    currentIdx = idx;
+    mainImg.src = SRCS[idx];
+    thumbs.forEach((t, i) => t.classList.toggle('active', i === idx));
+  }
+
+  function startCycle() {
+    stopCycle();
+    cycleTimer = setInterval(() => setActive((currentIdx + 1) % SRCS.length), 4000);
+  }
+
+  function stopCycle() { clearInterval(cycleTimer); cycleTimer = null; }
+
+  function resetBorder() {
+    frameRect.style.transition = 'none';
+    frameRect.style.strokeDashoffset = PERIMETER;
+  }
+
+  function openGallery() {
+    clearCloseTimers();
+    galleryOpen = true;
+    btnProjects.textContent = 'Close Projects';
+    document.body.classList.add('gallery-open');
+
+    // 1. Expand height
+    resetBorder();
+    galleryWrap.classList.add('open');
+
+    // 2. After height settles, draw border
+    setTimeout(() => {
+      requestAnimationFrame(() => {
+        frameRect.style.transition = `stroke-dashoffset ${T_BORDER}ms cubic-bezier(0.4,0,0.25,1)`;
+        frameRect.style.strokeDashoffset = '0';
+      });
+
+      // 3. After border done, fade in content
+      setTimeout(() => {
+        galleryContent.classList.add('visible');
+        startCycle();
+      }, T_BORDER);
+
+    }, T_EXPAND + 20);
+  }
+
+  function closeGallery() {
+    clearCloseTimers();
+    galleryOpen = false;
+    btnProjects.textContent = 'View Projects';
+    stopCycle();
+
+    // 1. Fade out content
+    galleryContent.classList.remove('visible');
+
+    // 2. Undraw border
+    closeTimers.push(setTimeout(() => {
+      frameRect.style.transition = `stroke-dashoffset ${T_UNDRAW}ms cubic-bezier(0.4,0,0.2,1)`;
+      frameRect.style.strokeDashoffset = PERIMETER;
+
+      // 3. Collapse height
+      closeTimers.push(setTimeout(() => {
+        galleryWrap.classList.remove('open');
+        document.body.classList.remove('gallery-open');
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+
+        // Reset border silently after collapse
+        closeTimers.push(setTimeout(resetBorder, T_COLL + 50));
+      }, T_UNDRAW));
+
+    }, T_CFADE));
+  }
+
+  btnProjects.addEventListener('click', () => {
+    galleryOpen ? closeGallery() : openGallery();
+  });
+
+  thumbs.forEach((thumb, i) => {
+    thumb.addEventListener('click', () => { setActive(i); startCycle(); });
+  });
+
+  galleryInner.addEventListener('mouseenter', stopCycle);
+  galleryInner.addEventListener('mouseleave', () => { if (galleryOpen) startCycle(); });
+
+  // ── Inscription fit: word-space justified to button-row width ──
+  (function () {
+    function fit() {
+      if (window.innerWidth < 600) return;
+
+      var btns = document.querySelector('.buttons');
+      if (!btns) return;
+      var W = btns.offsetWidth;
+      if (W < 150) return;
+
+      // Pin every text block to the exact button-row width
+      ['.wordmark', 'h1', '.rule', '.sub', '.bio', '.gallery-wrap', '.pills'].forEach(function (sel) {
+        var el = document.querySelector(sel);
+        if (!el) return;
+        el.style.width = W + 'px';
+        el.style.maxWidth = 'none';
+      });
+
+      // Justify a single-line element edge-to-edge using word-spacing.
+      // Must temporarily use width:max-content so scrollWidth = actual text width
+      // (not the 509px container width which would make measurement useless).
+      function justifyLine(el, lsEm, targetPct) {
+        el.style.whiteSpace    = 'nowrap';
+        el.style.fontSize      = '';        // reset to CSS
+        el.style.wordSpacing   = 'normal';
+        el.style.letterSpacing = lsEm + 'em';
+        el.style.width         = 'max-content'; // measure actual text width
+
+        var fs = parseFloat(window.getComputedStyle(el).fontSize);
+        var nw = el.scrollWidth;            // true text width at CSS font-size
+
+        // Scale font-size so text occupies targetPct of W
+        if (nw > 0) el.style.fontSize = (fs * (W * targetPct) / nw) + 'px';
+
+        var nw2  = el.scrollWidth;          // true text width after scaling
+        el.style.width = W + 'px';         // restore column width
+
+        // Fill the remaining gap with word-spacing
+        var gaps = el.textContent.trim().split(/\s+/).length - 1;
+        if (gaps > 0 && W > nw2) {
+          el.style.wordSpacing = ((W - nw2) / gaps) + 'px';
+        }
+      }
+
+      // ① JAMES ALDERTON — 0.22em letter-spacing, 0.96 fill = ~12% larger + tighter word gap
+      var wm = document.querySelector('.wordmark');
+      if (wm) justifyLine(wm, 0.22, 0.96);
+
+      // ② "Design that outlasts the build." — Cinzel tagline, word-spaced to edges
+      var h1el = document.querySelector('h1');
+      if (h1el) justifyLine(h1el, 0.05, 0.82);
+
+      // ③ INDEPENDENT ARCHITECT · LONDON — Cinzel, bigger, word-spaced to edges
+      var sub = document.querySelector('.sub');
+      if (sub) justifyLine(sub, 0.10, 0.78);
+
+      // ④ Bio — width set above; text-align:justify in CSS handles word-spacing
+      // Nothing extra needed here.
+
+      // ⑤ Pills — grid layout handled by CSS (1fr auto 1fr)
+      // Nothing extra needed here.
+    }
+
+    function run() { setTimeout(fit, 80); }
+
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(run);
+    window.addEventListener('load', run);
+    window.addEventListener('resize', function () { setTimeout(fit, 40); });
+  })();
+</script>
+
+</body>
+</html>
