@@ -737,19 +737,21 @@ footer { padding: 24px 0; border-top: 1px solid var(--border); background: var(-
   nav { padding: 5px 0 2px !important; }
 
   .container { padding: 0 14px; }
-  section { padding: 40px 0; }
-  section.hero { padding: 20px 0 36px; }
-  section#workslot { padding: 52px 0; }
-  .workslot-card { padding: 28px 20px; border-radius: 12px; }
-  .section-head { margin-bottom: 28px; }
-  .section-head p { font-size: 14px; }
+  section { padding: 24px 0; }
+  section.hero { padding: 14px 0 22px; }
+  section#workslot { padding: 32px 0; }
+  .workslot-card { padding: 20px 16px; border-radius: 12px; }
+  .section-head { margin-bottom: 16px; }
+  .section-head p { font-size: 12px; }
+
+  p { font-size: 12px; line-height: 1.6; }
 
   h1 { font-size: clamp(21px, 5.8vw, 32px); }
   h2 { font-size: clamp(14px, 3.6vw, 20px); }
 
-  .hero h1 { margin-bottom: 12px; }
-  .hero-eyebrow { font-size: 9px; margin-bottom: 12px; padding: 4px 10px 4px 8px; }
-  .hero-sub { font-size: 14px; margin-bottom: 24px; }
+  .hero h1 { margin-bottom: 10px; }
+  .hero-eyebrow { font-size: 9px; margin-bottom: 10px; padding: 4px 10px 4px 8px; }
+  .hero-sub { font-size: 12px; margin-bottom: 18px; }
   .hero-ctas { gap: 8px; }
   .hero-ctas .btn { flex: 1; justify-content: center; }
 
@@ -781,14 +783,16 @@ footer { padding: 24px 0; border-top: 1px solid var(--border); background: var(-
   .contact-actions { flex-direction: column; align-items: center; gap: 10px; }
   .contact-btn { width: 100%; justify-content: center; max-width: 300px; }
 
-  .examples-head-row { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .examples-head-row { flex-direction: column; align-items: flex-start; gap: 10px; }
   .examples-toggle { width: 100%; justify-content: space-between; }
-  .examples-showcase { grid-template-columns: 1fr; }
-  .showcase-info { padding: 20px; gap: 8px; border-left: none; border-top: 1px solid var(--border); }
-  .showcase-bar-name { font-size: 17px; }
-  .examples-selectors { gap: 8px; }
-  .ex-sel { width: 130px; }
-  .examples-cta-row { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .examples-showcase { display: none; }
+  .examples-selectors { gap: 8px; flex-wrap: wrap; }
+  .ex-sel { width: 90px; }
+  .ex-sel-name { font-size: 10px; }
+  .ex-sel-type { font-size: 7px; }
+  .examples-panel.open .examples-panel-inner { padding-top: 16px; }
+  .examples-mobile-hint { display: block; font-size: 11px; color: var(--faint); margin-bottom: 12px; }
+  .examples-cta-row { flex-direction: column; align-items: flex-start; gap: 10px; }
 
   .section-divider { height: 16px !important; margin: -8px 0 !important; pointer-events: none; cursor: default; }
   .section-divider::before { height: 2px !important; }
@@ -940,6 +944,7 @@ footer { padding: 24px 0; border-top: 1px solid var(--border); background: var(-
         <div class="examples-showcase" id="examples-showcase"></div>
 
         <!-- Project selectors -->
+        <p class="examples-mobile-hint" style="display:none;">Tap any thumbnail to visit the site →</p>
         <div class="examples-selectors">
 
           <button class="ex-sel active" data-idx="0">
@@ -1463,7 +1468,13 @@ footer { padding: 24px 0; border-top: 1px solid var(--border); background: var(-
 
   renderShowcase(0);
 
-  exSels.forEach((btn, idx) => btn.addEventListener('click', () => selectProject(idx)));
+  exSels.forEach((btn, idx) => btn.addEventListener('click', () => {
+    if (window.innerWidth <= 768) {
+      window.open(exProjects[idx].url, exProjects[idx].urlTarget || '_blank');
+    } else {
+      selectProject(idx);
+    }
+  }));
 
   exToggle.addEventListener('click', () => {
     const isOpen = exPanel.classList.toggle('open');
