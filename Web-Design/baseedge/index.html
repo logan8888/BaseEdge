@@ -1307,11 +1307,11 @@ footer { padding: 24px 0; border-top: 1px solid var(--border); background: var(-
         </ul>
         <p class="receptionist-accent">A range of European accents available, including various English accents — friendly, professional, or neutral.</p>
         <div class="audio-demos">
-          <button class="audio-btn" data-src="">
+          <button class="audio-btn" data-src="sound/baseedge01.MP3">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
             Hear Accent 1
           </button>
-          <button class="audio-btn" data-src="">
+          <button class="audio-btn" data-src="sound/baseedge02.MP3">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
             Hear Accent 2
           </button>
@@ -1508,11 +1508,46 @@ footer { padding: 24px 0; border-top: 1px solid var(--border); background: var(-
     }
   }, { threshold: 0 }).observe(document.getElementById('examples'));
 
-  /* Audio demo buttons — placeholder */
-  document.querySelectorAll('.audio-btn').forEach(btn => {
+  /* Audio demo buttons */
+  const PLAY_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>`;
+  const PAUSE_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="10" y1="8" x2="10" y2="16"/><line x1="14" y1="8" x2="14" y2="16"/></svg>`;
+  let currentAudio = null;
+  let currentBtn   = null;
+
+  function resetBtn(btn, label) {
+    btn.innerHTML = PLAY_ICON + label;
+    btn.style.borderColor = '';
+  }
+
+  document.querySelectorAll('.audio-btn').forEach((btn, i) => {
+    const label = btn.querySelector('svg') ? btn.textContent.trim() : btn.dataset.label;
+    const displayLabel = i === 0 ? 'Hear Accent 1' : 'Hear Accent 2';
+
     btn.addEventListener('click', () => {
-      btn.textContent = 'Coming soon…';
-      btn.disabled = true;
+      if (currentAudio && currentBtn === btn) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        resetBtn(btn, displayLabel);
+        currentAudio = null;
+        currentBtn   = null;
+        return;
+      }
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        resetBtn(currentBtn, currentBtn === document.querySelectorAll('.audio-btn')[0] ? 'Hear Accent 1' : 'Hear Accent 2');
+      }
+      const audio = new Audio(btn.dataset.src);
+      currentAudio = audio;
+      currentBtn   = btn;
+      btn.innerHTML = PAUSE_ICON + displayLabel;
+      btn.style.borderColor = 'var(--purple)';
+      audio.play();
+      audio.addEventListener('ended', () => {
+        resetBtn(btn, displayLabel);
+        currentAudio = null;
+        currentBtn   = null;
+      });
     });
   });
 </script>
