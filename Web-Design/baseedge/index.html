@@ -1556,6 +1556,58 @@ footer { padding: 24px 0; border-top: 1px solid var(--border); background: var(-
   #be-chat-trigger.open::after { display: none; }
   @keyframes be-pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.3);opacity:0.7} }
 
+  #be-chat-trigger::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    background: rgba(4,74,179,0.22);
+    animation: be-ring 2.4s ease-out 0.6s infinite;
+    pointer-events: none;
+  }
+  #be-chat-trigger.open::before { display: none; }
+  @keyframes be-ring {
+    0% { transform: scale(1); opacity: 0.6; }
+    70% { transform: scale(2.4); opacity: 0; }
+    100% { transform: scale(2.4); opacity: 0; }
+  }
+
+  #be-chat-bubble {
+    position: fixed;
+    bottom: 40px;
+    right: 72px;
+    background: #fff;
+    border: 1.5px solid var(--border);
+    border-radius: 100px;
+    padding: 6px 13px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    box-shadow: 0 2px 14px rgba(0,0,0,0.1);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 999;
+    animation: be-bubble 14s 4s infinite both;
+  }
+  #be-chat-bubble::after {
+    content: '';
+    position: absolute;
+    right: -7px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 7px solid #fff;
+    filter: drop-shadow(1px 0 0 var(--border));
+  }
+  #be-chat-bubble.hidden { opacity: 0 !important; animation: none !important; }
+  @keyframes be-bubble {
+    0%, 2%   { opacity: 0; transform: translateX(10px) scale(0.92); }
+    7%, 27%  { opacity: 1; transform: translateX(0)    scale(1);    }
+    33%, 100% { opacity: 0; transform: translateX(10px) scale(0.92); }
+  }
+
   #be-chat-panel {
     position: fixed;
     bottom: 98px; right: 28px;
@@ -1650,6 +1702,7 @@ footer { padding: 24px 0; border-top: 1px solid var(--border); background: var(-
     </button>
   </div>
 </div>
+<div id="be-chat-bubble" aria-hidden="true">Can I help?</div>
 
 <script>
 (function() {
@@ -1748,10 +1801,13 @@ footer { padding: 24px 0; border-top: 1px solid var(--border); background: var(-
     }
   }
 
+  const bubble = document.getElementById('be-chat-bubble');
+
   trigger.addEventListener('click', () => {
     const isOpen = panel.classList.toggle('open');
     trigger.classList.toggle('open', isOpen);
     trigger.setAttribute('aria-expanded', isOpen);
+    bubble.classList.toggle('hidden', isOpen);
     if (isOpen) {
       if (messages.children.length === 0) {
         setTimeout(() => {
