@@ -1706,7 +1706,7 @@ footer { padding: 24px 0; border-top: 1px solid var(--border); background: var(-
       const btn = document.createElement('button');
       btn.className = 'be-qr';
       btn.textContent = label;
-      btn.addEventListener('click', () => handleSend(label));
+      btn.addEventListener('click', e => { e.stopPropagation(); handleSend(label); });
       qrArea.appendChild(btn);
     });
   }
