@@ -217,6 +217,10 @@ nav {
   mask-image: linear-gradient(to right, black 0%, black 30%, transparent 55%);
 }
 .grit > * { position: relative; z-index: 1; }
+/* Light grain variant for dark sections — same scale/frequency, recoloured from black to white flecks */
+section#contact.grit::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 12 -6'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n2)' fill='white'/%3E%3C/svg%3E");
+}
 
 /* SECTION DIVIDER */
 .section-divider {
@@ -682,9 +686,9 @@ section#ai-reels { background: var(--bg); }
 .reels-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 4px; }
 
 /* CONTACT */
-section#contact { background: var(--warm); text-align: center; }
-section#contact .section-head h2 { margin: 0 auto; }
-section#contact .section-head p { margin-left: auto; margin-right: auto; }
+section#contact { background: #0d2648; text-align: center; }
+section#contact .section-head h2 { margin: 0 auto; color: #ffffff; }
+section#contact .section-head p { margin-left: auto; margin-right: auto; color: #b7c4d6; }
 .contact-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .contact-btn {
   display: inline-flex;
@@ -708,10 +712,26 @@ section#contact .section-head p { margin-left: auto; margin-right: auto; }
 .cbi { width: 18px; height: 18px; flex-shrink: 0; color: var(--muted); }
 .contact-btn.wa .cbi { color: #22A966; }
 
+/* CONTACT — dark strip overrides */
+section#contact .contact-btn {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.18);
+  color: #ffffff;
+}
+section#contact .contact-btn:hover { border-color: rgba(255,255,255,0.35); }
+section#contact .contact-btn:focus-visible { outline-color: #ffffff; }
+section#contact .cbi { color: #ffffff; }
+section#contact .contact-btn.wa { background: #25d366; border-color: #25d366; color: #063d1e; }
+section#contact .contact-btn.wa:hover { border-color: #1fb857; }
+section#contact .contact-btn.wa .cbi { color: #063d1e; }
+section#contact .contact-btn.email { background: #ffffff; border-color: #ffffff; color: #0d2648; }
+section#contact .contact-btn.email:hover { border-color: #b7c4d6; }
+section#contact .contact-btn.email .cbi { color: #0d2648; }
+
 /* FOOTER */
-footer { padding: 24px 0; border-top: 1px solid var(--border); background: var(--white); }
+footer { padding: 24px 0; border-top: 1px solid rgba(255,255,255,0.08); background: #091b33; }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-.footer-copy { font-size: 12px; color: var(--faint); }
+.footer-copy { font-size: 12px; color: #7891ac; }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
@@ -1353,7 +1373,7 @@ footer { padding: 24px 0; border-top: 1px solid var(--border); background: var(-
         </svg>
         Instagram
       </a>
-      <a href="mailto:hello@baseedge.co.uk" class="contact-btn fi fi-d1">
+      <a href="mailto:hello@baseedge.co.uk" class="contact-btn email fi fi-d1">
         <svg class="cbi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
           <polyline points="22,6 12,13 2,6"/>
